@@ -2,3 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 @tailwind utilities;
+
+.title {
+  font-family: "Shrikhand", cursive;
+  color: #ffa400;
+  -webkit-text-stroke: 1.5px #2a2a72;
+}
+
+h2 {
+  font-family: "Shrikhand", cursive;
+  color: #2a2a72;
+  -webkit-text-stroke: 0.8px #ffa400;
+}
+
+h3 {
+  font-family: "Shrikhand", cursive;
+  color: #009FFD;
+  -webkit-text-stroke: 1.5px #2a2a72;
+}
+
+
+h4 {
+  font-family: "Shrikhand", cursive;
+  color: #ffa400;
+  -webkit-text-stroke: 1.5px #2a2a72;
+}
+
+.stroke {
+  -webkit-text-stroke: 1px #232528;
+}

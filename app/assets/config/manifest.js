@@ -1,7 +1,6 @@
 //= link tailwind.css
 //= link application.js
 //= link controllers/application.js
-//= link controllers/hello_controller.js
 //= link controllers/index.js
 //= link manifest.json
 //= link icons/apple-icon-57x57.png
@@ -16,3 +15,5 @@
 //= link icons/favicon-32x32.png
 //= link icons/favicon-96x96.png
 //= link icons/favicon-16x16.png
+//= link bass.png
+//= link illustration.png
