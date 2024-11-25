@@ -1,3 +1,10 @@
+//= link tailwind.css
+//= link application.js
+//= link controllers/application.js
+//= link controllers/hello_controller.js
+//= link controllers/index.js
+
+
 const manifest = {
     "name": "BeatMachine",
     "short_name": "BeatMachine",
