@@ -1,6 +1,6 @@
 {
-    "name": "BeatMachine",
-    "short_name": "BeatMachine",
+    "name": "Drum'n Learn",
+    "short_name": "Drum'n Learn",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
