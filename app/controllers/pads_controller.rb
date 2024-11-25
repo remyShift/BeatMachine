@@ -1,3 +1,3 @@
 class PadsController < ApplicationController
-  before_action :skip_authorization
+  skip_before_action :authenticate_user!
 end
