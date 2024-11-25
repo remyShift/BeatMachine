@@ -1,4 +1,5 @@
 <% @drumracks.each do |drumrack|%>
-<p><%= drumrack.name%></p>
+<p><%= link_to drumrack.name, drumrack_path(drumrack)%>
+</p>
 <p><%= drumrack.bpm%></p>
 <% end %>
