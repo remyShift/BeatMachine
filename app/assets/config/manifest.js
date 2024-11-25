@@ -3,3 +3,16 @@
 //= link controllers/application.js
 //= link controllers/hello_controller.js
 //= link controllers/index.js
+//= link manifest.json
+//= link icons/apple-icon-57x57.png
+//= link icons/apple-icon-60x60.png
+//= link icons/apple-icon-72x72.png
+//= link icons/apple-icon-76x76.png
+//= link icons/apple-icon-114x114.png
+//= link icons/apple-icon-120x120.png
+//= link icons/apple-icon-144x144.png
+//= link icons/apple-icon-152x152.png
+//= link icons/apple-icon-180x180.png
+//= link icons/favicon-32x32.png
+//= link icons/favicon-96x96.png
+//= link icons/favicon-16x16.png
