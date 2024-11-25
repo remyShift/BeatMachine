@@ -1,6 +1,21 @@
 <% steps = Array.new(16, '') %>
 <%= bpm = 120 %>
 
+<script>
+  import * as Tone from "tone";
+
+  const synths =[
+    new Tone.Synth().toDestination()
+  ]
+
+  const Cnote = "C4"
+  let rows = [
+    Array.from({ length: 8 }, (_, i) => ({ note: Cnote, active: false}))
+  ]
+
+
+</script>
+
 <div class="flex flex-col items-center mx-8">
   <div class="bpm-controls ">
     <label for="bpm" id="bpm-label"><%= bpm %> BPM</label>
@@ -13,7 +28,7 @@
     <% steps.each_with_index do |step, i| %>
       <div class="pad <%= 'active' if i == 0 %> <%= 'first-beat-of-the-bar' if i % 4 == 0 %>"><%= step %></div>
     <% end %>
-</div>
+  </div>
 
 </div>
 
