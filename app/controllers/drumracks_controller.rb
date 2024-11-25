@@ -1,5 +1,7 @@
 class DrumracksController < ApplicationController
+  before_action :skip_authorization
+
   def index
-    @drumpads = Drumpad.all
+    @drumracks = Drumrack.all
   end
 end
