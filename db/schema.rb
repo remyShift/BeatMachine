@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_25_100939) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_25_141206) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "drumracks", force: :cascade do |t|
+    t.string "name"
+    t.integer "bpm"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pads", force: :cascade do |t|
+    t.integer "step"
+    t.bigint "drumrack_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["drumrack_id"], name: "index_pads_on_drumrack_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +41,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_25_100939) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "pads", "drumracks"
 end
