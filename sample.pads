@@ -1,0 +1,97 @@
+=> 
+[[32m#<Pad:0x00007f678b66f518[0m
+  id: [34m[1m49[0m,
+  step: [34m[1m1[0m,
+  drumrack_id: [34m[1m4[0m,
+  created_at: Tue, 26 Nov 2024 10:16:09.066949000 UTC +00:00,
+  updated_at: Tue, 26 Nov 2024 10:16:09.066949000 UTC +00:00[32m>[0m,
+ [32m#<Pad:0x00007f678b66f298[0m
+  id: [34m[1m50[0m,
+  step: [34m[1m1[0m,
+  drumrack_id: [34m[1m4[0m,
+  created_at: Tue, 26 Nov 2024 10:16:09.074228000 UTC +00:00,
+  updated_at: Tue, 26 Nov 2024 10:16:09.074228000 UTC +00:00[32m>[0m,
+ [32m#<Pad:0x00007f678b66f018[0m
+  id: [34m[1m51[0m,
+  step: [34m[1m1[0m,
+  drumrack_id: [34m[1m4[0m,
+  created_at: Tue, 26 Nov 2024 10:16:09.079813000 UTC +00:00,
+  updated_at: Tue, 26 Nov 2024 10:16:09.079813000 UTC +00:00[32m>[0m,
+ [32m#<Pad:0x00007f678b66ed98[0m
+  id: [34m[1m52[0m,
+  step: [34m[1m1[0m,
+  drumrack_id: [34m[1m4[0m,
+  created_at: Tue, 26 Nov 2024 10:16:09.085873000 UTC +00:00,
+  updated_at: Tue, 26 Nov 2024 10:16:09.085873000 UTC +00:00[32m>[0m,
+ [32m#<Pad:0x00007f678b66ec58[0m
+  id: [34m[1m53[0m,
+  step: [34m[1m1[0m,
+  drumrack_id: [34m[1m4[0m,
+  created_at: Tue, 26 Nov 2024 10:16:09.091932000 UTC +00:00,
+  updated_at: Tue, 26 Nov 2024 10:16:09.091932000 UTC +00:00[32m>[0m,
+ [32m#<Pad:0x00007f678b66e9d8[0m
+  id: [34m[1m54[0m,
+  step: [34m[1m1[0m,
+  drumrack_id: [34m[1m4[0m,
+  created_at: Tue, 26 Nov 2024 10:16:09.098051000 UTC +00:00,
+  updated_at: Tue, 26 Nov 2024 10:16:09.098051000 UTC +00:00[32m>[0m,
+ [32m#<Pad:0x00007f678b66e898[0m
+  id: [34m[1m55[0m,
+  step: [34m[1m1[0m,
+  drumrack_id: [34m[1m4[0m,
+  created_at: Tue, 26 Nov 2024 10:16:09.104815000 UTC +00:00,
+  updated_at: Tue, 26 Nov 2024 10:16:09.104815000 UTC +00:00[32m>[0m,
+ [32m#<Pad:0x00007f678b66e758[0m
+  id: [34m[1m56[0m,
+  step: [34m[1m1[0m,
+  drumrack_id: [34m[1m4[0m,
+  created_at: Tue, 26 Nov 2024 10:16:09.116670000 UTC +00:00,
+  updated_at: Tue, 26 Nov 2024 10:16:09.116670000 UTC +00:00[32m>[0m,
+ [32m#<Pad:0x00007f678b66e618[0m
+  id: [34m[1m57[0m,
+  step: [34m[1m1[0m,
+  drumrack_id: [34m[1m4[0m,
+  created_at: Tue, 26 Nov 2024 10:16:09.123423000 UTC +00:00,
+  updated_at: Tue, 26 Nov 2024 10:16:09.123423000 UTC +00:00[32m>[0m,
+ [32m#<Pad:0x00007f678b66dd58[0m
+  id: [34m[1m58[0m,
+  step: [34m[1m1[0m,
+  drumrack_id: [34m[1m4[0m,
+  created_at: Tue, 26 Nov 2024 10:16:09.129245000 UTC +00:00,
+  updated_at: Tue, 26 Nov 2024 10:16:09.129245000 UTC +00:00[32m>[0m,
+ [32m#<Pad:0x00007f678b66dad8[0m
+  id: [34m[1m59[0m,
+  step: [34m[1m1[0m,
+  drumrack_id: [34m[1m4[0m,
+  created_at: Tue, 26 Nov 2024 10:16:09.136418000 UTC +00:00,
+  updated_at: Tue, 26 Nov 2024 10:16:09.136418000 UTC +00:00[32m>[0m,
+ [32m#<Pad:0x00007f678b66d718[0m
+  id: [34m[1m60[0m,
+  step: [34m[1m1[0m,
+  drumrack_id: [34m[1m4[0m,
+  created_at: Tue, 26 Nov 2024 10:16:09.142863000 UTC +00:00,
+  updated_at: Tue, 26 Nov 2024 10:16:09.142863000 UTC +00:00[32m>[0m,
+ [32m#<Pad:0x00007f678b66d5d8[0m
+  id: [34m[1m61[0m,
+  step: [34m[1m1[0m,
+  drumrack_id: [34m[1m4[0m,
+  created_at: Tue, 26 Nov 2024 10:16:09.149298000 UTC +00:00,
+  updated_at: Tue, 26 Nov 2024 10:16:09.149298000 UTC +00:00[32m>[0m,
+ [32m#<Pad:0x00007f678b66d218[0m
+  id: [34m[1m62[0m,
+  step: [34m[1m1[0m,
+  drumrack_id: [34m[1m4[0m,
+  created_at: Tue, 26 Nov 2024 10:16:09.156884000 UTC +00:00,
+  updated_at: Tue, 26 Nov 2024 10:16:09.156884000 UTC +00:00[32m>[0m,
+ [32m#<Pad:0x00007f678b66cf98[0m
+  id: [34m[1m63[0m,
+  step: [34m[1m1[0m,
+  drumrack_id: [34m[1m4[0m,
+  created_at: Tue, 26 Nov 2024 10:16:09.162807000 UTC +00:00,
+  updated_at: Tue, 26 Nov 2024 10:16:09.162807000 UTC +00:00[32m>[0m,
+ [32m#<Pad:0x00007f678b66cbd8[0m
+  id: [34m[1m64[0m,
+  step: [34m[1m1[0m,
+  drumrack_id: [34m[1m4[0m,
+  created_at: Tue, 26 Nov 2024 10:16:09.169115000 UTC +00:00,
+  updated_at: Tue, 26 Nov 2024 10:16:09.169115000 UTC +00:00[32m>[0m]
