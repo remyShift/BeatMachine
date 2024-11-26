@@ -7,4 +7,5 @@ class Sample < ApplicationRecord
   has_one_attached :sound
   enum category: {bass: 0, kick: 10, snare: 20, hihat: 30, oneshot: 40}
 
+  validates :category, presence: true
 end
