@@ -1,8 +1,6 @@
-<div class="w-48 h-36 bg-gradient-to-br from-<%= color %> to-<%= color %> rounded-lg shadow-lg flex items-center justify-center transform hover:scale-105 transition-transform overflow-hidden">
-    <div class="text-cente§r text-white ">
-        <p class="text-2xl font-bold font-shrikhand pb-10"><%= genre %></p>
-        <p class=" font-shrikhand text-2xl bg-black w-20 h-20 rounded-lg flex items-center justify-center absolute -bottom-2 right-6 transform translate-x-1/2 -rotate-45">
-            Beat
-        </p>
+<div class="w-24 h-16 <%= color_card(drumrack) %> rounded-sm shadow-lg flex justify-center items-center transform hover:scale-105 transition-transform overflow-hidden">
+    <p class="text-xl text-slate-100 drop-shadow-md font-bold font-shrikhand text-center mb-4 relative z-10"><%= drumrack.genre %></p>
+    <div class="bg-black shadow-md w-12 h-8 rounded-sm flex items-center justify-center transform rotate-12 absolute -bottom-0 -right-1 z-0">
+        <i class="fa-solid fa-compact-disc text-sm text-white"></i>
     </div>
 </div>
