@@ -8,4 +8,6 @@ Rails.application.routes.draw do
       get :soundbox
     end
   end
+
+  get "new_soundbox", to: "drumracks#new_soundbox"
 end
