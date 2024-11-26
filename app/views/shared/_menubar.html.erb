@@ -1,0 +1,10 @@
+<nav class="w-full bg-gradient-to-b from-slate-900 to-darkgrey px-2 pb-10 pt-4 flex justify-evenly items-center shadow-top fixed bottom-0 z-50 border-t-2 border-black">
+    <i class="fa-solid fa-user-group text-xl text-orange cursor-pointer"></i>
+    <%= link_to root_path do %>
+        <i class="fa-solid fa-house text-xl text-orange"></i>
+    <% end %>
+    <i class="fa-solid fa-circle-plus text-xl text-orange cursor-pointer"></i>
+    <%= link_to new_user_session_path do %>
+        <i class="fa-solid fa-user text-xl text-orange"></i>
+    <% end %>
+</nav>
