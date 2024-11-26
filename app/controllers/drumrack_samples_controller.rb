@@ -1,0 +1,2 @@
+class DrumrackSamplesController < ApplicationController
+end
