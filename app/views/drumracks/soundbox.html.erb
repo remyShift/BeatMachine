@@ -1,64 +1,17 @@
-<% bpm = 120 %>
-<% rows = [Array.new(16) { |i| { note: Cnote, active: false } }] %>
-
-<div class="flex flex-col items-center mx-8" data-controller="sequencer">
+<div class="flex flex-col items-center mx-8" data-controller="sequencer" data-sequencer-bpm-value="<%= @drumrack.bpm %>">
   <div class="bpm-controls ">
-    <label for="bpm" id="bpm-label"><%= bpm %> BPM</label>
-    <input type="range" id="bpm" min="60" max="240" value="<%= bpm %>" />
+    <label for="bpm" id="bpm-label"><%= @drumrack.bpm %> BPM</label>
+    <input type="range" id="bpm" min="60" max="240" value="<%= @drumrack.bpm %>" />
     <button>Play</button>
     <button>Stop</button>
   </div>
-
   <div class="sequencer">
-  <% rows.each_with_index do |row, i| %>
-    <% row.each_with_index do |note, j| %>
-      <button class="pad <%= 'active' if i == 0 %> <%= 'first-beat-of-the-bar' if j % 4 == 0 %>">
-        <%= note %>
+    <% @drumrack.pads.each_with_index do |pad, i| %>
+      <button id="pad-<%= i %>" data-sequencer-target="pad" data-samples="<%= pad.samples.to_json %>" class="pad <%= 'active' if i == 0 %> <%= 'first-beat-of-the-bar' if i % 4 == 0 %>" >
+        <% pad.samples.each do |sample| %>
+          <%#= sample.category %>
+        <% end %>
       </button>
     <% end %>
-  <% end %>
+  </div>
 </div>
-
-</div>
-
-<style>
-  .bpm-controls {
-    margin-bottom: 20px;
-  }
-
-  .bpm-controls label {
-    color: red;
-  }
-
-  .sequencer {
-    display: grid;
-    grid-template-columns: repeat(16, 1fr);
-    grid-gap: 5px;
-    width: 100%;
-  }
-  .pad {
-    background: #ccc;
-    font-size: 10px
-    width: 50px;
-    height: 50px;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  .pad.active {
-    background: #600889;
-    border: 1px solid #600889;
-    color: #fff;
-  }
-
-  .first-beat-of-the-bar {
-    background: #98c9fa;
-    border: 1px solid #98c9fa;
-  }
-</style>

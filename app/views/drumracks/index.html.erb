@@ -1,36 +1,26 @@
 <%= render "shared/header" %>
-
 <div class="flex flex-col items-center h-screen px-4 py-8 gap-4" data-controller="sequencer">
-<div class="flex flex-col items-center h-screen px-4 py-8 gap-4 relative z-10">
-    <%= link_to "Access Drumpad", drumracks_play_path, class: "font-shrikhand text-white text-sm px-4 py-2 rounded-md bg-darkblue hover:bg-darkblue/70 transition-colors duration-300" %>
-
+  <div class="flex flex-col items-center h-screen px-4 py-8 gap-4 relative z-10">
+    <%#= link_to "Access Drumpad", drumracks_play_path, class: "font-shrikhand text-white text-sm px-4 py-2 rounded-md bg-darkblue hover:bg-darkblue/70 transition-colors duration-300" %>
+    <%#= link_to "Access Drumpad", soundbox_drumrack_path(drumrack), class: "font-shrikhand text-white text-sm" %>
     <div class="flex justify-between items-center mb-6">
-        <div class="flex flex-col w-2/3 gap-2">
-            <h3 class="text-lg">Discover, learn and share beats effortlessly.</h3>
-            <p class="font-gillSans text-white leading-tight text-sm">Dive into a community-driven drumpad experience, where rythms connect and creativity flows.</p>
-        </div>
-        <img src="<%= asset_path 'illustration.png' %>" alt="logo" class="h-[100px]">
+      <div class="flex flex-col w-2/3 gap-2">
+        <h3 class="text-lg">Discover, learn and share beats effortlessly.</h3>
+        <p class="font-gillSans text-white leading-tight text-sm">Dive into a community-driven drumpad experience, where rythms connect and creativity flows.</p>
+      </div>
+      <img src="<%= asset_path 'illustration.png' %>" alt="logo" class="h-[100px]">
     </div>
-
-
     <h2 class="text-xl">Start with one of our templates :</h2>
     <h4 class="text-2xl">Or</h4>
     <h2 class="text-xl">Find your inspiration on tracks from our community :</h2>
     <form action="">
-        <input type="text" placeholder="Type a music genre ..." class="p-2 rounded-l-md border-2 border-darkblue font-gillSans shadow-md">
-        <button type="submit" class="bg-darkblue text-lg text-orange px-4 py-2 rounded-r-md font-shrikhand stroke shadow-md h-full hover:bg-darkblue/70 transition-colors duration-300">
-            Search
-        </button>
+      <input type="text" placeholder="Type a music genre ..." class="p-2 rounded-l-md border-2 border-darkblue font-gillSans shadow-md">
+      <button type="submit" class="bg-darkblue text-lg text-orange px-4 py-2 rounded-r-md font-shrikhand stroke shadow-md h-full hover:bg-darkblue/70 transition-colors duration-300">
+        Search
+      </button>
     </form>
     <%= render "shared/cards" %>
+  </div>
 </div>
-
-
-<% Drumrack.all.each do |drumrack| %>
-    <%= link_to "Access Drumpad", soundbox_drumrack_path(drumrack), class: "font-shrikhand text-white text-sm" %>
-<% end %>
-=======
 <%= render "drumracks/blur_neons" %>
-
 <%= render "shared/footer" %>
-
