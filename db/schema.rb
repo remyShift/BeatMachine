@@ -9,8 +9,7 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-
-ActiveRecord::Schema[7.1].define(version: 2024_11_26_142519) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_26_152422) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +41,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_26_142519) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "drumrack_samples", force: :cascade do |t|
+    t.bigint "sample_id", null: false
+    t.bigint "drumrack_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["drumrack_id"], name: "index_drumrack_samples_on_drumrack_id"
+    t.index ["sample_id"], name: "index_drumrack_samples_on_sample_id"
+  end
+
   create_table "drumracks", force: :cascade do |t|
     t.string "name"
     t.integer "bpm"
@@ -53,11 +61,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_26_142519) do
   create_table "pad_drumrack_samples", force: :cascade do |t|
     t.integer "velocity"
     t.bigint "pad_id", null: false
-    t.bigint "sample_id", null: false
+    t.bigint "drumrack_sample_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
+    t.index ["drumrack_sample_id"], name: "index_pad_drumrack_samples_on_drumrack_sample_id"
     t.index ["pad_id"], name: "index_pad_drumrack_samples_on_pad_id"
-    t.index ["sample_id"], name: "index_pad_drumrack_samples_on_sample_id"
   end
 
   create_table "pads", force: :cascade do |t|
@@ -88,7 +97,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_26_142519) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "drumrack_samples", "drumracks"
+  add_foreign_key "drumrack_samples", "samples"
+  add_foreign_key "pad_drumrack_samples", "drumrack_samples"
   add_foreign_key "pad_drumrack_samples", "pads"
-  add_foreign_key "pad_drumrack_samples", "samples"
   add_foreign_key "pads", "drumracks"
 end
