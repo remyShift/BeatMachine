@@ -6,6 +6,10 @@ class DrumracksController < ApplicationController
     @drumracks = Drumrack.all
   end
 
+  def play
+    @drumracks = Drumrack.new
+  end
+
   def show
   end
 
