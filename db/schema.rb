@@ -65,7 +65,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_26_152422) do
     t.bigint "drumrack_sample_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "active", default: true
+    t.boolean "active", default: false
     t.index ["drumrack_sample_id"], name: "index_pad_drumrack_samples_on_drumrack_sample_id"
     t.index ["pad_id"], name: "index_pad_drumrack_samples_on_pad_id"
   end

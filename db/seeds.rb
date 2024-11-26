@@ -52,12 +52,8 @@ genres.each do |genre|
         pad.save
       end
 
-drumrack.save
-
+  drumrack.save
 end
-
-
-
 # Prints number of samples
 p "Created #{Sample.count} samples"
 

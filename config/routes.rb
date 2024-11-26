@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  get "drumracks/play", to: "drumracks#play"
-  resources :drumracks, only: [:index, :show]
+  resources :drumracks, only: [:index, :show] do
+    member do
+      get :soundbox
+    end
+  end
 end
