@@ -7,7 +7,7 @@ class DrumracksController < ApplicationController
   end
 
   def soundbox
-    @drumracks = Drumrack.find(params[:id])
+    @drumrack = Drumrack.find(params[:id])
   end
 
   def show
@@ -18,5 +18,4 @@ class DrumracksController < ApplicationController
   def set_drumrack
     @drumrack = Drumrack.find(params[:id])
   end
-
 end

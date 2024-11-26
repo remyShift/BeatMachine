@@ -16,17 +16,16 @@ sample.sound.attach(io: sound_file, filename: "kick.wav", content_type: "audio/w
 sample.save
 sound_file.close
 
-
 # Creates drumracks
 # Create first drumrack
 drumrack = Drumrack.new(name: "My tune Reggaetown", bpm: 100)
 
-16.times do  |i|
+16.times do |i|
   pad = Pad.new(step: i + 1)
   pad.drumrack = drumrack
- if (i + 1)%4 == 0
-  pad.samples << sample
- end
+  if (i + 1) % 4 == 0
+    pad.samples << sample
+  end
   pad.save
 end
 
@@ -35,15 +34,14 @@ drumrack.save
 # Create second drumrack
 drumrack = Drumrack.new(name: "Naive new beaters", bpm: 120)
 
-16.times do  |i|
+16.times do |i|
   pad = Pad.new(step: i + 1)
   pad.drumrack = drumrack
-  if (i + 1)%3 == 0
+  if (i + 1) % 3 == 0
     pad.samples << sample
   end
-    pad.save
+  pad.save
 end
-
 
 drumrack.save
 

@@ -15,5 +15,5 @@
 //= link icons/favicon-16x16.png
 //= link bass.png
 //= link illustration.png
-//= link controllers/application.js
-//= link controllers/index.js
+//= link_tree ../../javascript .js
+//= link_tree ../../../vendor/javascript .js
