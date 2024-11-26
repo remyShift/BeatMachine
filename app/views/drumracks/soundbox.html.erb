@@ -4,6 +4,7 @@
     <input type="range" id="bpm" min="60" max="240" value="<%= @drumrack.bpm %>" />
     <button>Play</button>
     <button>Stop</button>
+    <p><%= url_for(@sample.sound)%></p>
   </div>
   <div class="sequencer">
     <% @drumrack.pads.each_with_index do |pad, i| %>
