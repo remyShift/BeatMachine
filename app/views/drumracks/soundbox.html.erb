@@ -1,8 +1,7 @@
 <% bpm = 120 %>
-<% Cnote = "C4" %>
 <% rows = [Array.new(16) { |i| { note: Cnote, active: false } }] %>
 
-<div class="flex flex-col items-center mx-8">
+<div class="flex flex-col items-center mx-8" data-controller="sequencer">
   <div class="bpm-controls ">
     <label for="bpm" id="bpm-label"><%= bpm %> BPM</label>
     <input type="range" id="bpm" min="60" max="240" value="<%= bpm %>" />
