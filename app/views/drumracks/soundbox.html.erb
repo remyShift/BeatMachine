@@ -1,0 +1,17 @@
+<div class="flex flex-col items-center mx-8" data-controller="sequencer" data-sequencer-bpm-value="<%= @drumrack.bpm %>">
+  <div class="bpm-controls ">
+    <label for="bpm" id="bpm-label"><%= @drumrack.bpm %> BPM</label>
+    <input type="range" id="bpm" min="60" max="240" value="<%= @drumrack.bpm %>" />
+    <button>Play</button>
+    <button>Stop</button>
+  </div>
+  <div class="sequencer">
+    <% @drumrack.pads.each_with_index do |pad, i| %>
+      <button id="pad-<%= i %>" data-sequencer-target="pad" data-samples="<%= pad.samples.to_json %>" class="pad <%= 'active' if i == 0 %> <%= 'first-beat-of-the-bar' if i % 4 == 0 %>" >
+        <% pad.samples.each do |sample| %>
+          <%#= sample.category %>
+        <% end %>
+      </button>
+    <% end %>
+  </div>
+</div>

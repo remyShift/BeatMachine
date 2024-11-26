@@ -52,60 +52,8 @@ genres.each do |genre|
         pad.save
       end
 
-drumrack.save
-
+  drumrack.save
 end
-
-
-# # Create drumrack
-# drumrack = Drumrack.new(name: "My tune Reggaetown", bpm: 100)
-# drumrack_samples = []
-#  samples.each do |sample|
-#   drumrack_sample = DrumrackSample.new(sample: sample)
-#   drumrack_sample.drumrack = drumrack
-#   drumrack_sample.save
-#   drumrack_samples << drumrack_sample
-# end
-
-# 16.times do  |i|
-#   pad = Pad.new(step: i + 1)
-#   pad.drumrack = drumrack
-#  if (i + 1)%4 == 0
-#   pad_drumrack_sample = PadDrumrackSample.new()
-#   pad_drumrack_sample.drumrack_sample = drumrack_samples[1]
-#   pad_drumrack_sample.pad = pad
-#   pad_drumrack_sample.save
-#  end
-#   pad.save
-# end
-
-# drumrack.save
-
-# # # Create second drumrack
-# # Create first drumrack
-# drumrack = Drumrack.new(name: "Naive new beaters", bpm: 120)
-# drumrack_samples = []
-#  samples.each do |sample|
-#   drumrack_sample = DrumrackSample.new(sample: sample)
-#   drumrack_sample.drumrack = drumrack
-#   drumrack_sample.save
-#   drumrack_samples << drumrack_sample
-# end
-
-# 16.times do  |i|
-#   pad = Pad.new(step: i + 1)
-#   pad.drumrack = drumrack
-#  if (i + 1)%3 == 0
-#   pad_drumrack_sample = PadDrumrackSample.new()
-#   pad_drumrack_sample.drumrack_sample = drumrack_samples[2]
-#   pad_drumrack_sample.pad = pad
-#   pad_drumrack_sample.save
-#  end
-#   pad.save
-# end
-
-# drumrack.save
-
 
 # Prints number of samples
 p "Created #{Sample.count} samples"
