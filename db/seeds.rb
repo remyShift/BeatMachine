@@ -30,7 +30,7 @@ genres = ["rock", "rap", "pop", "funk", "hip-hop", "jazz"]
 # Creates drumracks
 genres.each do |genre|
   # Create drumrack
-  drumrack = Drumrack.new(name: "my drumrack", genre: genre, bpm: [100, 80, 120, 140, 110, 90].sample)
+  drumrack = Drumrack.new(name: "my drumrack", genre: genre, bpm: [100, 80, 120, 140, 110, 90].sample, is_template: true)
   drumrack_samples = []
   samples.each do |sample|
     drumrack_sample = DrumrackSample.new(sample: sample)
