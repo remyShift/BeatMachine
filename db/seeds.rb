@@ -54,7 +54,6 @@ genres.each do |genre|
 
   drumrack.save
 end
-
 # Prints number of samples
 p "Created #{Sample.count} samples"
 
