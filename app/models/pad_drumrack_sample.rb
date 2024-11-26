@@ -1,4 +1,4 @@
 class PadDrumrackSample < ApplicationRecord
   belongs_to :pad
-  belongs_to :sample
+  belongs_to :drumrack_sample
 end
