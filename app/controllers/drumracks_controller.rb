@@ -6,8 +6,8 @@ class DrumracksController < ApplicationController
     @drumracks = Drumrack.all
   end
 
-  def play
-    @drumracks = Drumrack.new
+  def soundbox
+    @drumracks = Drumrack.find(params[:id])
   end
 
   def show

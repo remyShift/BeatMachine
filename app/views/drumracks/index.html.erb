@@ -1,5 +1,6 @@
 <%= render "shared/header" %>
 
+<div class="flex flex-col items-center h-screen px-4 py-8 gap-4" data-controller="sequencer">
 <div class="flex flex-col items-center h-screen px-4 py-8 gap-4 relative z-10">
     <%= link_to "Access Drumpad", drumracks_play_path, class: "font-shrikhand text-white text-sm px-4 py-2 rounded-md bg-darkblue hover:bg-darkblue/70 transition-colors duration-300" %>
 
@@ -23,6 +24,12 @@
     </form>
 </div>
 
+
+<% Drumrack.all.each do |drumrack| %>
+    <%= link_to "Access Drumpad", soundbox_drumrack_path(drumrack), class: "font-shrikhand text-white text-sm" %>
+<% end %>
+=======
 <%= render "drumracks/blur_neons" %>
 
 <%= render "shared/footer" %>
+

@@ -1,22 +1,7 @@
-<% steps = Array.new(16, '') %>
-<%= bpm = 120 %>
+<% bpm = 120 %>
+<% rows = [Array.new(16) { |i| { note: Cnote, active: false } }] %>
 
-<script>
-  import * as Tone from "tone";
-
-  const synths =[
-    new Tone.Synth().toDestination()
-  ]
-
-  const Cnote = "C4"
-  let rows = [
-    Array.from({ length: 8 }, (_, i) => ({ note: Cnote, active: false}))
-  ]
-
-
-</script>
-
-<div class="flex flex-col items-center mx-8">
+<div class="flex flex-col items-center mx-8" data-controller="sequencer">
   <div class="bpm-controls ">
     <label for="bpm" id="bpm-label"><%= bpm %> BPM</label>
     <input type="range" id="bpm" min="60" max="240" value="<%= bpm %>" />
@@ -25,23 +10,16 @@
   </div>
 
   <div class="sequencer">
-    <% steps.each_with_index do |step, i| %>
-      <div class="pad <%= 'active' if i == 0 %> <%= 'first-beat-of-the-bar' if i % 4 == 0 %>"><%= step %></div>
+  <% rows.each_with_index do |row, i| %>
+    <% row.each_with_index do |note, j| %>
+      <button class="pad <%= 'active' if i == 0 %> <%= 'first-beat-of-the-bar' if j % 4 == 0 %>">
+        <%= note %>
+      </button>
     <% end %>
-  </div>
-
+  <% end %>
 </div>
 
-<script>
-    // Javascript a changer d'endroiiit
-    const bpmInput = document.querySelector('#bpm');
-    const bpmLabel = document.querySelector('#bpm-label');
-
-    // alalala j'ai meme pas utilisé stimulus
-    bpmInput.addEventListener('input', function() {
-      bpmLabel.textContent = `${bpmInput.value} BPM`;
-    });
-</script>
+</div>
 
 <style>
   .bpm-controls {
@@ -54,7 +32,7 @@
 
   .sequencer {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(16, 1fr);
     grid-gap: 5px;
     width: 100%;
   }
