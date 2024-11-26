@@ -68,7 +68,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_25_153903) do
   end
 
   create_table "samples", force: :cascade do |t|
-    t.string "type"
+    t.integer "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
