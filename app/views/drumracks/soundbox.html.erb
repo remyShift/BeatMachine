@@ -9,7 +9,7 @@
   <div class="sequencer">
     <% @drumrack.pads.each_with_index do |pad, i| %>
       <button id="pad-<%= i %>" data-sequencer-target="pad" data-samples="<%= pad.samples.to_json %>" class="pad <%= 'active' if i == 0 %> <%= 'first-beat-of-the-bar' if i % 4 == 0 %>" >
-        <% pad.samples.each do |sample| %>
+        <% pad.samples.each do |sample| %>b
           <%#= sample.category %>
         <% end %>
       </button>
