@@ -2,17 +2,22 @@
   <div class="bpm-controls ">
     <label for="bpm" id="bpm-label"><%= @drumrack.bpm %> BPM</label>
     <input type="range" id="bpm" min="60" max="240" value="<%= @drumrack.bpm %>" />
-    <button>Play</button>
-    <button>Stop</button>
+    <button data-action="click->sequencer#play">
+      <i class="fa-solid fa-play text-orange text-2xl"></i>
+    </button>
+
     <p><%= url_for(@sample.sound)%></p>
+
   </div>
   <div class="sequencer">
     <% @drumrack.pads.each_with_index do |pad, i| %>
-      <button id="pad-<%= i %>" data-sequencer-target="pad" data-samples="<%= pad.samples.to_json %>" class="pad <%= 'active' if i == 0 %> <%= 'first-beat-of-the-bar' if i % 4 == 0 %>" >
-        <% pad.samples.each do |sample| %>b
-          <%#= sample.category %>
-        <% end %>
+      <button id="pad-<%= i %>" 
+        data-sequencer-target="pad"
+        data-sample="<%= @sample.sound.url %>"
+        class="pad <%= 'active' if i == 0 %> <%= 'first-beat-of-the-bar' if i % 4 == 0 %>" >
       </button>
     <% end %>
   </div>
 </div>
+
+<h1 class="text-4xl text-white"><%= @sample.sound.key %></h1>

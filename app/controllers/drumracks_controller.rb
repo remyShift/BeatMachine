@@ -8,7 +8,7 @@ class DrumracksController < ApplicationController
 
   def soundbox
     @drumrack = Drumrack.find(params[:id])
-    @sample = Sample.first
+    @sample = Sample.last
   end
 
   def show

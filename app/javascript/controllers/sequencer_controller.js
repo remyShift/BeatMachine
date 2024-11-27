@@ -5,9 +5,11 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static values = { bpm: Number };
   static targets = ["pad"];
+
   connect() {
-    console.log("lezgong");
-    console.log(this.bpmValue);
+  }
+
+  play() {
     let i = 0;
 
     setInterval(() => {
@@ -16,9 +18,13 @@ export default class extends Controller {
       });
       const pad = document.querySelector("#pad-" + i);
       pad.classList.add("active");
-      console.log(pad.dataset.samples);
+
+      if (i % 4 === 0) {
+        const audio = new Audio(pad.dataset.sample);
+        audio.play();
+      }
 
       i === 15 ? (i = 0) : i++;
-    }, ((this.bpmValue / 4) * 60) / 16);
+    }, ((this.bpmValue / 4) * 60) / 2);
   }
 }
