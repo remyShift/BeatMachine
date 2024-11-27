@@ -31,28 +31,28 @@ genres = ["rock", "rap", "pop", "funk", "hip-hop", "jazz"]
 genres.each do |genre|
   # Create drumrack
   drumrack = Drumrack.new(name: "my drumrack", genre: genre, bpm: [100, 80, 120, 140, 110, 90].sample, is_template: true)
+  drumrack.save!
   drumrack_samples = []
   samples.each do |sample|
     drumrack_sample = DrumrackSample.new(sample: sample)
     drumrack_sample.drumrack = drumrack
-    drumrack_sample.save
+    drumrack_sample.save!
     drumrack_samples << drumrack_sample
   end
 
-  16.times do  |i|
-    pad = Pad.new(step: i + 1)
-    pad.drumrack = drumrack
-        pad_drumrack_sample = PadDrumrackSample.new()
-        pad_drumrack_sample.drumrack_sample = drumrack_samples[1]
-        if (i + 1)%rand(1..16) == 0
-          pad_drumrack_sample.active = true
-        end
-        pad_drumrack_sample.pad = pad
-        pad_drumrack_sample.save
-        pad.save
-      end
-
-  drumrack.save
+  pads = drumrack.pads
+  tempo = rand(1..16)
+  p tempo
+  pads.each_with_index do |pad, i|
+    bool = (i + 1)%tempo == 0
+    p bool
+    p bool.class
+    PadDrumrackSample.create!(
+      pad: pad,
+      drumrack_sample: drumrack_samples.sample,
+      active: bool
+    )
+  end
 end
 # Prints number of samples
 p "Created #{Sample.count} samples"
