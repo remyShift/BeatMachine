@@ -57,17 +57,15 @@ sample.save
 samples << sample
 sound_file.close
 
-p samples
-
-
 # Defines each genre
 genres = ["rock", "rap", "pop", "funk", "hip-hop", "jazz"]
 
-# Creates drumracks
+# Creates one drumrack per genre
 genres.each do |genre|
   # Create drumrack
   drumrack = Drumrack.new(name: "my drumrack", genre: genre, bpm: [100, 80, 120, 140, 110, 90].sample, is_template: true)
   drumrack.save!
+   # Create one drumrack_sample per sample
   drumrack_samples = []
   samples.each do |sample|
     drumrack_sample = DrumrackSample.new(sample: sample)
@@ -75,17 +73,18 @@ genres.each do |genre|
     drumrack_sample.save!
     drumrack_samples << drumrack_sample
   end
-  p drumrack_samples
 
   pads = drumrack.pads
-  tempo = rand(1..16)
-  pads.each_with_index do |pad, i|
-    bool = (i + 1)%tempo == 0
-    PadDrumrackSample.create!(
-      pad: pad,
-      drumrack_sample: drumrack_samples.sample,
-      active: bool
-    )
+  drumrack_samples.each do |drumrack_sample|
+    tempo = rand(1..16)
+    pads.each_with_index do |pad, i|
+      bool = (i + 1)%tempo == 0
+      PadDrumrackSample.create!(
+        pad: pad,
+        drumrack_sample: drumrack_sample,
+        active: bool
+      )
+    end
   end
 end
 # Prints number of samples
