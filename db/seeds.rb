@@ -12,13 +12,7 @@ Sample.destroy_all
 DrumrackSample.destroy_all
 PadDrumrackSample.destroy_all
 
-# creating 1 user
-p "creating 1 user"
-User.create!(
-  email: 'user@example.com',
-  password: 'password123',
-  password_confirmation: 'password123'
-)
+
 
 # Creates 1 samples of each category
 samples = []
