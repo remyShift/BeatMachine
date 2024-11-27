@@ -8,4 +8,11 @@ class Sample < ApplicationRecord
   enum category: {bass: 0, kick: 10, snare: 20, hihat: 30, oneshot: 40}
 
   validates :category, presence: true
+  before_destroy :purge_sound
+
+  private
+
+  def purge_sound
+    sound.purge
+  end
 end
