@@ -19,6 +19,6 @@ export default class extends Controller {
       console.log(pad.dataset.samples);
 
       i === 15 ? (i = 0) : i++;
-    }, ((this.bpmValue / 4) * 60) / 16);
+    }, (60 / this.bpmValue) * 1000 / 4);
   }
 }
