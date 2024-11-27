@@ -1,17 +1,18 @@
-<div class="flex flex-col items-center mx-8" data-controller="sequencer" data-sequencer-bpm-value="<%= @drumrack.bpm %>">
+<div class="flex flex-col items-center mx-8" data-controller="sequencer" data-sequencer-samples-value="<%= @samples_from_drumrack %>" data-sequencer-bpm-value="<%= @drumrack.bpm %>">
   <div class="bpm-controls ">
     <label for="bpm" id="bpm-label"><%= @drumrack.bpm %> BPM</label>
     <input type="range" id="bpm" min="60" max="240" value="<%= @drumrack.bpm %>" />
-    <button>Play</button>
-    <button>Stop</button>
-    <p><%= url_for(@sample.sound)%></p>
+    <button data-action="click->sequencer#play">
+      <i class="fa-solid fa-play text-orange text-2xl"></i>
+    </button>
+
   </div>
   <div class="sequencer">
     <% @drumrack.pads.each_with_index do |pad, i| %>
-      <button id="pad-<%= i %>" data-sequencer-target="pad" data-samples="<%= pad.samples.to_json %>" class="pad <%= 'active' if i == 0 %> <%= 'first-beat-of-the-bar' if i % 4 == 0 %>" >
-        <% pad.samples.each do |sample| %>b
-          <%#= sample.category %>
-        <% end %>
+      <button id="pad-<%= i %>" 
+        data-sequencer-target="pad"
+        data-samples="<%= pad.pad_drumrack_samples.map { |pad_drumrack_sample| {active: pad_drumrack_sample.active, category: pad_drumrack_sample.sample.category}.to_json } %>"
+        class="pad <%= 'active' if i == 0 %> <%= 'first-beat-of-the-bar' if i % 4 == 0 %>" >
       </button>
     <% end %>
   </div>
