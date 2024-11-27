@@ -21,6 +21,7 @@ module.exports = {
       },
       boxShadow: {
         'top': '0 -4px 6px -1px rgba(0, 0, 0, 0.1)',
+        'played': '0 0 5px 5px rgba(255, 255, 255, 0.7)',
       },
     },
   },

@@ -47,11 +47,10 @@ h4 {
 }
 
 .pad {
-  background: #ccc;
   font-size: 10px;
   width: 50px;
   height: 50px;
-  border: 1px solid #ccc;
+  border: 2px solid black;
   border-radius: 7px;
   display: flex;
   justify-content: center;
@@ -61,13 +60,6 @@ h4 {
   box-sizing: border-box;
 }
 
-.pad.active {
-  background: #600889;
-  border: 1px solid #600889;
-  color: #fff;
-}
-
-.first-beat-of-the-bar {
-  background: #98c9fa;
-  border: 1px solid #98c9fa;
+.pad.drumrack {
+  background: #ccc;
 }

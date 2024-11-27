@@ -4,6 +4,7 @@
     <input type="range" id="bpm" min="60" max="240" value="<%= @drumrack.bpm %>" />
     <button data-action="click->sequencer#play">
       <i class="fa-solid fa-play text-orange text-2xl"></i>
+      <i class="fa-solid fa-pause text-blue-700 text-2xl hidden"></i>
     </button>
 
   </div>
@@ -11,8 +12,34 @@
     <% @drumrack.pads.each_with_index do |pad, i| %>
       <button id="pad-<%= i %>" 
         data-sequencer-target="pad"
+        data-active="false"
+        data-played="false"
+        data-category=""
+        data-first-temp="<%= i % 4 == 0 %>"
         data-samples="<%= pad.pad_drumrack_samples.map { |pad_drumrack_sample| {active: pad_drumrack_sample.active, category: pad_drumrack_sample.sample.category}.to_json } %>"
-        class="pad <%= 'active' if i == 0 %> <%= 'first-beat-of-the-bar' if i % 4 == 0 %>" >
+        class="pad drumrack
+        data-[category=oneshot]:bg-yellow-500
+        data-[active=true]:border-3 data-[active=true]:border-zinc-100
+        data-[played=true]:shadow-played
+        data-[category=kick]:bg-red-500
+        data-[category=snare]:bg-green-500
+        data-[category=hihat]:bg-blue-500
+        data-[category=bass]:bg-purple-500
+        data-[first-temp=true]:bg-blue-300"
+        >
+      </button>
+    <% end %>
+  </div>
+
+  <div class="flex gap-4 mt-20">
+    <% @drumrack.samples.each do |sample| %>
+      <button class="pad <%= category_color(sample.category) %> data-[active=true]:shadow-played"
+        data-active="false"
+        data-action="click->sequencer#selectSample" 
+        data-category="<%= sample.category %>" 
+        data-sequencer-target="category"
+      >
+        <p class="text-xs text-center text-white"><%= sample.category %></p>
       </button>
     <% end %>
   </div>
