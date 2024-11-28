@@ -12,7 +12,6 @@ Sample.destroy_all
 DrumrackSample.destroy_all
 PadDrumrackSample.destroy_all
 
-# # Méthode pour créer un sample
 # def create_sample(category:, file_url:, filename:)
 #   sound_file = URI.open(file_url)
 #   sample = Sample.new(category: category)
@@ -22,8 +21,8 @@ PadDrumrackSample.destroy_all
 #   sample
 # end
 
-# # Array des sample par genre
-# samples_by_genre = {
+# # Array des sample par templates
+# samples_templates = {
 #   "reggaeton" => [
 #     { category: "bass", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709259/reggeaton_bass_ybbnef.mp3", filename: "reggeaton_bass_ybbnef.mp3" },
 #     { category: "kick", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709258/reggeaton_kick_vmbhse.mp3", filename: "reggeaton_kick_vmbhse.mp3" },
@@ -31,40 +30,28 @@ PadDrumrackSample.destroy_all
 #     { category: "hihat", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709258/reggeaton_hihat_wd0j0o.mp3", filename: "reggeaton_hihat_wd0j0o.mp3" },
 #     { category: "oneshot", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709258/reggeaton_oneshot_jjb9dt.mp3", filename: "reggeaton_oneshot_jjb9dt.mp3" }
 #   ],
-#   "dumbtechno" => [
-#     { category: "bass", url: "", filename: "dumbtechno_bass_.mp3" },
-#     { category: "kick", url: "", filename: "dumbtechno_kick_.mp3" },
-#     { category: "snare", url: "", filename: "dumbtechno_snare_.mp3" },
-#     { category: "hihat", url: "", filename: "dumbtechno_hihat_.mp3" },
-#     { category: "oneshot", url: "", filename: "dumbtechno_oneshot_.mp3" }
-#   ],
+
 #   "jerseyclub" => [
-#     { category: "bass", url: "", filename: "jerseyclub_bass_.mp3" },
-#     { category: "kick", url: "", filename: "jerseyclub_kick_.mp3" },
-#     { category: "snare", url: "", filename: "jerseyclub_snare_.mp3" },
-#     { category: "hihat", url: "", filename: "jerseyclub_hihat_.mp3" },
-#     { category: "oneshot", url: "", filename: "jerseyclub_oneshot_.mp3" }
+#     { category: "bass", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802984/bass_jersey_kvmla8.mp3", filename: "bass_jersey_kvmla8.mp3" },
+#     { category: "kick", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802984/kick_jersey_dqhilm.mp3", filename: "kick_jersey_dqhilm.mp3" },
+#     { category: "snare", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802985/snare_jersey_qu3aso.mp3", filename: "snare_jersey_qu3aso.mp3" },
+#     { category: "hihat", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802984/hihat_jersey_aymree.mp3", filename: "hihat_jersey_aymree.mp3" },
+#     { category: "oneshot", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802984/oneshot_jersey_owmq5i.mp3", filename: "oneshot_jersey_owmq5i.mp3" }
 #   ],
-#   "pop" => [
-#     { category: "bass", url: "", filename: "pop_bass_.mp3" },
-#     { category: "kick", url: "", filename: "pop_kick_.mp3" },
-#     { category: "snare", url: "", filename: "pop_snare_.mp3" },
-#     { category: "hihat", url: "", filename: "pop_hihat_.mp3" },
-#     { category: "oneshot", url: "", filename: "pop_oneshot_.mp3" }
-#   ],
+
 #   "bailefunk" => [
-#     { category: "bass", url: "", filename: "bailefunk_bass_.mp3" },
-#     { category: "kick", url: "", filename: "bailefunk_kick_.mp3" },
-#     { category: "snare", url: "", filename: "bailefunk_snare_.mp3" },
-#     { category: "hihat", url: "", filename: "bailefunk_hihat_.mp3" },
-#     { category: "oneshot", url: "", filename: "bailefunk_oneshot_.mp3" }
+#     { category: "bass", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802983/bass_bailefunk_tvbjop.mp3", filename: "bass_bailefunk_tvbjop.mp3" },
+#     { category: "kick", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802983/kick_bailefunk_brxyut.mp3", filename: "kick_bailefunk_brxyut.mp3" },
+#     { category: "snare", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802982/snare_bailefunk_bokp1p.mp3", filename: "snare_bailefunk_bokp1p.mp3" },
+#     { category: "hihat", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802983/hihat_bailefunk_b9pfzk.mp3", filename: "hihat_bailefunk_b9pfzk.mp3" },
+#     { category: "oneshot", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802983/oneshot_bailefunk_aaegon.mp3", filename: "oneshot_bailefunk_aaegon.mp3" }
 #   ],
 #   "trap" => [
-#     { category: "bass", url: "", filename: "trap_bass_.mp3" },
-#     { category: "kick", url: "", filename: "trap_kick_.mp3" },
-#     { category: "snare", url: "", filename: "trap_snare_.mp3" },
-#     { category: "hihat", url: "", filename: "trap_hihat_.mp3" },
-#     { category: "oneshot", url: "", filename: "trap_oneshot_.mp3" }
+#     { category: "bass", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802984/bass_trap_iqasmj.mp3", filename: "bass_trap_iqasmj.mp3" },
+#     { category: "kick", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802984/kick_trap_kdhuzb.mp3", filename: "kick_trap_kdhuzb.mp3" },
+#     { category: "snare", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802984/snare_trap_wmtpfz.mp3", filename: "snare_trap_wmtpfz.mp3" },
+#     { category: "hihat", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802983/hihat_trap_wtxw1y.mp3", filename: "hihat_trap_wtxw1y.mp3" },
+#     { category: "oneshot", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802983/oneshot_trap_z32fqs.mp3", filename: "oneshot_trap_z32fqs.mp3" }
 #   ],
 #   "jazz" => [
 #     { category: "bass", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802985/bass_jazz_jcqnm6.mp3", filename: "bass_jazz_jcqnm6.mp3" },
@@ -76,7 +63,7 @@ PadDrumrackSample.destroy_all
 # }
 
 # # Création des samples pour chaque genre
-# samples_by_genre.each do |genre, samples|
+# samples_templates.each do |genre, samples|
 #   puts "Création des samples pour le genre #{genre.capitalize}..."
 #   samples.each do |sample|
 #     create_sample(
