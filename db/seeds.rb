@@ -8,43 +8,158 @@ Pad.destroy_all
 # Destroys all samples
 Sample.destroy_all
 
-# Creates sample kick
-sound_file = URI.open("https://res.cloudinary.com/dcuhxlv15/video/upload/v1732549962/kick1_yva25z.wav")
-sample = Sample.new(category: "kick")
-# sound_file.rewind
-sample.sound.attach(io: sound_file, filename: "kick.wav", content_type: "audio/wav")
+# Destroys all tables de jointure
+DrumrackSample.destroy_all
+PadDrumrackSample.destroy_all
+
+# # Méthode pour créer un sample
+# def create_sample(category:, file_url:, filename:)
+#   sound_file = URI.open(file_url)
+#   sample = Sample.new(category: category)
+#   sample.sound.attach(io: sound_file, filename: filename, content_type: "audio/mp3")
+#   sample.save
+#   sound_file.close
+#   sample
+# end
+
+# # Array des sample par genre
+# samples_by_genre = {
+#   "reggaeton" => [
+#     { category: "bass", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709259/reggeaton_bass_ybbnef.mp3", filename: "reggeaton_bass_ybbnef.mp3" },
+#     { category: "kick", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709258/reggeaton_kick_vmbhse.mp3", filename: "reggeaton_kick_vmbhse.mp3" },
+#     { category: "snare", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709261/reggeaton_snare_qwnkii.mp3", filename: "reggeaton_snare_qwnkii.mp3" },
+#     { category: "hihat", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709258/reggeaton_hihat_wd0j0o.mp3", filename: "reggeaton_hihat_wd0j0o.mp3" },
+#     { category: "oneshot", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709258/reggeaton_oneshot_jjb9dt.mp3", filename: "reggeaton_oneshot_jjb9dt.mp3" }
+#   ],
+#   "dumbtechno" => [
+#     { category: "bass", url: "", filename: "dumbtechno_bass_.mp3" },
+#     { category: "kick", url: "", filename: "dumbtechno_kick_.mp3" },
+#     { category: "snare", url: "", filename: "dumbtechno_snare_.mp3" },
+#     { category: "hihat", url: "", filename: "dumbtechno_hihat_.mp3" },
+#     { category: "oneshot", url: "", filename: "dumbtechno_oneshot_.mp3" }
+#   ],
+#   "jerseyclub" => [
+#     { category: "bass", url: "", filename: "jerseyclub_bass_.mp3" },
+#     { category: "kick", url: "", filename: "jerseyclub_kick_.mp3" },
+#     { category: "snare", url: "", filename: "jerseyclub_snare_.mp3" },
+#     { category: "hihat", url: "", filename: "jerseyclub_hihat_.mp3" },
+#     { category: "oneshot", url: "", filename: "jerseyclub_oneshot_.mp3" }
+#   ],
+#   "pop" => [
+#     { category: "bass", url: "", filename: "pop_bass_.mp3" },
+#     { category: "kick", url: "", filename: "pop_kick_.mp3" },
+#     { category: "snare", url: "", filename: "pop_snare_.mp3" },
+#     { category: "hihat", url: "", filename: "pop_hihat_.mp3" },
+#     { category: "oneshot", url: "", filename: "pop_oneshot_.mp3" }
+#   ],
+#   "bailefunk" => [
+#     { category: "bass", url: "", filename: "bailefunk_bass_.mp3" },
+#     { category: "kick", url: "", filename: "bailefunk_kick_.mp3" },
+#     { category: "snare", url: "", filename: "bailefunk_snare_.mp3" },
+#     { category: "hihat", url: "", filename: "bailefunk_hihat_.mp3" },
+#     { category: "oneshot", url: "", filename: "bailefunk_oneshot_.mp3" }
+#   ],
+#   "trap" => [
+#     { category: "bass", url: "", filename: "trap_bass_.mp3" },
+#     { category: "kick", url: "", filename: "trap_kick_.mp3" },
+#     { category: "snare", url: "", filename: "trap_snare_.mp3" },
+#     { category: "hihat", url: "", filename: "trap_hihat_.mp3" },
+#     { category: "oneshot", url: "", filename: "trap_oneshot_.mp3" }
+#   ],
+#   "jazz" => [
+#     { category: "bass", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802985/bass_jazz_jcqnm6.mp3", filename: "bass_jazz_jcqnm6.mp3" },
+#     { category: "kick", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802985/kick_jazz_d0yse2.mp3", filename: "kick_jazz_d0yse2.mp3" },
+#     { category: "snare", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802985/snare_jazz_fmpoci.mp3", filename: "snare_jazz_fmpoci.mp3" },
+#     { category: "hihat", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802986/hihat_jazz_tchqs4.mp3", filename: "hihat_jazz_tchqs4.mp3" },
+#     { category: "oneshot", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802986/oneshot_jazz_k9vlzv.mp3", filename: "oneshot_jazz_k9vlzv.mp3" }
+#   ]
+# }
+
+# # Création des samples pour chaque genre
+# samples_by_genre.each do |genre, samples|
+#   puts "Création des samples pour le genre #{genre.capitalize}..."
+#   samples.each do |sample|
+#     create_sample(
+#       category: sample[:category],
+#       file_url: sample[:url],
+#       filename: sample[:filename]
+#     )
+#   end
+# end
+
+# Creates 1 samples of each category
+samples = []
+
+# Creates a bass sample and pushes it to the samples array
+sound_file = URI.open("https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709259/reggeaton_bass_ybbnef.mp3")
+sample = Sample.new(category: "bass")
+sample.sound.attach(io: sound_file, filename: "reggeaton_bass_ybbnef.mp3", content_type: "audio/mp3")
 sample.save
+samples << sample
 sound_file.close
 
-# Creates drumracks
-# Create first drumrack
-drumrack = Drumrack.new(name: "My tune Reggaetown", bpm: 100)
+# Creates a kick sample and pushes it to the samples array
+sound_file = URI.open("https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709258/reggeaton_kick_vmbhse.mp3")
+sample = Sample.new(category: "kick")
+sample.sound.attach(io: sound_file, filename: "reggeaton_kick_vmbhse.mp3", content_type: "audio/mp3")
+sample.save
+samples << sample
+sound_file.close
 
-16.times do |i|
-  pad = Pad.new(step: i + 1)
-  pad.drumrack = drumrack
-  if (i + 1) % 4 == 0
-    pad.samples << sample
+# Creates a snare sample and pushes it to the samples array
+sound_file = URI.open("https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709261/reggeaton_snare_qwnkii.mp3")
+sample = Sample.new(category: "snare")
+sample.sound.attach(io: sound_file, filename: "reggeaton_snare_qwnkii.mp3", content_type: "audio/mp3")
+sample.save
+samples << sample
+sound_file.close
+
+# Creates a hihat sample and pushes it to the samples array
+sound_file = URI.open("https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709258/reggeaton_hihat_wd0j0o.mp3")
+sample = Sample.new(category: "hihat")
+sample.sound.attach(io: sound_file, filename: "reggeaton_hihat_wd0j0o.mp3", content_type: "audio/mp3")
+sample.save
+samples << sample
+sound_file.close
+
+# Creates a oneshot sample and pushes it to the samples array
+sound_file = URI.open("https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709258/reggeaton_oneshot_jjb9dt.mp3")
+sample = Sample.new(category: "oneshot")
+sample.sound.attach(io: sound_file, filename: "reggeaton_oneshot_jjb9dt.mp3", content_type: "audio/mp3")
+sample.save
+samples << sample
+sound_file.close
+
+# Defines each genre
+genres = ["reggeaton", "jersey club", "pop", "baile funk", "trap", "jazz", "dumb techno"]
+
+# Creates one drumrack per genre
+genres.each do |genre|
+  # Create drumrack
+  drumrack = Drumrack.new(name: "my drumrack", genre: genre, bpm: [100, 80, 120, 140, 110, 90].sample, is_template: true)
+  drumrack.save!
+   # Create one drumrack_sample per sample
+  drumrack_samples = []
+  samples.each do |sample|
+    drumrack_sample = DrumrackSample.new(sample: sample)
+    drumrack_sample.drumrack = drumrack
+    drumrack_sample.save!
+    drumrack_samples << drumrack_sample
   end
-  pad.save
-end
 
-drumrack.save
-
-# Create second drumrack
-drumrack = Drumrack.new(name: "Naive new beaters", bpm: 120)
-
-16.times do |i|
-  pad = Pad.new(step: i + 1)
-  pad.drumrack = drumrack
-  if (i + 1) % 3 == 0
-    pad.samples << sample
+  pads = drumrack.pads
+  drumrack_samples.each do |drumrack_sample|
+    tempo = rand(1..16)
+    pads.each_with_index do |pad, i|
+      bool = (i + 1)%tempo == 0
+      PadDrumrackSample.create!(
+        pad: pad,
+        drumrack_sample: drumrack_sample,
+        active: bool
+      )
+    end
   end
-  pad.save
 end
-
-drumrack.save
-
 # Prints number of samples
 p "Created #{Sample.count} samples"
 
@@ -52,7 +167,4 @@ p "Created #{Sample.count} samples"
 p "Created #{Drumrack.count} drumracks"
 
 # Prints number of pads
-p "#{drumrack.pads.count} pads created for #{drumrack.name} drumrack"
-
-# Prints number of pads sample was attached to
-p "Sample kick was added to #{sample.pads.count} pads"
+p "#{Pad.count} pads created"

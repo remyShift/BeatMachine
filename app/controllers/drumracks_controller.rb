@@ -16,6 +16,9 @@ class DrumracksController < ApplicationController
 
   def soundbox
     @drumrack = Drumrack.find(params[:id])
+    @samples_from_drumrack = @drumrack.samples.each_with_object({}) do |sample, hash|
+      hash[sample.category] = sample.sound.url
+    end.to_json
   end
 
   def show
