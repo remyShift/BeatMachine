@@ -101,6 +101,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_26_160215) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "drumrack_samples", "drumracks"
   add_foreign_key "drumrack_samples", "samples"
+
   add_foreign_key "pad_drumrack_samples", "drumrack_samples"
   add_foreign_key "pad_drumrack_samples", "pads"
   add_foreign_key "pads", "drumracks"
