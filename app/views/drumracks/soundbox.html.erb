@@ -10,7 +10,7 @@
     <label for="bpm" id="bpm-label"
     data-sequencer-target="bpmLabel"
     ><%= @drumrack.bpm %> BPM</label>
-    <input type="range" id="bpm" min="60" max="240" value="<%= @drumrack.bpm.to_i %>"
+    <input type="number" id="bpm" min="60" max="240" value="<%= @drumrack.bpm.to_i %>"
     data-sequencer-target="bpmInput"
     data-action="change->sequencer#updateBpm"
     />
@@ -40,7 +40,7 @@
         data-action="click->sequencer#addSampleToPad" 
         data-first-temp="<%= i % 4 == 0 %>"
         data-samples=""
-        class="pad drumrack
+        class="pad drumrack group
         data-[category=oneshot]:bg-yellow-500
         data-[active=true]:border-3 data-[active=true]:border-zinc-100
         data-[played=true]:shadow-played
@@ -50,6 +50,7 @@
         data-[category=bass]:bg-purple-500
         data-[first-temp=true]:bg-blue-300"
         >
+        <i class="fa-solid fa-record-vinyl text-zinc-100 group-data-[active=true]:shake"></i>
       </button>
     <% end %>
   </div>
@@ -58,6 +59,7 @@
     <% @drumrack.samples.each do |sample| %>
       <button class="pad <%= category_color(sample.category) %> data-[active=true]:shadow-played"
         data-active="false"
+        data-sequencer-target="category"
         data-action="click->sequencer#selectSample" 
         data-category="<%= sample.category %>" 
         data-sequencer-target="category"
@@ -67,3 +69,6 @@
     <% end %>
   </div>
 </div>
+
+
+

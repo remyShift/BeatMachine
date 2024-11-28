@@ -47,19 +47,20 @@ h4 {
 }
 
 .pad {
-  font-size: 10px;
   width: 50px;
   height: 50px;
-  border: 2px solid black;
-  border-radius: 7px;
+  border: 2px solid #58586e;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
-  padding: 0;
-  box-sizing: border-box;
+  box-shadow: 5px 5px 0 0 black;
 }
 
 .pad.drumrack {
   background: #ccc;
+}
+
+.shake {
+  font-size: 20px;
 }

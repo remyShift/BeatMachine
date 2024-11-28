@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static values = { bpm: Number, samples: Object, initialSamples: String, bpmValue: Number };
-  static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn"];
+  static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn", "category"];
   sampleSelected = null;
   soundBoxSamples = null;
   lastPadPlayed = 0;
@@ -34,6 +34,7 @@ export default class extends Controller {
       this.padTargets.forEach((pad) => {
           pad.dataset.active = "false";
           pad.dataset.played = "false";
+          this.unclickPad({ currentTarget: pad });
         });
 
         const pad = document.querySelector(`#pad-${this.lastPadPlayed}`);
@@ -43,6 +44,7 @@ export default class extends Controller {
           if (sample.active) {
             this.audioElements[sample.category].play();
             pad.dataset.played = "true";
+            this.clickPad({ currentTarget: pad });
           }
         });
 
@@ -68,15 +70,16 @@ export default class extends Controller {
   selectSample(event) {
     this.sampleSelected = event.currentTarget.dataset.category;
     this.audioElements[this.sampleSelected].play();
+    this.clickPad(event);
 
     this.toggleCategorySelected(event);
 
     this.resetPads();
 
-    this.lightUpSample(event);
+    this.lightUpSample();
   }
 
-  lightUpSample(event) {
+  lightUpSample() {
     this.padTargets.forEach(pad => {
       JSON.parse(pad.dataset.samples).forEach(sample => {
         if (sample.category === this.sampleSelected && sample.active) {
@@ -100,7 +103,13 @@ export default class extends Controller {
   toggleCategorySelected(event) {
     const currentPad = event.currentTarget;
     this.categoryTargets.forEach(target => {
-      target === currentPad ? target.dataset.active = "true" : target.dataset.active = "false";
+        if (target === currentPad) {
+          target.dataset.active = "true";
+          this.clickPad({ currentTarget: target }); // Appel de clickPad
+        } else {
+          target.dataset.active = "false";
+          this.unclickPad({ currentTarget: target }); // Appel de unclickPad
+        }
     });
   }
 
@@ -138,5 +147,17 @@ export default class extends Controller {
       this.pauseMusic();
       this.playMusic();
     }
+  }
+
+  clickPad(event) {
+    event.currentTarget.style.transition = "transform 0.2s ease-in-out";
+    event.currentTarget.style.transform = "translate(0, 2px)";
+    event.currentTarget.style.boxShadow = "";
+  }
+
+  unclickPad(event) {
+    event.currentTarget.style.transition = "transform 0.1s ease-in-out";
+    event.currentTarget.style.transform = "translate(0, -2px)";
+    event.currentTarget.style.boxShadow = "5px 5px 0 0 black";
   }
 }
