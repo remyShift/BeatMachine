@@ -5,13 +5,9 @@ export default class extends Controller {
   static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn"];
   sampleSelected = null;
   soundBoxSamples = null;
-<<<<<<< HEAD
-  changes = false;
-=======
   lastPadPlayed = 0;
   interval = null;
   isDrumrackChanged = false;
->>>>>>> 765a3aee6b6ac5f85606134ce621c86ae0156a17
 
   connect() {
     this.audioElements = {
@@ -115,14 +111,6 @@ export default class extends Controller {
     const currentPad = event.currentTarget;
     const indexOfPad = currentPad.dataset.index;
     const changedSamples = JSON.parse(currentPad.dataset.samples)
-<<<<<<< HEAD
-
-
-    currentPad.dataset.category = this.sampleSelected;
-
-=======
-    
->>>>>>> 765a3aee6b6ac5f85606134ce621c86ae0156a17
     const sampleOnPadToActivate = changedSamples.find(sample => {
       return sample.category === this.sampleSelected
     });
@@ -134,14 +122,11 @@ export default class extends Controller {
       }
     });
 
-<<<<<<< HEAD
-=======
     if(sampleOnPadToActivate.active) {
       currentPad.dataset.category = this.sampleSelected;
     } else {
       currentPad.dataset.category = "";
     }
->>>>>>> 765a3aee6b6ac5f85606134ce621c86ae0156a17
 
     this.padTargets[indexOfPad].dataset.samples = JSON.stringify(changedSamples);
     this.isDrumrackChanged = true;
@@ -158,21 +143,8 @@ export default class extends Controller {
   }
 
   save() {
-    const currentSamples = this.padTargets.map(pad => {
-      return JSON.parse(pad.dataset.samples);
-    });
-    const initialSampleshash = JSON.parse(this.initialSamplesValue).map((padSamples) =>
-      padSamples.map((sample) =>
-        JSON.parse(sample)
-      )
-    );
-    console.log(initialSampleshash);
-    console.log(currentSamples);
-    console.log(initialSampleshash[0]);
-    console.log(currentSamples[0]);
-    console.log(initialSampleshash[0] === currentSamples[0]);
-
-    // return JSON.stringify(this.soundBoxSamples) === JSON.stringify(currentSamples);
+    console.log(this.isDrumrackChanged)
+    
   }
 
 }
