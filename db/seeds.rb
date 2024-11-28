@@ -88,46 +88,46 @@ PadDrumrackSample.destroy_all
 # end
 
 # Creates 1 samples of each category
-samples_reggeaton = []
+samples = []
 
 # Creates a bass sample and pushes it to the samples array
 sound_file = URI.open("https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709259/reggeaton_bass_ybbnef.mp3")
 sample = Sample.new(category: "bass")
 sample.sound.attach(io: sound_file, filename: "reggeaton_bass_ybbnef.mp3", content_type: "audio/mp3")
 sample.save
-samples_reggeaton << sample
+samples << sample
 sound_file.close
 
-# Creates a kick sample and pushes it to the samples_reggeaton array
+# Creates a kick sample and pushes it to the samples array
 sound_file = URI.open("https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709258/reggeaton_kick_vmbhse.mp3")
 sample = Sample.new(category: "kick")
 sample.sound.attach(io: sound_file, filename: "reggeaton_kick_vmbhse.mp3", content_type: "audio/mp3")
 sample.save
-samples_reggeaton << sample
+samples << sample
 sound_file.close
 
-# Creates a snare sample and pushes it to the samples_reggeaton array
+# Creates a snare sample and pushes it to the samples array
 sound_file = URI.open("https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709261/reggeaton_snare_qwnkii.mp3")
 sample = Sample.new(category: "snare")
 sample.sound.attach(io: sound_file, filename: "reggeaton_snare_qwnkii.mp3", content_type: "audio/mp3")
 sample.save
-samples_reggeaton << sample
+samples << sample
 sound_file.close
 
-# Creates a hihat sample and pushes it to the samples_reggeaton array
+# Creates a hihat sample and pushes it to the samples array
 sound_file = URI.open("https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709258/reggeaton_hihat_wd0j0o.mp3")
 sample = Sample.new(category: "hihat")
 sample.sound.attach(io: sound_file, filename: "reggeaton_hihat_wd0j0o.mp3", content_type: "audio/mp3")
 sample.save
-samples_reggeaton << sample
+samples << sample
 sound_file.close
 
-# Creates a oneshot sample and pushes it to the samples_reggeaton array
+# Creates a oneshot sample and pushes it to the samples array
 sound_file = URI.open("https://res.cloudinary.com/dcuhxlv15/video/upload/v1732709258/reggeaton_oneshot_jjb9dt.mp3")
 sample = Sample.new(category: "oneshot")
 sample.sound.attach(io: sound_file, filename: "reggeaton_oneshot_jjb9dt.mp3", content_type: "audio/mp3")
 sample.save
-samples_reggeaton << sample
+samples << sample
 sound_file.close
 
 # Defines each genre
