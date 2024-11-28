@@ -7,10 +7,14 @@
         <%= f.input :email,
                     required: false,
                     autofocus: true,
-                    input_html: { autocomplete: "email" } %>
+                    input_html: { autocomplete: "email",
+                                  class: "border border-slate-600 rounded-md p-2 flex flex-col gap-2 w-full focus:border-primary focus:outline-none",
+                                } %>
         <%= f.input :password,
                     required: false,
-                    input_html: { autocomplete: "current-password" } %>
+                    input_html: { autocomplete: "current-password",
+                                  class: "border border-slate-600 rounded-md p-2 flex flex-col gap-2 w-full focus:border-primary focus:outline-none",
+                                } %>
         <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
       </div>
 
