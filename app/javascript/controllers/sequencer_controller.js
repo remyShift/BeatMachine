@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static values = { bpm: Number, samples: Object, initialSamples: String, bpmValue: Number };
+  static values = { bpm: Number, samples: Object, initialSamples: String, bpmValue: Number, drumrackId: Number };
   static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn"];
   sampleSelected = null;
   soundBoxSamples = null;
@@ -12,7 +12,7 @@ export default class extends Controller {
   connect() {
     this.audioElements = {
       bass: new Audio(this.samplesValue["bass"]),
-      snare: new Audio(this.samplesValue["snare"]), 
+      snare: new Audio(this.samplesValue["snare"]),
       hihat: new Audio(this.samplesValue["hihat"]),
       kick: new Audio(this.samplesValue["kick"]),
       oneshot: new Audio(this.samplesValue["oneshot"])
@@ -102,13 +102,15 @@ export default class extends Controller {
     this.categoryTargets.forEach(target => {
       target === currentPad ? target.dataset.active = "true" : target.dataset.active = "false";
     });
+    // this.categoryTargets.forEach(target => {
+    //   target === currentPad ? target.dataset.active = "true" : target.dataset.active = "false";
+    // });
   }
 
   addSampleToPad(event) {
     const currentPad = event.currentTarget;
     const indexOfPad = currentPad.dataset.index;
     const changedSamples = JSON.parse(currentPad.dataset.samples)
-    
     const sampleOnPadToActivate = changedSamples.find(sample => {
       return sample.category === this.sampleSelected
     });
@@ -139,4 +141,18 @@ export default class extends Controller {
       this.playMusic();
     }
   }
+
+  save() {
+    const padsSamples = this.padTargets.map(pad => pad.dataset.samples)
+    fetch(`/drumracks/${this.drumrackIdValue}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        pads: padsSamples
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    });
+  }
+
 }

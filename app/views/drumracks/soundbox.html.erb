@@ -1,10 +1,9 @@
-<div class="flex flex-col items-center mx-8" 
-  data-controller="sequencer" 
-  data-sequencer-samples-value="<%= @samples_from_drumrack %>" 
-  data-sequencer-bpm-value="<%= @drumrack.bpm %>"
-  data-sequencer-initial-samples-value="<%= @drumrack.pads.map { |pad| pad.pad_drumrack_samples.map { |pad_drumrack_sample| {active: pad_drumrack_sample.active, category: pad_drumrack_sample.sample.category}.to_json } } %>"
+<div class="flex flex-col items-center mx-8"
+  data-controller="sequencer"
+  data-sequencer-samples-value="<%= @samples_from_drumrack %>"
   data-sequencer-bpm-value="<%= @drumrack.bpm.to_i %>"
-  >
+  data-sequencer-initial-samples-value="<%= @drumrack.pads.map { |pad| pad.pad_drumrack_samples.map { |pad_drumrack_sample| {active: pad_drumrack_sample.active, category: pad_drumrack_sample.sample.category}.to_json } } %>"
+  data-sequencer-drumrack-id-value="<%= @drumrack.id %>">
 
   <div class="bpm-controls ">
     <label for="bpm" id="bpm-label"
@@ -27,17 +26,21 @@
       data-action="click->sequencer#pause"
       ></i>
     </button>
+
+    <button data-action="click->sequencer#save">
+      <i class="fa-solid fa-floppy-disk text-orange text-2xl"></i>
+    </button>
   </div>
 
   <div class="sequencer">
     <% @drumrack.pads.each_with_index do |pad, i| %>
-      <button id="pad-<%= i %>" 
+      <button id="pad-<%= i %>"
         data-sequencer-target="pad"
         data-active="false"
         data-played="false"
         data-category=""
         data-index="<%= i %>"
-        data-action="click->sequencer#addSampleToPad" 
+        data-action="click->sequencer#addSampleToPad"
         data-first-temp="<%= i % 4 == 0 %>"
         data-samples=""
         class="pad drumrack
@@ -58,8 +61,8 @@
     <% @drumrack.samples.each do |sample| %>
       <button class="pad <%= category_color(sample.category) %> data-[active=true]:shadow-played"
         data-active="false"
-        data-action="click->sequencer#selectSample" 
-        data-category="<%= sample.category %>" 
+        data-action="click->sequencer#selectSample"
+        data-category="<%= sample.category %>"
         data-sequencer-target="category"
       >
         <p class="text-xs text-center text-white"><%= sample.category %></p>
