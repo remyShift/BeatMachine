@@ -1,0 +1,20 @@
+<div class="w-full max-w-md h-60 bg-blue-900 rounded-xl shadow-lg p-6">
+  <!-- Title -->
+  <div class="text-center text-orange-400 font-shrikhand text-2xl font-bold mb-4 [text-shadow:2px_2px_4px_white]">
+    <%= title %>
+  </div>
+
+  <!-- Tags -->
+  <div class="flex justify-center gap-4 mb-6">
+    <% tags.each do |tag| %>
+      <%= render "shared/tag",  tag_name: tag  %>
+    <% end %>
+  </div>
+
+  <!-- Play Button -->
+  <div class="flex justify-center items-center">
+    <div class="w-24 h-24 bg-yellow-500 rounded-full mg-4 flex justify-center items-center shadow-lg cursor-pointer">
+      <i class="fa-solid fa-play fa-2xl"></i>
+    </div>
+  </div>
+</div>
