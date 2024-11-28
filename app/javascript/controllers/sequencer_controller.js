@@ -1,12 +1,12 @@
 import { Controller } from "@hotwired/stimulus";
-// import * as Tone from "tone"
 
-// Connects to data-controller="sequencer"
 export default class extends Controller {
-  static values = { bpm: Number, samples: Object, initialSamples: String };
-  static targets = ["pad", "category"];
+  static values = { bpm: Number, samples: Object, initialSamples: String, bpmValue: Number };
+  static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn"];
   sampleSelected = null;
   soundBoxSamples = null;
+  lastPadPlayed = 0;
+  interval = null;
 
   connect() {
     this.audioElements = {
@@ -28,22 +28,14 @@ export default class extends Controller {
     });
   }
 
-  play(event) {
-    this.toggleButtonPlayPause(event);
-
-    let i = 0;
-
-    if (this.interval) {
-      clearInterval(this.interval);
-      this.interval = null;
-    } else {
-      this.interval = setInterval(() => {
-        this.padTargets.forEach((pad) => {
+  playMusic() {
+    this.interval = setInterval(() => {
+      this.padTargets.forEach((pad) => {
           pad.dataset.active = "false";
           pad.dataset.played = "false";
         });
 
-        const pad = document.querySelector("#pad-" + i);
+        const pad = document.querySelector(`#pad-${this.lastPadPlayed}`);
         pad.dataset.active = "true";
 
         JSON.parse(pad.dataset.samples).forEach((sample) => {
@@ -53,14 +45,23 @@ export default class extends Controller {
           }
         });
 
-        i === 15 ? (i = 0) : i++;
-      }, ((this.bpmValue / 4) * 60) / 2);
-    }
+        this.lastPadPlayed === 15 ? (this.lastPadPlayed = 0) : this.lastPadPlayed++;
+      }, (1000 / (this.bpmValue / 60)) / 4);
   }
 
-  toggleButtonPlayPause(event) {
-    event.currentTarget.children[0].classList.toggle("hidden");
-    event.currentTarget.children[1].classList.toggle("hidden");
+  play() {
+    this.togglePlayBtnTarget.dataset.toggle = this.togglePlayBtnTarget.dataset.toggle === "false";
+    this.playMusic();
+  }
+
+  pause() {
+    this.togglePlayBtnTarget.dataset.toggle = this.togglePlayBtnTarget.dataset.toggle === "false";
+    this.pauseMusic();
+  }
+
+  pauseMusic() {
+    clearInterval(this.interval);
+    this.interval = null;
   }
 
   selectSample(event) {
@@ -123,5 +124,14 @@ export default class extends Controller {
 
     
     this.padTargets[indexOfPad].dataset.samples = JSON.stringify(changedSamples);
+  }
+
+  updateBpm(event) {
+    this.bpmValue = event.target.value;
+    this.bpmLabelTarget.textContent = `${this.bpmValue} BPM`;
+    if (this.interval) {
+      this.pauseMusic();
+      this.playMusic();
+    }
   }
 }
