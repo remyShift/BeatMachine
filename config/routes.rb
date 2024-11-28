@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   root to: "drumracks#index"
-
-  resources :users, only: [:index, :show]
-
+  
   devise_for :users
+  resources :users, only: [:show]
 
   resources :drumracks, only: [:index, :show] do
     member do
