@@ -67,11 +67,11 @@ PadDrumrackSample.destroy_all
 #     { category: "oneshot", url: "", filename: "trap_oneshot_.mp3" }
 #   ],
 #   "jazz" => [
-#     { category: "bass", url: "", filename: "jazz_bass_.mp3" },
-#     { category: "kick", url: "", filename: "jazz_kick_.mp3" },
-#     { category: "snare", url: "", filename: "jazz_snare_.mp3" },
-#     { category: "hihat", url: "", filename: "jazz_hihat_.mp3" },
-#     { category: "oneshot", url: "", filename: "jazz_oneshot_.mp3" }
+#     { category: "bass", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802985/bass_jazz_jcqnm6.mp3", filename: "bass_jazz_jcqnm6.mp3" },
+#     { category: "kick", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802985/kick_jazz_d0yse2.mp3", filename: "kick_jazz_d0yse2.mp3" },
+#     { category: "snare", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802985/snare_jazz_fmpoci.mp3", filename: "snare_jazz_fmpoci.mp3" },
+#     { category: "hihat", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802986/hihat_jazz_tchqs4.mp3", filename: "hihat_jazz_tchqs4.mp3" },
+#     { category: "oneshot", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802986/oneshot_jazz_k9vlzv.mp3", filename: "oneshot_jazz_k9vlzv.mp3" }
 #   ]
 # }
 
