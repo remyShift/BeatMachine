@@ -7,6 +7,7 @@ export default class extends Controller {
   soundBoxSamples = null;
   lastPadPlayed = 0;
   interval = null;
+  isDrumrackChanged = false;
 
   connect() {
     this.audioElements = {
@@ -122,13 +123,14 @@ export default class extends Controller {
       }
     });
 
-    
     this.padTargets[indexOfPad].dataset.samples = JSON.stringify(changedSamples);
+    this.isDrumrackChanged = true;
   }
 
   updateBpm(event) {
     this.bpmValue = event.target.value;
     this.bpmLabelTarget.textContent = `${this.bpmValue} BPM`;
+    this.isDrumrackChanged = true;
     if (this.interval) {
       this.pauseMusic();
       this.playMusic();
