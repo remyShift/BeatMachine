@@ -1,4 +1,9 @@
-<div class="flex flex-col items-center mx-8" data-controller="sequencer" data-sequencer-samples-value="<%= @samples_from_drumrack %>" data-sequencer-bpm-value="<%= @drumrack.bpm %>">
+<div class="flex flex-col items-center mx-8" 
+  data-controller="sequencer" 
+  data-sequencer-samples-value="<%= @samples_from_drumrack %>" 
+  data-sequencer-bpm-value="<%= @drumrack.bpm %>"
+  data-sequencer-initial-samples-value="<%= @drumrack.pads.map { |pad| pad.pad_drumrack_samples.map { |pad_drumrack_sample| {active: pad_drumrack_sample.active, category: pad_drumrack_sample.sample.category}.to_json } } %>"
+>
   <div class="bpm-controls ">
     <label for="bpm" id="bpm-label"><%= @drumrack.bpm %> BPM</label>
     <input type="range" id="bpm" min="60" max="240" value="<%= @drumrack.bpm %>" />
@@ -15,8 +20,10 @@
         data-active="false"
         data-played="false"
         data-category=""
+        data-index="<%= i %>"
+        data-action="click->sequencer#addSampleToPad" 
         data-first-temp="<%= i % 4 == 0 %>"
-        data-samples="<%= pad.pad_drumrack_samples.map { |pad_drumrack_sample| {active: pad_drumrack_sample.active, category: pad_drumrack_sample.sample.category}.to_json } %>"
+        data-samples=""
         class="pad drumrack
         data-[category=oneshot]:bg-yellow-500
         data-[active=true]:border-3 data-[active=true]:border-zinc-100
