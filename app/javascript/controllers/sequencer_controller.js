@@ -7,11 +7,12 @@ export default class extends Controller {
   static targets = ["pad", "category"];
   sampleSelected = null;
   soundBoxSamples = null;
+  changes = false;
 
   connect() {
     this.audioElements = {
       bass: new Audio(this.samplesValue["bass"]),
-      snare: new Audio(this.samplesValue["snare"]), 
+      snare: new Audio(this.samplesValue["snare"]),
       hihat: new Audio(this.samplesValue["hihat"]),
       kick: new Audio(this.samplesValue["kick"]),
       oneshot: new Audio(this.samplesValue["oneshot"])
@@ -100,6 +101,9 @@ export default class extends Controller {
     this.categoryTargets.forEach(target => {
       target === currentPad ? target.dataset.active = "true" : target.dataset.active = "false";
     });
+    // this.categoryTargets.forEach(target => {
+    //   target === currentPad ? target.dataset.active = "true" : target.dataset.active = "false";
+    // });
   }
 
   addSampleToPad(event) {
@@ -109,7 +113,7 @@ export default class extends Controller {
 
 
     currentPad.dataset.category = this.sampleSelected;
-    
+
     const sampleOnPadToActivate = changedSamples.find(sample => {
       return sample.category === this.sampleSelected
     });
@@ -121,7 +125,26 @@ export default class extends Controller {
       }
     });
 
-    
+
     this.padTargets[indexOfPad].dataset.samples = JSON.stringify(changedSamples);
   }
+
+  save() {
+    const currentSamples = this.padTargets.map(pad => {
+      return JSON.parse(pad.dataset.samples);
+    });
+    const initialSampleshash = JSON.parse(this.initialSamplesValue).map((padSamples) =>
+      padSamples.map((sample) =>
+        JSON.parse(sample)
+      )
+    );
+    console.log(initialSampleshash);
+    console.log(currentSamples);
+    console.log(initialSampleshash[0]);
+    console.log(currentSamples[0]);
+    console.log(initialSampleshash[0] === currentSamples[0]);
+
+    // return JSON.stringify(this.soundBoxSamples) === JSON.stringify(currentSamples);
+  }
+
 }
