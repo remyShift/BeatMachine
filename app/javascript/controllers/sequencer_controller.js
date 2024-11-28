@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static values = { bpm: Number, samples: Object, initialSamples: String, bpmValue: Number };
+  static values = { bpm: Number, samples: Object, initialSamples: String, bpmValue: Number, drumrackId: Number };
   static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn"];
   sampleSelected = null;
   soundBoxSamples = null;
@@ -143,8 +143,16 @@ export default class extends Controller {
   }
 
   save() {
-    console.log(this.isDrumrackChanged)
-    
+    const padsSamples = this.padTargets.map(pad => pad.dataset.samples)
+    fetch(`/drumracks/${this.drumrackIdValue}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        pads: padsSamples
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    });
   }
 
 }

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show]
 
-  resources :drumracks, only: [:index, :show] do
+  resources :drumracks, only: [:index, :show, :update] do
     member do
       get :soundbox
     end

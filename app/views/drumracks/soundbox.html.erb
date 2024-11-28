@@ -1,24 +1,9 @@
 <div class="flex flex-col items-center mx-8"
   data-controller="sequencer"
   data-sequencer-samples-value="<%= @samples_from_drumrack %>"
-  data-sequencer-bpm-value="<%= @drumrack.bpm %>"
-  data-sequencer-initial-samples-value="<%= @drumrack.pads.map { |pad| pad.pad_drumrack_samples.map { |pad_drumrack_sample| {active: pad_drumrack_sample.active, category: pad_drumrack_sample.sample.category}.to_json } } %>"
-<<<<<<< HEAD
->
-  <div class="bpm-controls ">
-    <label for="bpm" id="bpm-label"><%= @drumrack.bpm %> BPM</label>
-    <input type="range" id="bpm" min="60" max="240" value="<%= @drumrack.bpm %>" />
-    <button data-action="click->sequencer#play">
-      <i class="fa-solid fa-play text-orange text-2xl"></i>
-      <i class="fa-solid fa-pause text-blue-700 text-2xl hidden"></i>
-    </button>
-    <button data-action="click->sequencer#save">
-      <i class="fa-solid fa-floppy-disk text-orange text-2xl"></i>
-    </button>
-=======
   data-sequencer-bpm-value="<%= @drumrack.bpm.to_i %>"
-  >
->>>>>>> 765a3aee6b6ac5f85606134ce621c86ae0156a17
+  data-sequencer-initial-samples-value="<%= @drumrack.pads.map { |pad| pad.pad_drumrack_samples.map { |pad_drumrack_sample| {active: pad_drumrack_sample.active, category: pad_drumrack_sample.sample.category}.to_json } } %>"
+  data-sequencer-drumrack-id-value="<%= @drumrack.id %>">
 
   <div class="bpm-controls ">
     <label for="bpm" id="bpm-label"
@@ -40,6 +25,10 @@
       <i class="fa-solid fa-pause text-blue-700 text-2xl group-data-[toggle=true]:block hidden"
       data-action="click->sequencer#pause"
       ></i>
+    </button>
+
+    <button data-action="click->sequencer#save">
+      <i class="fa-solid fa-floppy-disk text-orange text-2xl"></i>
     </button>
   </div>
 
