@@ -108,9 +108,6 @@ export default class extends Controller {
     const currentPad = event.currentTarget;
     const indexOfPad = currentPad.dataset.index;
     const changedSamples = JSON.parse(currentPad.dataset.samples)
-
-
-    currentPad.dataset.category = this.sampleSelected;
     
     const sampleOnPadToActivate = changedSamples.find(sample => {
       return sample.category === this.sampleSelected
@@ -122,6 +119,12 @@ export default class extends Controller {
         sample.active = sampleOnPadToActivate.active;
       }
     });
+
+    if(sampleOnPadToActivate.active) {
+      currentPad.dataset.category = this.sampleSelected;
+    } else {
+      currentPad.dataset.category = "";
+    }
 
     this.padTargets[indexOfPad].dataset.samples = JSON.stringify(changedSamples);
     this.isDrumrackChanged = true;
