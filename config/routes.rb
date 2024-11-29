@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
 
-  resources :drumracks, only: [:index, :show, :new, :save, :update] do
+  resources :drumracks, only: [:index, :show, :update] do
+    get :duplicate, on: :member
     member do
       get :soundbox
     end
