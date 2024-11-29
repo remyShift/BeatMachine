@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:show]
 
-
   resources :drumracks, only: [:index, :show, :new, :save, :update] do
     member do
       get :soundbox
+      patch :update_from_json
     end
   end
 
