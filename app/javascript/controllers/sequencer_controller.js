@@ -28,7 +28,6 @@ export default class extends Controller {
       this.padTargets.forEach((pad) => {
           pad.dataset.active = "false";
           pad.dataset.played = "false";
-          this.unclickPad({ currentTarget: pad });
         });
 
         const pad = document.querySelector(`#pad-${this.lastPadPlayed}`);
@@ -46,7 +45,6 @@ export default class extends Controller {
           if (sample.active) {
             sounds[sample.category].play();
             pad.dataset.played = "true";
-            this.clickPad({ currentTarget: pad });
           }
         });
 
@@ -81,7 +79,6 @@ export default class extends Controller {
     };
 
     sounds[this.sampleSelected].play();
-    this.clickPad(event);
 
     this.toggleCategorySelected(event);
 
@@ -94,8 +91,8 @@ export default class extends Controller {
     this.padTargets.forEach(pad => {
       JSON.parse(pad.dataset.samples).forEach(sample => {
         if (sample.category === this.sampleSelected && sample.active) {
-          pad.dataset.firstTemp = pad.dataset.index % 4 === 0;
           pad.dataset.category = this.sampleSelected;
+          pad.dataset.firstTemp = pad.dataset.index % 4 === 0 && pad.dataset.category === "";
         }
       });
     });
@@ -107,6 +104,7 @@ export default class extends Controller {
     this.padTargets.forEach(pad => {
       categories.forEach(category => {
         pad.dataset.category = "";
+        pad.dataset.firstTemp = pad.dataset.index % 4 === 0;
       });
     });
   }
@@ -114,13 +112,7 @@ export default class extends Controller {
   toggleCategorySelected(event) {
     const currentPad = event.currentTarget;
     this.categoryTargets.forEach(target => {
-        if (target === currentPad) {
-          target.dataset.active = "true";
-          this.clickPad({ currentTarget: target });
-        } else {
-          target.dataset.active = "false";
-          this.unclickPad({ currentTarget: target });
-        }
+      target === currentPad ? target.dataset.active = "true" : target.dataset.active = "false";
     });
   }
 
@@ -128,6 +120,7 @@ export default class extends Controller {
     const currentPad = event.currentTarget;
     const indexOfPad = currentPad.dataset.index;
     const changedSamples = JSON.parse(currentPad.dataset.samples)
+
     const sampleOnPadToActivate = changedSamples.find(sample => {
       return sample.category === this.sampleSelected
     });
@@ -141,6 +134,7 @@ export default class extends Controller {
 
     if(sampleOnPadToActivate.active) {
       currentPad.dataset.category = this.sampleSelected;
+      currentPad.dataset.firstTemp = currentPad.dataset.index % 4 === 0 && currentPad.dataset.category === "";
     } else {
       currentPad.dataset.category = "";
     }
@@ -159,18 +153,6 @@ export default class extends Controller {
     }
   }
 
-  clickPad(event) {
-    event.currentTarget.style.transition = "transform 0.2s ease-in-out";
-    event.currentTarget.style.transform = "translate(0, 2px)";
-    event.currentTarget.style.boxShadow = "";
-  }
-
-  unclickPad(event) {
-    event.currentTarget.style.transition = "transform 0.1s ease-in-out";
-    event.currentTarget.style.transform = "translate(0, -2px)";
-    event.currentTarget.style.boxShadow = "5px 5px 0 0 black";
-  }
-
   save() {
     const padsSamples = this.padTargets.map(pad => pad.dataset.samples)
     fetch(`/drumracks/${this.drumrackIdValue}`, {
@@ -183,5 +165,4 @@ export default class extends Controller {
       }
     });
   }
-
 }

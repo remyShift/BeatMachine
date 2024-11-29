@@ -1,0 +1,13 @@
+<div class="flex gap-4 mt-20">
+    <% @drumrack.samples.each do |sample| %>
+        <button class="pad <%= category_color(sample.category) %> data-[active=true]:shadow-played data-[active=true]:click"
+            data-active="false"
+            data-sequencer-target="category"
+            data-action="click->sequencer#selectSample" 
+            data-category="<%= sample.category %>" 
+            data-sequencer-target="category"
+        >
+            <p class="text-xs text-center text-white"><%= sample.category %></p>
+        </button>
+    <% end %>
+</div>

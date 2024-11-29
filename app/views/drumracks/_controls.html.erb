@@ -1,0 +1,26 @@
+<div class="bpm-controls ">
+    <label for="bpm" id="bpm-label"
+        data-sequencer-target="bpmLabel"
+    ><%= @drumrack.bpm %> BPM</label>
+    <input type="number" id="bpm" min="60" max="240" value="<%= @drumrack.bpm.to_i %>"
+        data-sequencer-target="bpmInput"
+        data-action="change->sequencer#updateBpm"
+    />
+
+    <button
+        data-toggle="false"
+        data-sequencer-target="togglePlayBtn"
+        class="group"
+    >
+        <i class="fa-solid fa-play text-orange text-2xl group-data-[toggle=true]:hidden"
+            data-action="click->sequencer#play"
+        ></i>
+        <i class="fa-solid fa-pause text-blue-700 text-2xl group-data-[toggle=true]:block hidden"
+            data-action="click->sequencer#pause"
+        ></i>
+    </button>
+
+    <button data-action="click->sequencer#save">
+        <i class="fa-solid fa-floppy-disk text-orange text-2xl"></i>
+    </button>
+</div>
