@@ -1,5 +1,5 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
   <% drumracks.each do |drumrack| %>
-    <%= render "shared/music_card", drumrack: drumrack %>
+    <%= render "shared/music_card", drumrack: drumrack, display_like_button: true %>
   <% end %>
 </div>

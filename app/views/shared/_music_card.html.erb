@@ -19,13 +19,16 @@
       <i class="fa-solid fa-play fa-2xl"></i>
     </div>
   </div>
-  <% if current_user %>
-    <% if current_user.like?(drumrack) %>
-      full heart + btn pour destroy
-    <% else %>
-    <%= button_to drumrack_likes_path(drumrack), method: :post do  %>
-      heart icon
-    <% end %>
+  <% if current_user && display_like_button %>
+    <% like = current_user.likes.where(drumrack: drumrack)&.first %>
+    <%= button_to current_user.like?(drumrack) ? like_path(like) : drumrack_likes_path(drumrack),
+      method: current_user.like?(drumrack) ? :delete : :post do  %>
+      <div data-controller="heart">
+        <i data-heart-target="icon"
+          data-action="click->heart#toggleColor"
+          class="fa fa-heart <%= current_user.like?(drumrack) ? 'text-red-500' : 'text-black' %> cursor-pointer text-2xl">
+        </i>
+      </div>
     <% end %>
   <% end %>
 </div>

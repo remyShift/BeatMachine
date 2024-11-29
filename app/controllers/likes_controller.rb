@@ -3,9 +3,15 @@ class LikesController < ApplicationController
     @drumrack = Drumrack.find(params[:drumrack_id])
     @like = Like.new(drumrack:@drumrack , user:current_user).save
 
-    redirect_to root_path
+    respond_to do |format|
+      format.html {redirect_to root_path}
+      # format.turbo_stream {}
+    end
   end
 
   def destroy
-    @like = Like.destroy
+    @like = Like.find(params[:id])
+    @like.destroy
+    redirect_to root_path
+  end
 end
