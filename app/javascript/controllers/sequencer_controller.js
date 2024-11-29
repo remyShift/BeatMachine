@@ -10,7 +10,19 @@ export default class extends Controller {
   interval = null;
   isDrumrackChanged = false;
 
+  soundsPads = [];
+
   connect() {
+
+    this.padTargets.forEach(pad => {
+      this.soundsPads.push({
+        bass: new Audio(this.samplesValue["bass"]),
+        snare: new Audio(this.samplesValue["snare"]),
+        hihat: new Audio(this.samplesValue["hihat"]),
+        kick: new Audio(this.samplesValue["kick"]),
+        oneshot: new Audio(this.samplesValue["oneshot"])
+      });
+    })
 
     this.soundBoxSamples = JSON.parse(this.initialSamplesValue).map(padSamples => {
       return padSamples.map(sample => {
@@ -32,19 +44,12 @@ export default class extends Controller {
         });
 
         const pad = document.querySelector(`#pad-${this.lastPadPlayed}`);
-        pad.dataset.active = "true";
 
-        let sounds = {
-          bass: new Audio(this.samplesValue["bass"]),
-          snare: new Audio(this.samplesValue["snare"]),
-          hihat: new Audio(this.samplesValue["hihat"]),
-          kick: new Audio(this.samplesValue["kick"]),
-          oneshot: new Audio(this.samplesValue["oneshot"])
-        };
+        pad.dataset.active = "true";
 
         JSON.parse(pad.dataset.samples).forEach((sample) => {
           if (sample.active) {
-            sounds[sample.category].play();
+            this.soundsPads[this.lastPadPlayed][sample.category].play();
             pad.dataset.played = "true";
             this.clickPad({ currentTarget: pad });
           }
