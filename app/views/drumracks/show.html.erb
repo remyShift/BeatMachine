@@ -1,9 +1,14 @@
-<p class="text-white text-lg">This drumrack is named : <%= @drumrack.name %></p>
-<p class="text-white text-lg">BPM <%= @drumrack.bpm %></p>
-<%= render 'show_controls' %>
+<div class="flex flex-col items-center mx-8">
 
-<%= render 'drumrack_sequencer' %>
+  <p class="text-white text-lg">This drumrack is named : <%= @drumrack.name %></p>
+  <p class="text-white text-lg">BPM <%= @drumrack.bpm %></p>
+  <%= render 'show_controls' %>
 
-<%= render 'sample_picker' %>
+  <%= render 'drumrack_sequencer' %>
 
-<%= link_to "Modify Drumrack", duplicate_drumrack_path(@drumrack), method: :get, class: "my-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+  <%= render 'sample_picker' %>
+
+
+  <%= link_to "Modify Drumrack", duplicate_drumrack_path(@drumrack), method: :get, class: "my-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+
+</div>
