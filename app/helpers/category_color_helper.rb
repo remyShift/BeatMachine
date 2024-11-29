@@ -2,15 +2,15 @@ module CategoryColorHelper
   def category_color(category)
     case category
     when "kick"
-      "bg-red-500"
+      "bg-red-gradient"
     when "snare"
-      "bg-green-500"
+      "bg-green-gradient"
     when "hihat"
-      "bg-blue-500"
+      "bg-blue-gradient"
     when "oneshot"
-      "bg-yellow-500"
+      "bg-yellow-gradient"
     when "bass"
-      "bg-purple-500"
+      "bg-purple-gradient"
     else
       ""
     end

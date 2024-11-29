@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static values = { bpm: Number, samples: Object, initialSamples: String, bpmValue: Number, drumrackId: Number };
-  static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn"];
+  static targets = ["pad", "category", "bpmLabel", "bpmInput"];
   sampleSelected = null;
   soundBoxSamples = null;
   lastPadPlayed = 0;
@@ -53,12 +53,10 @@ export default class extends Controller {
   }
 
   play() {
-    this.togglePlayBtnTarget.dataset.toggle = this.togglePlayBtnTarget.dataset.toggle === "false";
     this.playMusic();
   }
 
   pause() {
-    this.togglePlayBtnTarget.dataset.toggle = this.togglePlayBtnTarget.dataset.toggle === "false";
     this.pauseMusic();
   }
 
