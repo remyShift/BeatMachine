@@ -12,14 +12,14 @@ Sample.destroy_all
 DrumrackSample.destroy_all
 PadDrumrackSample.destroy_all
 
-# def create_sample(category:, file_url:, filename:)
-#   sound_file = URI.open(file_url)
-#   sample = Sample.new(category: category)
-#   sample.sound.attach(io: sound_file, filename: filename, content_type: "audio/mp3")
-#   sample.save
-#   sound_file.close
-#   sample
-# end
+def create_sample(category:, file_url:, filename:)
+  sound_file = URI.open(file_url)
+  sample = Sample.new(category: category)
+  sample.sound.attach(io: sound_file, filename: filename, content_type: "audio/mp3")
+  sample.save
+  sound_file.close
+  sample
+end
 
 # # Array des sample par templates
 # samples_templates = {
@@ -61,6 +61,96 @@ PadDrumrackSample.destroy_all
 #     { category: "oneshot", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802986/oneshot_jazz_k9vlzv.mp3", filename: "oneshot_jazz_k9vlzv.mp3" }
 #   ]
 # }
+
+# Array des bpm genre / templates
+# bpm_templates = {
+#   "reggaeton" => 90,
+#   "jerseyclub" => 150,
+#   "bailefunk" => 135,
+#   "trap" => 70,
+#   "jazz" => 80
+# }
+
+# Hash de pads per genre per category
+genre_pads_category = {
+#   "reggaeton" => {
+#     { category: "bass", index: [] },
+#     { category: "kick", index: [] },
+#     { category: "snare", index: [] },
+#     { category: "hihat", index: [] },
+#     { category: "oneshot", index: [] }
+#   },
+
+#   "jerseyclub" => {
+#     { category: "bass", index: [] },
+#     { category: "kick", index: [] },
+#     { category: "snare", index: [] },
+#     { category: "hihat", index: [] },
+#     { category: "oneshot", index: [] }
+#   },
+
+#   "bailefunk" => {
+#     { category: "bass", index: [] },
+#     { category: "kick", index: [] },
+#     { category: "snare", index: [] },
+#     { category: "hihat", index: [] },
+#     { category: "oneshot", index: [] }
+#   },
+
+#   "trap" => {
+#     { category: "bass", index: [] },
+#     { category: "kick", index: [] },
+#     { category: "snare", index: [] },
+#     { category: "hihat", index: [] },
+#     { category: "oneshot", index: [] }
+#   },
+
+#   "jazz" => {
+#     { category: "bass", index: [] },
+#     { category: "kick", index: [] },
+#     { category: "snare", index: [] },
+#     { category: "hihat", index: [] },
+#     { category: "oneshot", index: [] }
+#   },
+# }
+
+# genres = ["reggaeton", "jerseyclub", "bailefunk", "trap", "jazz"]
+
+genres.each do |genre|
+  # Create drumrack
+  drumrack = Drumrack.new(name: "My #{genre} drumrack", genre: genre, bpm: bpm_templates["genre"], is_template: true)
+  drumrack.save!
+
+  # Create an array of samples for the genre selected
+  samples = []
+  samples_templates["genre"][0].each do |sample|
+    samples << create_sample(category: sample[:category], file_url: sample[:url], filename: sample[:filename])
+  end
+
+# Create drumrack samples
+  drumrack_samples = []
+  samples.each do |sample|
+    drumrack_sample = DrumrackSample.new(sample: sample)
+    drumrack_sample.drumrack = drumrack
+    drumrack_sample.save!
+    drumrack_samples << drumrack_sample
+  end
+
+  # Create pads
+  pads = drumrack.pads
+  drumrack_samples.each do |drumrack_sample|
+    tempo = rand(1..16)
+    pads.each_with_index do |pad, i|
+      bool = (i + 1)%tempo == 0
+      PadDrumrackSample.create!(
+        pad: pad,
+        drumrack_sample: drumrack_sample,
+        active: bool
+      )
+    end
+  end
+end
+
 
 # # Création des samples pour chaque genre
 # samples_templates.each do |genre, samples|
@@ -123,7 +213,7 @@ genres = ["reggeaton", "jersey club", "pop", "baile funk", "trap", "jazz", "dumb
 # Creates one drumrack per genre
 genres.each do |genre|
   # Create drumrack
-  drumrack = Drumrack.new(name: "my drumrack", genre: genre, bpm: [100, 80, 120, 140, 110, 90].sample, is_template: true)
+  drumrack = Drumrack.new(name: "My #{genre} drumrack", genre: genre, bpm: [100, 80, 120, 140, 110, 90].sample, is_template: true)
   drumrack.save!
    # Create one drumrack_sample per sample
   drumrack_samples = []
