@@ -1,0 +1,26 @@
+<div class="bpm-controls flex items-center justify-center gap-4">
+    <label for="bpm" id="bpm-label"
+        data-sequencer-target="bpmLabel"
+    ><%= @drumrack.bpm %> BPM</label>
+    <input type="number" id="bpm" min="60" max="240" value="<%= @drumrack.bpm.to_i %>"
+        data-sequencer-target="bpmInput"
+        data-action="change->sequencer#updateBpm"
+    />
+
+    <div class="radio-input">
+        <label class="label">
+            <input value="value-1" name="value-radio" id="value-1" type="radio" data-action="click->sequencer#play"/>
+            <span class="text">Play</span>
+        </label>
+        <label class="label" data-action="click->sequencer#pause">
+            <input value="value-1" name="value-radio" id="value-1" type="radio" />
+            <span class="text">Stop</span>
+        </label>
+        <label class="label" data-action="click->sequencer#save">
+            <input value="value-1" name="value-radio" id="value-1" type="radio" />
+            <span class="text">Save</span>
+        </label>
+    </div>
+</div>
+
+

@@ -1,0 +1,13 @@
+<div class="flex justify-center gap-4 mt-2">
+    <% @drumrack.samples.each do |sample| %>
+        <button class="pad <%= category_color(sample.category) %> opacity-50 data-[active=true]:opacity-100"
+            data-active="false"
+            data-sequencer-target="category"
+            data-action="click->sequencer#selectSample" 
+            data-category="<%= sample.category %>" 
+            data-sequencer-target="category"
+        >
+            <p class="text-sm italic font-bold text-center text-white"><%= sample.category %></p>
+        </button>
+    <% end %>
+</div>

@@ -1,22 +1,28 @@
 import { Controller } from "@hotwired/stimulus";
 
+
 export default class extends Controller {
-  static values = { bpm: Number, samples: Object, initialSamples: String, bpmValue: Number };
-  static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn"];
+  static values = { bpm: Number, samples: Object, initialSamples: String, bpmValue: Number, drumrackId: Number };
+  static targets = ["pad", "category", "bpmLabel", "bpmInput"];
   sampleSelected = null;
   soundBoxSamples = null;
   lastPadPlayed = 0;
   interval = null;
   isDrumrackChanged = false;
 
+  soundsPads = [];
+
   connect() {
-    this.audioElements = {
-      bass: new Audio(this.samplesValue["bass"]),
-      snare: new Audio(this.samplesValue["snare"]), 
-      hihat: new Audio(this.samplesValue["hihat"]),
-      kick: new Audio(this.samplesValue["kick"]),
-      oneshot: new Audio(this.samplesValue["oneshot"])
-    };
+
+    this.padTargets.forEach(pad => {
+      this.soundsPads.push({
+        bass: new Audio(this.samplesValue["bass"]),
+        snare: new Audio(this.samplesValue["snare"]),
+        hihat: new Audio(this.samplesValue["hihat"]),
+        kick: new Audio(this.samplesValue["kick"]),
+        oneshot: new Audio(this.samplesValue["oneshot"])
+      });
+    })
 
     this.soundBoxSamples = JSON.parse(this.initialSamplesValue).map(padSamples => {
       return padSamples.map(sample => {
@@ -37,11 +43,14 @@ export default class extends Controller {
         });
 
         const pad = document.querySelector(`#pad-${this.lastPadPlayed}`);
+
         pad.dataset.active = "true";
 
         JSON.parse(pad.dataset.samples).forEach((sample) => {
           if (sample.active) {
-            this.audioElements[sample.category].play();
+            this.soundsPads[this.lastPadPlayed][sample.category].pause();
+            this.soundsPads[this.lastPadPlayed][sample.category].currentTime = 0;
+            this.soundsPads[this.lastPadPlayed][sample.category].play();
             pad.dataset.played = "true";
           }
         });
@@ -51,12 +60,10 @@ export default class extends Controller {
   }
 
   play() {
-    this.togglePlayBtnTarget.dataset.toggle = this.togglePlayBtnTarget.dataset.toggle === "false";
     this.playMusic();
   }
 
   pause() {
-    this.togglePlayBtnTarget.dataset.toggle = this.togglePlayBtnTarget.dataset.toggle === "false";
     this.pauseMusic();
   }
 
@@ -67,21 +74,30 @@ export default class extends Controller {
 
   selectSample(event) {
     this.sampleSelected = event.currentTarget.dataset.category;
-    this.audioElements[this.sampleSelected].play();
+
+    let sounds = {
+      bass: new Audio(this.samplesValue["bass"]),
+      snare: new Audio(this.samplesValue["snare"]),
+      hihat: new Audio(this.samplesValue["hihat"]),
+      kick: new Audio(this.samplesValue["kick"]),
+      oneshot: new Audio(this.samplesValue["oneshot"])
+    };
+
+    sounds[this.sampleSelected].play();
 
     this.toggleCategorySelected(event);
 
     this.resetPads();
 
-    this.lightUpSample(event);
+    this.lightUpSample();
   }
 
-  lightUpSample(event) {
+  lightUpSample() {
     this.padTargets.forEach(pad => {
       JSON.parse(pad.dataset.samples).forEach(sample => {
         if (sample.category === this.sampleSelected && sample.active) {
-          pad.dataset.firstTemp = pad.dataset.index % 4 === 0;
           pad.dataset.category = this.sampleSelected;
+          pad.dataset.firstTemp = pad.dataset.index % 4 === 0 && pad.dataset.category === "";
         }
       });
     });
@@ -93,6 +109,7 @@ export default class extends Controller {
     this.padTargets.forEach(pad => {
       categories.forEach(category => {
         pad.dataset.category = "";
+        pad.dataset.firstTemp = pad.dataset.index % 4 === 0;
       });
     });
   }
@@ -108,7 +125,7 @@ export default class extends Controller {
     const currentPad = event.currentTarget;
     const indexOfPad = currentPad.dataset.index;
     const changedSamples = JSON.parse(currentPad.dataset.samples)
-    
+
     const sampleOnPadToActivate = changedSamples.find(sample => {
       return sample.category === this.sampleSelected
     });
@@ -122,6 +139,7 @@ export default class extends Controller {
 
     if(sampleOnPadToActivate.active) {
       currentPad.dataset.category = this.sampleSelected;
+      currentPad.dataset.firstTemp = currentPad.dataset.index % 4 === 0 && currentPad.dataset.category === "";
     } else {
       currentPad.dataset.category = "";
     }
@@ -138,5 +156,18 @@ export default class extends Controller {
       this.pauseMusic();
       this.playMusic();
     }
+  }
+
+  save() {
+    const padsSamples = this.padTargets.map(pad => pad.dataset.samples)
+    fetch(`/drumracks/${this.drumrackIdValue}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        pads: padsSamples
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    });
   }
 }

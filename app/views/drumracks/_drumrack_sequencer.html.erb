@@ -1,0 +1,24 @@
+<div class="sequencer">
+    <% @drumrack.pads.each_with_index do |pad, i| %>
+        <button id="pad-<%= i %>"
+            data-sequencer-target="pad"
+            data-active="false"
+            data-played="false"
+            data-category=""
+            data-index="<%= i %>"
+            data-action="click->sequencer#addSampleToPad"
+            data-first-temp="<%= i % 4 == 0 %>"
+            data-samples=""
+            class="pad drumrack transition-all duration-500 ease-in-out group data-[played=true]:border-[3px] data-[played=true]:border-[#ffc600] data-[played=true]:shadow-[0_0_1rem_#ffc600]
+            data-[active=true]:scale-110 data-[active=true]:opacity-100
+            data-[category=oneshot]:bg-yellow-gradient
+            data-[category=kick]:bg-red-gradient
+            data-[category=snare]:bg-green-gradient
+            data-[category=hihat]:bg-blue-gradient
+            data-[category=bass]:bg-purple-gradient
+            data-[first-temp=true]:bg-zinc-900"
+        >
+            <i class="fa-solid fa-record-vinyl text-zinc-100 group-data-[active=true]:shake"></i>
+        </button>
+    <% end %>
+</div>
