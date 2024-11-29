@@ -1,4 +1,4 @@
-require 'JSON'
+require 'json'
 
 class DrumracksController < ApplicationController
   skip_before_action :authenticate_user!
