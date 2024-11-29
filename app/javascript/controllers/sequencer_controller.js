@@ -49,6 +49,8 @@ export default class extends Controller {
 
         JSON.parse(pad.dataset.samples).forEach((sample) => {
           if (sample.active) {
+            this.soundsPads[this.lastPadPlayed][sample.category].pause();
+            this.soundsPads[this.lastPadPlayed][sample.category].currentTime = 0;
             this.soundsPads[this.lastPadPlayed][sample.category].play();
             pad.dataset.played = "true";
             this.clickPad({ currentTarget: pad });
