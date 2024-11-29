@@ -64,11 +64,11 @@ end
 
 # Array des bpm genre / templates
 # bpm_templates = {
-#   "reggaeton" => 85,
-#   "jerseyclub" => 135,
-#   "bailefunk" => 130,
+#   "reggaeton" => 90,
+#   "jerseyclub" => 150,
+#   "bailefunk" => 135,
 #   "trap" => 70,
-#   "jazz" => 90
+#   "jazz" => 80
 # }
 
 # Hash de pads per genre per category
@@ -81,35 +81,37 @@ genre_pads_category = {
 #     { category: "oneshot", index: [] }
 #   },
 
-#   "jerseyclub" => [
-#     { category: "bass", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802984/bass_jersey_kvmla8.mp3", filename: "bass_jersey_kvmla8.mp3" },
-#     { category: "kick", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802984/kick_jersey_dqhilm.mp3", filename: "kick_jersey_dqhilm.mp3" },
-#     { category: "snare", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802985/snare_jersey_qu3aso.mp3", filename: "snare_jersey_qu3aso.mp3" },
-#     { category: "hihat", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802984/hihat_jersey_aymree.mp3", filename: "hihat_jersey_aymree.mp3" },
-#     { category: "oneshot", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802984/oneshot_jersey_owmq5i.mp3", filename: "oneshot_jersey_owmq5i.mp3" }
-#   ],
+#   "jerseyclub" => {
+#     { category: "bass", index: [] },
+#     { category: "kick", index: [] },
+#     { category: "snare", index: [] },
+#     { category: "hihat", index: [] },
+#     { category: "oneshot", index: [] }
+#   },
 
-#   "bailefunk" => [
-#     { category: "bass", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802983/bass_bailefunk_tvbjop.mp3", filename: "bass_bailefunk_tvbjop.mp3" },
-#     { category: "kick", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802983/kick_bailefunk_brxyut.mp3", filename: "kick_bailefunk_brxyut.mp3" },
-#     { category: "snare", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802982/snare_bailefunk_bokp1p.mp3", filename: "snare_bailefunk_bokp1p.mp3" },
-#     { category: "hihat", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802983/hihat_bailefunk_b9pfzk.mp3", filename: "hihat_bailefunk_b9pfzk.mp3" },
-#     { category: "oneshot", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802983/oneshot_bailefunk_aaegon.mp3", filename: "oneshot_bailefunk_aaegon.mp3" }
-#   ],
-#   "trap" => [
-#     { category: "bass", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802984/bass_trap_iqasmj.mp3", filename: "bass_trap_iqasmj.mp3" },
-#     { category: "kick", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802984/kick_trap_kdhuzb.mp3", filename: "kick_trap_kdhuzb.mp3" },
-#     { category: "snare", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802984/snare_trap_wmtpfz.mp3", filename: "snare_trap_wmtpfz.mp3" },
-#     { category: "hihat", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802983/hihat_trap_wtxw1y.mp3", filename: "hihat_trap_wtxw1y.mp3" },
-#     { category: "oneshot", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802983/oneshot_trap_z32fqs.mp3", filename: "oneshot_trap_z32fqs.mp3" }
-#   ],
-#   "jazz" => [
-#     { category: "bass", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802985/bass_jazz_jcqnm6.mp3", filename: "bass_jazz_jcqnm6.mp3" },
-#     { category: "kick", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802985/kick_jazz_d0yse2.mp3", filename: "kick_jazz_d0yse2.mp3" },
-#     { category: "snare", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802985/snare_jazz_fmpoci.mp3", filename: "snare_jazz_fmpoci.mp3" },
-#     { category: "hihat", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802986/hihat_jazz_tchqs4.mp3", filename: "hihat_jazz_tchqs4.mp3" },
-#     { category: "oneshot", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802986/oneshot_jazz_k9vlzv.mp3", filename: "oneshot_jazz_k9vlzv.mp3" }
-#   ]
+#   "bailefunk" => {
+#     { category: "bass", index: [] },
+#     { category: "kick", index: [] },
+#     { category: "snare", index: [] },
+#     { category: "hihat", index: [] },
+#     { category: "oneshot", index: [] }
+#   },
+
+#   "trap" => {
+#     { category: "bass", index: [] },
+#     { category: "kick", index: [] },
+#     { category: "snare", index: [] },
+#     { category: "hihat", index: [] },
+#     { category: "oneshot", index: [] }
+#   },
+
+#   "jazz" => {
+#     { category: "bass", index: [] },
+#     { category: "kick", index: [] },
+#     { category: "snare", index: [] },
+#     { category: "hihat", index: [] },
+#     { category: "oneshot", index: [] }
+#   },
 # }
 
 # genres = ["reggaeton", "jerseyclub", "bailefunk", "trap", "jazz"]
