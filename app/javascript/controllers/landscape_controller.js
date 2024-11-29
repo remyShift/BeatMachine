@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   connect() {
     this.checkOrientation();
-    this.interval = setInterval(() => this.checkOrientation(), 1000);
+    this.interval = setInterval(() => this.checkOrientation(), 1);
   }
 
   disconnect() {
