@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 
+
 export default class extends Controller {
   static values = { bpm: Number, samples: Object, initialSamples: String, bpmValue: Number, drumrackId: Number };
   static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn"];
@@ -10,13 +11,6 @@ export default class extends Controller {
   isDrumrackChanged = false;
 
   connect() {
-    this.audioElements = {
-      bass: new Audio(this.samplesValue["bass"]),
-      snare: new Audio(this.samplesValue["snare"]),
-      hihat: new Audio(this.samplesValue["hihat"]),
-      kick: new Audio(this.samplesValue["kick"]),
-      oneshot: new Audio(this.samplesValue["oneshot"])
-    };
 
     this.soundBoxSamples = JSON.parse(this.initialSamplesValue).map(padSamples => {
       return padSamples.map(sample => {
@@ -40,9 +34,17 @@ export default class extends Controller {
         const pad = document.querySelector(`#pad-${this.lastPadPlayed}`);
         pad.dataset.active = "true";
 
+        let sounds = {
+          bass: new Audio(this.samplesValue["bass"]),
+          snare: new Audio(this.samplesValue["snare"]),
+          hihat: new Audio(this.samplesValue["hihat"]),
+          kick: new Audio(this.samplesValue["kick"]),
+          oneshot: new Audio(this.samplesValue["oneshot"])
+        };
+
         JSON.parse(pad.dataset.samples).forEach((sample) => {
           if (sample.active) {
-            this.audioElements[sample.category].play();
+            sounds[sample.category].play();
             pad.dataset.played = "true";
             this.clickPad({ currentTarget: pad });
           }
@@ -69,7 +71,16 @@ export default class extends Controller {
 
   selectSample(event) {
     this.sampleSelected = event.currentTarget.dataset.category;
-    this.audioElements[this.sampleSelected].play();
+
+    let sounds = {
+      bass: new Audio(this.samplesValue["bass"]),
+      snare: new Audio(this.samplesValue["snare"]),
+      hihat: new Audio(this.samplesValue["hihat"]),
+      kick: new Audio(this.samplesValue["kick"]),
+      oneshot: new Audio(this.samplesValue["oneshot"])
+    };
+
+    sounds[this.sampleSelected].play();
     this.clickPad(event);
 
     this.toggleCategorySelected(event);
