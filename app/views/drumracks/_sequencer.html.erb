@@ -1,0 +1,66 @@
+<div class="bpm-controls ">
+    <label for="bpm" id="bpm-label"
+        data-sequencer-target="bpmLabel"
+    ><%= @drumrack.bpm %> BPM</label>
+    <input type="number" id="bpm" min="60" max="240" value="<%= @drumrack.bpm.to_i %>"
+        data-sequencer-target="bpmInput"
+        data-action="change->sequencer#updateBpm"
+    />
+
+    <button
+        data-toggle="false"
+        data-sequencer-target="togglePlayBtn"
+        class="group"
+    >
+        <i class="fa-solid fa-play text-orange text-2xl group-data-[toggle=true]:hidden"
+            data-action="click->sequencer#play"
+        ></i>
+        <i class="fa-solid fa-pause text-blue-700 text-2xl group-data-[toggle=true]:block hidden"
+            data-action="click->sequencer#pause"
+        ></i>
+    </button>
+
+    <button data-action="click->sequencer#save">
+        <i class="fa-solid fa-floppy-disk text-orange text-2xl"></i>
+    </button>
+</div>
+
+<div class="sequencer">
+    <% @drumrack.pads.each_with_index do |pad, i| %>
+        <button id="pad-<%= i %>"
+            data-sequencer-target="pad"
+            data-active="false"
+            data-played="false"
+            data-category=""
+            data-index="<%= i %>"
+            data-action="click->sequencer#addSampleToPad"
+            data-first-temp="<%= i % 4 == 0 %>"
+            data-samples=""
+            class="pad drumrack group
+            data-[category=oneshot]:bg-yellow-500
+            data-[active=true]:border-3 data-[active=true]:border-zinc-100
+            data-[played=true]:shadow-played
+            data-[category=kick]:bg-red-500
+            data-[category=snare]:bg-green-500
+            data-[category=hihat]:bg-blue-700
+            data-[category=bass]:bg-purple-500
+            data-[first-temp=true]:bg-blue-300"
+        >
+            <i class="fa-solid fa-record-vinyl text-zinc-100 group-data-[active=true]:shake"></i>
+        </button>
+    <% end %>
+</div>
+
+<div class="flex gap-4 mt-20">
+    <% @drumrack.samples.each do |sample| %>
+        <button class="pad <%= category_color(sample.category) %> data-[active=true]:shadow-played data-[active=true]:click"
+            data-active="false"
+            data-sequencer-target="category"
+            data-action="click->sequencer#selectSample" 
+            data-category="<%= sample.category %>" 
+            data-sequencer-target="category"
+        >
+            <p class="text-xs text-center text-white"><%= sample.category %></p>
+        </button>
+    <% end %>
+</div>
