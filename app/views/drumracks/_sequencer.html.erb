@@ -13,6 +13,7 @@
 
   <%= render 'drumrack_sequencer' %>
 
-  <%= render 'sample_picker' %>
-
+  <% if action_name != 'show' %>
+    <%= render 'sample_picker' %>
+  <% end %>
 </div>
