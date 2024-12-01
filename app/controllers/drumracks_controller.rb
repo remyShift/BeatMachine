@@ -3,7 +3,7 @@ require 'json'
 class DrumracksController < ApplicationController
   skip_before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
-  before_action :set_drumrack, only: [:show, :soundbox, :update]
+  before_action :set_drumrack, only: [:show, :soundbox, :update, :duplicate]
 
   def index
     @drumracks = Drumrack.all
@@ -24,6 +24,23 @@ class DrumracksController < ApplicationController
   end
 
   def show
+  end
+
+  def duplicate
+    duplicated_drumrack = @drumrack.dup
+    duplicated_drumrack_samples = []
+    @drumrack.samples.each do |sample|
+       duplicated_drumrack_sample = DrumrackSample.create(sample: sample, drumrack: duplicated_drumrack)
+       duplicated_drumrack_samples << duplicated_drumrack_sample
+    end
+    duplicated_drumrack.pads.each_with_index do |pad, pad_index|
+      duplicated_drumrack_samples.each_with_index do |drumrack_sample, i|
+        active = @drumrack.pads[pad_index].pad_drumrack_samples[i].active
+        PadDrumrackSample.create(pad: pad, drumrack_sample: drumrack_sample, active: active)
+      end
+    end
+    duplicated_drumrack.save
+    redirect_to soundbox_drumrack_path(duplicated_drumrack)
   end
 
   def update
