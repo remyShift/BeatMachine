@@ -23,6 +23,16 @@ module.exports = {
         'top': '0 -4px 6px -1px rgba(0, 0, 0, 0.1)',
         'played': '0 0 10px 2px rgba(255, 255, 255, 0.7)',
       },
+      backgroundImage: {
+        'sequencer-gradient': "radial-gradient(circle at 50% 50%,#0b007c, #171f4c, rgba(35,37,40,1))",
+        'yellow-gradient': "radial-gradient(#e5c134, #9f8314)",
+        'green-gradient': "radial-gradient(#8cd277, #53aa39)",
+        'blue-gradient': "radial-gradient(#4faed4, #257798)",
+        'purple-gradient': "radial-gradient(#d64aac, #972374)",
+        'red-gradient': "radial-gradient(#b30000, #4d0000)",
+        'pink-gradient': "radial-gradient(#00b3b3, #004d4d)",
+        'default-pad': "rgba(130, 130, 130, 0.4)"
+      },
     },
   },
   plugins: [

@@ -56,14 +56,14 @@ samples << sample
 sound_file.close
 
 # Defines each genre
-genres = ["reggeaton", "jersey club", "pop", "baile funk", "trap", "jazz", "dumb techno"]
+genres = ["reggeaton", "jersey", "pop", "funk", "trap", "techno"]
 
 # Creates one drumrack per genre
 genres.each do |genre|
   # Create drumrack
   drumrack = Drumrack.new(name: "my drumrack", genre: genre, bpm: [100, 80, 120, 140, 110, 90].sample, is_template: true)
   drumrack.save!
-   # Create one drumrack_sample per sample
+    # Create one drumrack_sample per sample
   drumrack_samples = []
   samples.each do |sample|
     drumrack_sample = DrumrackSample.new(sample: sample)
