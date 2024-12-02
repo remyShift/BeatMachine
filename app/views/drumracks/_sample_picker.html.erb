@@ -6,9 +6,7 @@
             data-sequencer-target="category"
             data-played="false"
             <%= "data-action='click->sequencer#selectSample'" if current_page?(soundbox_drumrack_path(@drumrack) )%>
-            data-category="<%= sample.category %>"
-            data-sequencer-target="category"
-        >
+            data-category="<%= sample.category %>">
             <p class="text-sm italic font-bold text-center text-white"><%= sample.category %></p>
         </button>
     <% end %>

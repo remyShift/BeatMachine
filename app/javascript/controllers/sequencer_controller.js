@@ -198,8 +198,10 @@ export default class extends Controller {
       this.bpmValue -= 5;
       this.bpmLabelCurrentTarget.innerHTML = `${this.bpmValue} BPM`;
       this.isDrumrackChanged = true;
-      this.pauseMusic();
-      this.playMusic();
+      if (this.interval !== null) {
+        this.pauseMusic();
+        this.playMusic();
+      }
     }
   }
 
@@ -208,8 +210,10 @@ export default class extends Controller {
       this.bpmValue += 5;
       this.bpmLabelCurrentTarget.innerHTML = `${this.bpmValue} BPM`;
       this.isDrumrackChanged = true;
-      this.pauseMusic();
-      this.playMusic();
+      if (this.interval !== null) {
+        this.pauseMusic();
+        this.playMusic();
+      }
     }
   }
 }

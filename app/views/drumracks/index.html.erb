@@ -10,20 +10,13 @@
       </div>
       <img src="<%= asset_path 'illustration.png' %>" alt="logo" class="h-[100px]">
     </div>
-    <h2 class="text-xl">Start with one of our templates :</h2>
-    <%= render "shared/cards" %>
-    <h2 class="text-xl mr-8 ml-8">Find your inspiration on tracks from our community</h2>
-    <form class="sm:mb-16 action="">
-      <div class="flex">
-        <input type="text sm:text-center" placeholder="Type a music genre ..." class="p-2 rounded-l-md border-2 border-darkblue font-gillSans shadow-md">
-        <button type="submit" class="bg-darkblue text-lg text-orange px-4 py-2 rounded-r-md font-shrikhand stroke shadow-md h-full hover:bg-darkblue/70 transition-colors duration-300">
-        Search
-        </button>
-      </div>
-    </form>
+
+    <h4 class="text-xl text-center">Start with one of our templates</h4>
+    <h3 class="text-2xl text-center">Or</h3>
+    <h4 class="text-xl text-center">Find your inspiration on tracks from our community</h4>
 
   </div>
-  <%= render "shared/community", drumracks: @drumracks %>
+  <%# <%= render "shared/community", drumracks: @drumracks %> %>
 </div>
 
 
