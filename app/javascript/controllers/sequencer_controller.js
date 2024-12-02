@@ -42,7 +42,6 @@ export default class extends Controller {
         const pad = document.querySelector(`#pad-${this.lastPadPlayed}`);
 
         pad.dataset.active = "true";
-        console.log(pad.dataset.samples)
         JSON.parse(pad.dataset.samples).forEach((sample) => {
           if (sample.active) {
             this.soundsPads[this.lastPadPlayed][sample.category].pause();
@@ -74,7 +73,6 @@ export default class extends Controller {
   }
 
   pauseShow() {
-    console.log("pause show");
     this.togglePlayBtnShowTarget.dataset.toggle = this.togglePlayBtnShowTarget.dataset.toggle === "false";
     this.pauseMusic();
   }
@@ -125,6 +123,22 @@ export default class extends Controller {
       });
     });
   }
+
+  resetAll() {
+    this.padTargets.forEach (async pad => {
+      let changedSamples = await JSON.parse(pad.dataset.samples)
+
+      changedSamples = changedSamples.map(sample => {
+        sample.active = false;
+        return sample;
+      });
+      pad.dataset.samples = JSON.stringify(changedSamples);
+    });
+    this.pauseMusic();
+    this.isDrumrackChanged = true;
+  }
+
+
 
   toggleCategorySelected(event) {
     const currentPad = event.currentTarget;
