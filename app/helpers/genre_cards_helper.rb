@@ -1,7 +1,7 @@
 module GenreCardsHelper
   def color_card(drumrack)
     case drumrack.genre
-    when "reggeaton"
+    when "reggaeton"
       "bg-gradient-to-r from-blue-900 to-blue-700"
     when "jersey club"
       "bg-gradient-to-r from-blue-700 to-blue-500"
