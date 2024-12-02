@@ -33,6 +33,11 @@ module.exports = {
         'pink-gradient': "radial-gradient(#00b3b3, #004d4d)",
         'default-pad': "rgba(130, 130, 130, 0.4)"
       },
+      extend: {
+        screens: {
+          'iphone-se': '375px', // Breakpoint pour l'iPhone SE
+        },
+      },
     },
   },
   plugins: [
