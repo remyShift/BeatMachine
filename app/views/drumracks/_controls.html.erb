@@ -1,17 +1,16 @@
 <div class="bpm-controls flex items-center justify-center gap-4">
     <div class="radio-input">
-        <label class="label">
+        <label class="label radioPS">
             <input value="value-1" name="value-radio" id="value-1" type="radio" data-action="click->sequencer#play"/>
             <span class="text">Play</span>
         </label>
 
-        <label class="label" data-action="click->sequencer#pause">
+        <label class="label radioPS" data-action="click->sequencer#pause">
             <input value="value-1" name="value-radio" id="value-1" type="radio" checked />
             <span class="text">Stop</span>
         </label>
 
-
-        <button class="control-button label" data-action="click->sequencer#decreaseBpm">
+        <button class="label control-button" data-action="click->sequencer#decreaseBpm">
             <span class="text text-3xl">-</span>
         </button>
 
@@ -19,15 +18,15 @@
             <span class="text" id="bpm-text" data-sequencer-target="bpmLabelCurrent"><%= @drumrack.bpm %> BPM</span>
         </label>
 
-        <button class="control-button label" data-action="click->sequencer#increaseBpm">
+        <button class="label control-button" data-action="click->sequencer#increaseBpm">
             <span class="text text-2xl">+</span>
         </button>
 
-        <button class="control-button label" data-action="click->sequencer#save">
+        <button class="label control-button" data-action="click->sequencer#save">
             <span class="text">Save</span>
         </button>
 
-        <button class="control-button label" data-action="click->sequencer#resetAll">
+        <button class="label control-button" data-action="click->sequencer#resetAll">
             <span class="text">Clear</span>
         </button>
     </div>

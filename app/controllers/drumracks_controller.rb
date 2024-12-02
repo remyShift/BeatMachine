@@ -51,6 +51,8 @@ class DrumracksController < ApplicationController
       JSON.parse(pad)
     end
 
+    @drumrack.update(user: current_user)
+
     data.each_with_index do |pad_json, index|
       pad = @drumrack.pads[index]
       pad.pad_drumrack_samples.each do |pad_drumrack_sample|

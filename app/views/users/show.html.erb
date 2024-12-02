@@ -1,24 +1,33 @@
 <div class="ml-4 mt-6 flex justify-between w-full">
-      <div class="flex flex-col gap-12">
-        <h2 class="text-3xl font-bold font-kaushan text-primary">Your profile</h2>
-        <div class="flex flex-col mt-4 gap-4">
-        </div>
-      </div>
+  <div class="flex flex-col gap-12">
+    <h2 class="text-3xl font-bold font-kaushan text-primary">Your profile</h2>
+    <div class="flex flex-col mt-4 gap-4">
+    </div>
+  </div>
 
+  <div class="flex flex-col gap-12">
+    <h2 class="text-3xl font-bold font-kaushan text-primary">Your drumracks</h2>
+    <div class="flex flex-col mt-4 gap-4">
+      <% @drumracks.each do |drumrack| %>
+        <%= render "shared/music_card", drumrack: drumrack, display_like_button: false %>
+      <% end %>
+    </div>
+  </div>
 
     <div class="w-3/4 flex flex-col mr-12 gap-4 shadow-lg shadow-black-500/50 p-2 md:w-1/2 bg-white rounded-lg mb-4 md:mb-0 overflow-y-auto max-h-[270px]">
   <% if @likes.present? %>
     <h3 class="text-3xl font-bold font-kaushan text-yellow-500">Your likes</h3>
     <ul>
       <% @likes.each do |like| %>
-        <%= render "shared/music_card", drumrack: like.drumrack, display_like_button: false %>
-      <% end %>
-    </ul>
-  <% else %>
-    <h3 class="text-3xl font-bold text-primary">Your likes</h3>
-    <p class="text-lg">You have no drumracks liked yet.</p>
-    <%= link_to "Browse drumracks", drumracks_path, class: "text-blue-500 underline" %>
-  <% end %>
+          <%= render "shared/music_card", drumrack: like.drumrack, display_like_button: false %>
+        <% end %>
+      </ul>
+    <% else %>
+      <h3 class="text-3xl font-bold text-primary">Your likes</h3>
+      <p class="text-lg">You have no drumracks liked yet.</p>
+      <%= link_to "Browse drumracks", drumracks_path, class: "text-blue-500 underline" %>
+    <% end %>
+  </div>
 </div>
 
-</div>
+<%= render "shared/menubar" %>
