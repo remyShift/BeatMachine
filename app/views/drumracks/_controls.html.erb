@@ -1,4 +1,4 @@
-<div class="bpm-controls ">
+<div class="bpm-controls flex items-center justify-center gap-4">
     <label for="bpm" id="bpm-label"
         data-sequencer-target="bpmLabel"
     ><%= @drumrack.bpm %> BPM</label>
@@ -7,20 +7,20 @@
         data-action="change->sequencer#updateBpm"
     />
 
-    <button
-        data-toggle="false"
-        data-sequencer-target="togglePlayBtn"
-        class="group"
-    >
-        <i class="fa-solid fa-play text-orange text-2xl group-data-[toggle=true]:hidden"
-            data-action="click->sequencer#play"
-        ></i>
-        <i class="fa-solid fa-pause text-blue-700 text-2xl group-data-[toggle=true]:block hidden"
-            data-action="click->sequencer#pause"
-        ></i>
-    </button>
-
-    <button data-action="click->sequencer#save">
-        <i class="fa-solid fa-floppy-disk text-orange text-2xl"></i>
-    </button>
+    <div class="radio-input">
+        <label class="label">
+            <input value="value-1" name="value-radio" id="value-1" type="radio" data-action="click->sequencer#play"/>
+            <span class="text">Play</span>
+        </label>
+        <label class="label" data-action="click->sequencer#pause">
+            <input value="value-1" name="value-radio" id="value-1" type="radio" />
+            <span class="text">Stop</span>
+        </label>
+        <label class="label" data-action="click->sequencer#save">
+            <input value="value-1" name="value-radio" id="value-1" type="radio" />
+            <span class="text">Save</span>
+        </label>
+    </div>
 </div>
+
+

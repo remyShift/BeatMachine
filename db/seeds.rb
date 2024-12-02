@@ -125,8 +125,6 @@ templates_active_pads = {
 
 # Define each genre
 genres = ["reggaeton", "jerseyclub", "bailefunk", "trap", "jazz"];
-
-# Iterate over each genre
 genres.each do |genre|
 
   # Create drumrack

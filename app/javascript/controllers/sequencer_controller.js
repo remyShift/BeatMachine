@@ -57,12 +57,10 @@ export default class extends Controller {
   }
 
   play() {
-    this.togglePlayBtnTarget.dataset.toggle = this.togglePlayBtnTarget.dataset.toggle === "false";
     this.playMusic();
   }
 
   pause() {
-    this.togglePlayBtnTarget.dataset.toggle = this.togglePlayBtnTarget.dataset.toggle === "false";
     this.pauseMusic();
   }
 

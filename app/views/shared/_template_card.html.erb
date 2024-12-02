@@ -1,6 +1,6 @@
-<div class="w-24 h-16 <%= color_card(drumrack) %> rounded-sm shadow-lg flex justify-center items-center transform hover:scale-105 transition-transform overflow-hidden">
-    <p class="text-xl text-slate-100 drop-shadow-md font-bold font-shrikhand text-center mb-4 relative z-10"><%= drumrack.genre %></p>
+<%= link_to soundbox_drumrack_path(drumrack), class: "w-32 h-24 #{color_card(drumrack)} rounded-sm shadow-lg flex justify-center items-center transform hover:scale-105 transition-transform overflow-hidden" do %>
+    <p class="text-lg text-slate-100 drop-shadow-md font-bold font-shrikhand text-center mb-4 relative z-10"><%= drumrack.genre %></p>
     <div class="bg-black shadow-md w-12 h-8 rounded-sm flex items-center justify-center transform rotate-12 absolute -bottom-0 -right-1 z-0">
         <i class="fa-solid fa-compact-disc text-sm text-white"></i>
     </div>
-</div>
+<% end %>
