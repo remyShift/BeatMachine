@@ -4,7 +4,10 @@
     data-sequencer-bpm-value="<%= @drumrack.bpm.to_i %>"
     data-sequencer-initial-samples-value="<%= @drumrack.pads.map { |pad| pad.pad_drumrack_samples.map { |pad_drumrack_sample| {active: pad_drumrack_sample.active, category: pad_drumrack_sample.sample.category}.to_json } } %>"
     data-sequencer-drumrack-id-value="<%= @drumrack.id %>"
-    class="group-data-[is-landscape=true]:block hidden">
+    <% if current_page?(soundbox_drumrack_path(@drumrack) )%>
+      class="group-data-[is-landscape=true]:block hidden"
+    <% end %>
+>
 
   <% if action_name == 'show' %>
     <%= render 'show_controls' %>
