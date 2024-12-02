@@ -72,12 +72,10 @@ export default class extends Controller {
   }
 
   playShow() {
-    this.togglePlayBtnShowTarget.dataset.toggle = this.togglePlayBtnShowTarget.dataset.toggle === "false";
     this.playMusic();
   }
 
   pauseShow() {
-    this.togglePlayBtnShowTarget.dataset.toggle = this.togglePlayBtnShowTarget.dataset.toggle === "false";
     this.pauseMusic();
   }
 
@@ -142,6 +140,7 @@ export default class extends Controller {
         return sample;
       });
       pad.dataset.samples = JSON.stringify(changedSamples);
+      pad.dataset.category = "";
     });
     this.pauseMusic();
     this.isDrumrackChanged = true;
