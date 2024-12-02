@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static values = { bpm: Number, samples: Object, initialSamples: String, bpmValue: Number, drumrackId: Number };
-  static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn", "togglePlayBtnShow"];
+  static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn", "togglePlayBtnShow", "bpmLabelCurrent"];
   sampleSelected = null;
   soundBoxSamples = null;
   lastPadPlayed = 0;
@@ -38,17 +38,20 @@ export default class extends Controller {
       this.padTargets.forEach((pad) => {
           pad.dataset.active = "false";
           pad.dataset.played = "false";
+          this.categoryTargets.forEach(category => {
+            category.dataset.played = "false";
+          });
         });
         const pad = document.querySelector(`#pad-${this.lastPadPlayed}`);
 
         pad.dataset.active = "true";
-        console.log(pad.dataset.samples)
         JSON.parse(pad.dataset.samples).forEach((sample) => {
           if (sample.active) {
             this.soundsPads[this.lastPadPlayed][sample.category].pause();
             this.soundsPads[this.lastPadPlayed][sample.category].currentTime = 0;
             this.soundsPads[this.lastPadPlayed][sample.category].play();
             pad.dataset.played = "true";
+            this.lightUpPlayedSample(sample.category)
           }
         });
 
@@ -57,22 +60,22 @@ export default class extends Controller {
   }
 
   play() {
-    this.playMusic();
+    if (this.interval === null) {
+      this.playMusic();
+    }
   }
 
   pause() {
-    this.pauseMusic();
+    if (this.interval !== null) {
+      this.pauseMusic();
+    }
   }
 
-  // Building play and pause actions for show
   playShow() {
-    this.togglePlayBtnShowTarget.dataset.toggle = this.togglePlayBtnShowTarget.dataset.toggle === "false";
     this.playMusic();
   }
 
   pauseShow() {
-    console.log("pause show");
-    this.togglePlayBtnShowTarget.dataset.toggle = this.togglePlayBtnShowTarget.dataset.toggle === "false";
     this.pauseMusic();
   }
 
@@ -112,6 +115,11 @@ export default class extends Controller {
     });
   }
 
+
+  lightUpPlayedSample(playedCategory) {
+    this.categoryTargets.find(category => category.dataset.category === playedCategory).dataset.played = "true";
+  }
+
   resetPads() {
     const categories = ['bass', 'snare', 'hihat', 'kick', 'oneshot'];
 
@@ -121,6 +129,21 @@ export default class extends Controller {
         pad.dataset.firstTemp = pad.dataset.index % 4 === 0;
       });
     });
+  }
+
+  resetAll() {
+    this.padTargets.forEach (async pad => {
+      let changedSamples = await JSON.parse(pad.dataset.samples)
+
+      changedSamples = changedSamples.map(sample => {
+        sample.active = false;
+        return sample;
+      });
+      pad.dataset.samples = JSON.stringify(changedSamples);
+      pad.dataset.category = "";
+    });
+    this.pauseMusic();
+    this.isDrumrackChanged = true;
   }
 
   toggleCategorySelected(event) {
@@ -157,16 +180,6 @@ export default class extends Controller {
     this.isDrumrackChanged = true;
   }
 
-  updateBpm(event) {
-    this.bpmValue = event.target.value;
-    this.bpmLabelTarget.textContent = `${this.bpmValue} BPM`;
-    this.isDrumrackChanged = true;
-    if (this.interval) {
-      this.pauseMusic();
-      this.playMusic();
-    }
-  }
-
   save() {
     const padsSamples = this.padTargets.map(pad => pad.dataset.samples)
     fetch(`/drumracks/${this.drumrackIdValue}`, {
@@ -178,5 +191,25 @@ export default class extends Controller {
         "Content-type": "application/json; charset=UTF-8"
       }
     });
+  }
+
+  decreaseBpm() {
+    if (this.bpmValue > 60 && this.bpmValue <= 240) {
+      this.bpmValue -= 5;
+      this.bpmLabelCurrentTarget.innerHTML = `${this.bpmValue} BPM`;
+      this.isDrumrackChanged = true;
+      this.pauseMusic();
+      this.playMusic();
+    }
+  }
+
+  increaseBpm() {
+    if (this.bpmValue >= 60 && this.bpmValue < 240) {
+      this.bpmValue += 5;
+      this.bpmLabelCurrentTarget.innerHTML = `${this.bpmValue} BPM`;
+      this.isDrumrackChanged = true;
+      this.pauseMusic();
+      this.playMusic();
+    }
   }
 }

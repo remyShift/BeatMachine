@@ -1,10 +1,12 @@
 <div class="flex justify-center gap-4 mt-2">
     <% @drumrack.samples.each do |sample| %>
-        <button class="pad <%= category_color(sample.category) %> opacity-50 data-[active=true]:opacity-100"
+        <button class="pad <%= category_color(sample.category) %> opacity-50 data-[active=true]:opacity-100 data-[played=true]:border-[3px] data-[played=true]:border-[#ffc600] data-[played=true]:shadow-[0_0_1rem_#ffc600]
+        data-[played=true]:scale-110"
             data-active="false"
             data-sequencer-target="category"
-            data-action="click->sequencer#selectSample" 
-            data-category="<%= sample.category %>" 
+            data-played="false"
+            <%= "data-action='click->sequencer#selectSample'" if current_page?(soundbox_drumrack_path(@drumrack) )%>
+            data-category="<%= sample.category %>"
             data-sequencer-target="category"
         >
             <p class="text-sm italic font-bold text-center text-white"><%= sample.category %></p>
