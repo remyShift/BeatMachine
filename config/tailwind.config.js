@@ -13,11 +13,16 @@ module.exports = {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
         shrikhand: ['Shrikhand', ...defaultTheme.fontFamily.sans],
         gillSans: ['Gill Sans', ...defaultTheme.fontFamily.sans],
+        roboto: ['Roboto', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         orange: '#ffa400',
         darkblue: '#2a2a72',
         darkgrey: '#232528',
+        customGrey: '#485B70',
+        customBlue: '#1F6BC1',
+        customGreen: '#7CEA9C',
+        customforestGreen: '#149039',
       },
       boxShadow: {
         'top': '0 -4px 6px -1px rgba(0, 0, 0, 0.1)',
