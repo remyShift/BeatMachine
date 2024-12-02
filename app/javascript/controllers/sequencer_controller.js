@@ -194,18 +194,22 @@ export default class extends Controller {
   }
 
   decreaseBpm() {
-    this.bpmValue -= 5;
-    this.bpmLabelCurrentTarget.innerHTML = `${this.bpmValue} BPM`;
-    this.isDrumrackChanged = true;
-    this.pauseMusic();
-    this.playMusic();
+    if (this.bpmValue > 60 && this.bpmValue <= 240) {
+      this.bpmValue -= 5;
+      this.bpmLabelCurrentTarget.innerHTML = `${this.bpmValue} BPM`;
+      this.isDrumrackChanged = true;
+      this.pauseMusic();
+      this.playMusic();
+    }
   }
 
   increaseBpm() {
-    this.bpmValue += 5;
-    this.bpmLabelCurrentTarget.innerHTML = `${this.bpmValue} BPM`;
-    this.isDrumrackChanged = true;
-    this.pauseMusic();
-    this.playMusic();
+    if (this.bpmValue >= 60 && this.bpmValue < 240) {
+      this.bpmValue += 5;
+      this.bpmLabelCurrentTarget.innerHTML = `${this.bpmValue} BPM`;
+      this.isDrumrackChanged = true;
+      this.pauseMusic();
+      this.playMusic();
+    }
   }
 }
