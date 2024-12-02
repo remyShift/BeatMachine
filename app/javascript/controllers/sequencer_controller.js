@@ -142,6 +142,7 @@ export default class extends Controller {
         return sample;
       });
       pad.dataset.samples = JSON.stringify(changedSamples);
+      pad.dataset.category = "";
     });
     this.pauseMusic();
     this.isDrumrackChanged = true;
