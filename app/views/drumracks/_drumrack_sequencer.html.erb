@@ -7,14 +7,12 @@
             data-category=""
             data-index="<%= i %>"
             <% if current_page?(soundbox_drumrack_path(@drumrack) )%>
-              data-action="click->sequencer#addSampleToPad"
+                data-action="click->sequencer#addSampleToPad"
             <% end %>
             data-first-temp="<%= i % 4 == 0 %>"
             data-samples=""
-            class="pad drumrack group
-            data-[category=oneshot]:bg-yellow-500
-            data-[active=true]:border-3 data-[active=true]:border-zinc-100
-            data-[played=true]:shadow-played
+            class="pad drumrack group data-[active=true]:scale-110 data-[active=true]:opacity-100
+            data-[category=oneshot]:bg-yellow-500 data-[played=true]:border-[3px] data-[played=true]:border-[#ffc600] data-[played=true]:shadow-[0_0_1rem_#ffc600]
             data-[category=kick]:bg-red-500
             data-[category=snare]:bg-green-500
             data-[category=hihat]:bg-blue-700

@@ -1,47 +1,39 @@
 <nav class="w-full bg-gradient-to-b from-slate-900 to-darkgrey px-2 pb-10 pt-4 flex justify-evenly items-center shadow-top fixed bottom-0 z-50 border-t-2 border-black"
     data-controller="menubar"
 >
-    <div class="flex flex-col items-center"
-        data-menubar-target="toToggle"
-        data-action="click->menubar#toggle"
-    >
-        <i class="fa-solid fa-user-group text-xl text-orange cursor-pointer"
-        ></i>
-        <div class="w-6 h-6 bg-white rounded-full absolute bottom-0 blur-lg hidden"
-        ></div>
-    </div>
 
-    <div class="flex flex-col items-center"
-        data-menubar-target="toToggle"
-        data-action="click->menubar#toggle"
-    >
-        <%= link_to root_path do %>
-            <i class="fa-solid fa-house text-xl text-orange"
-            ></i>
-        <% end %>
-        <div class="w-6 h-6 bg-white rounded-full absolute bottom-0 blur-lg"
-        ></div>
-    </div>
-
-    <div class="flex flex-col items-center"
-        data-menubar-target="toToggle"
-        data-action="click->menubar#toggle"
-    >
+    <%= link_to templates_drumracks_path, class: "flex flex-col items-center", data: {
+        menubar_target: "toToggle",
+        action: "click->menubar#toggle",
+        turbo: "false"
+    } do %>
         <i class="fa-solid fa-music text-xl text-orange cursor-pointer"
         ></i>
         <div class="w-6 h-6 bg-white rounded-full absolute bottom-0 blur-lg hidden"
         ></div>
-    </div>
+    <% end %>
 
-    <div class="flex flex-col items-center"
-        data-menubar-target="toToggle"
-        data-action="click->menubar#toggle"
-    >
-        <%= link_to new_user_session_path do %>
-            <i class="fa-solid fa-user text-xl text-orange"
-            ></i>
-        <% end %>
+    <%= link_to root_path, class: "flex flex-col items-center", data: {
+        menubar_target: "toToggle",
+        action: "click->menubar#toggle",
+        turbo: "false"
+    } do %>
+        <i class="fa-solid fa-house text-xl text-orange"
+        ></i>
+        <div class="w-6 h-6 bg-white rounded-full absolute bottom-0 blur-lg"
+        ></div>
+    <% end %>
+
+
+
+    <%= link_to new_user_session_path || user_path(current_user), class: "flex flex-col items-center", data: {
+        menubar_target: "toToggle",
+        action: "click->menubar#toggle",
+        turbo: "false"
+    } do %>
+        <i class="fa-solid fa-user text-xl text-orange"
+        ></i>
         <div class="w-6 h-6 bg-white rounded-full absolute bottom-0 blur-lg hidden"
         ></div>
-    </div>
+    <% end %>
 </nav>

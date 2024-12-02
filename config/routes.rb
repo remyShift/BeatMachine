@@ -1,13 +1,22 @@
 Rails.application.routes.draw do
   root to: "drumracks#index"
+
   devise_for :users
+
   resources :users, only: [:show]
+
   resources :drumracks, only: [:index, :show, :update] do
     get :duplicate, on: :member
+
     resources :likes, only: [:create]
+
     member do
       get :soundbox
       patch :update_from_json
+    end
+
+    collection do
+      get :templates
     end
   end
 

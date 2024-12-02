@@ -33,8 +33,8 @@ class DrumracksController < ApplicationController
     duplicated_drumrack = @drumrack.dup
     duplicated_drumrack_samples = []
     @drumrack.samples.each do |sample|
-       duplicated_drumrack_sample = DrumrackSample.create(sample: sample, drumrack: duplicated_drumrack)
-       duplicated_drumrack_samples << duplicated_drumrack_sample
+      duplicated_drumrack_sample = DrumrackSample.create(sample: sample, drumrack: duplicated_drumrack)
+      duplicated_drumrack_samples << duplicated_drumrack_sample
     end
     duplicated_drumrack.pads.each_with_index do |pad, pad_index|
       duplicated_drumrack_samples.each_with_index do |drumrack_sample, i|
@@ -64,6 +64,10 @@ class DrumracksController < ApplicationController
         { status: 'ok' }
       end
     end
+  end
+
+  def templates
+    @templates = Drumrack.all
   end
 
   private

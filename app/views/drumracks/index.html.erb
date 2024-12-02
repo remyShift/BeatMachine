@@ -1,22 +1,23 @@
-<div class="flex flex-col items-center h-screen px-4 py-8 gap-4" data-controller="sequencer">
+<div class="flex flex-col items-center h-screen px-4 py-8 gap-4 relative z-10" data-controller="sequencer">
   <h2 class="title text-3xl">Drum'n Learn</h2>
 
-  <div class="mb-24 md:m-16 flex flex-col items-center h-screen px-4 py-8 gap-4 relative z-10">
+  <div class="flex flex-col items-center h-screen px-4 py-8 gap-4">
+    <h3>What's your inspiration ?</h3>
 
-    <div class="flex justify-between items-center mb-6">
-      <div class="flex flex-col w-2/3 gap-2">
-        <h3 class="text-lg">Discover, learn and share beats effortlessly.</h3>
-        <p class="font-gillSans text-white leading-tight text-sm">Dive into a community-driven drumpad experience, where rythms connect and creativity flows.</p>
+    <form class="sm:mb-16 action="">
+      <div class="flex">
+        <input type="text sm:text-center" placeholder="Type a music genre ..." class="p-2 rounded-l-md border-2 border-darkblue font-gillSans shadow-md">
+        <button type="submit" class="bg-darkblue text-lg text-orange px-4 py-2 rounded-r-md font-shrikhand stroke shadow-md h-full hover:bg-darkblue/70 transition-colors duration-300">
+        Search
+        </button>
       </div>
-      <img src="<%= asset_path 'illustration.png' %>" alt="logo" class="h-[100px]">
-    </div>
+    </form>
 
-    <h4 class="text-xl text-center">Start with one of our templates</h4>
-    <h3 class="text-2xl text-center">Or</h3>
-    <h4 class="text-xl text-center">Find your inspiration on tracks from our community</h4>
+    <h3>Latest drumracks from the community :</h3>
+
+    <%= render "shared/community", drumracks: @drumracks %>
 
   </div>
-  <%# <%= render "shared/community", drumracks: @drumracks %> %>
 </div>
 
 

@@ -22,6 +22,7 @@ export default class extends Controller {
         oneshot: new Audio(this.samplesValue["oneshot"])
       });
     })
+    console.log(this.initialSamplesValue)
     this.soundBoxSamples = JSON.parse(this.initialSamplesValue).map(padSamples => {
       return padSamples.map(sample => {
         return JSON.parse(sample);
