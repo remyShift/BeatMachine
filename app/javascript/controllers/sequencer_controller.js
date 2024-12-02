@@ -48,6 +48,8 @@ export default class extends Controller {
             this.soundsPads[this.lastPadPlayed][sample.category].currentTime = 0;
             this.soundsPads[this.lastPadPlayed][sample.category].play();
             pad.dataset.played = "true";
+            console.log(sample.category)
+            this.lightUpPlayedSample(sample.category)
           }
         });
 
@@ -107,6 +109,13 @@ export default class extends Controller {
           pad.dataset.firstTemp = pad.dataset.index % 4 === 0 && pad.dataset.category === "";
         }
       });
+    });
+  }
+
+
+  lightUpPlayedSample(playedCategory) {
+    this.categoryTargets.forEach(categorySample => {
+      categorySample.dataset.active = playedCategory === categorySample.dataset.category;
     });
   }
 
