@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static values = { bpm: Number, samples: Object, initialSamples: String, bpmValue: Number, drumrackId: Number };
-  static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn", "togglePlayBtn_show"];
+  static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn", "togglePlayBtnShow"];
   sampleSelected = null;
   soundBoxSamples = null;
   lastPadPlayed = 0;
@@ -13,7 +13,6 @@ export default class extends Controller {
   soundsPads = [];
 
   connect() {
-
     this.padTargets.forEach(pad => {
       this.soundsPads.push({
         bass: new Audio(this.samplesValue["bass"]),
@@ -23,7 +22,6 @@ export default class extends Controller {
         oneshot: new Audio(this.samplesValue["oneshot"])
       });
     })
-
     this.soundBoxSamples = JSON.parse(this.initialSamplesValue).map(padSamples => {
       return padSamples.map(sample => {
         return JSON.parse(sample);
@@ -41,11 +39,10 @@ export default class extends Controller {
           pad.dataset.active = "false";
           pad.dataset.played = "false";
         });
-
         const pad = document.querySelector(`#pad-${this.lastPadPlayed}`);
 
         pad.dataset.active = "true";
-
+        console.log(pad.dataset.samples)
         JSON.parse(pad.dataset.samples).forEach((sample) => {
           if (sample.active) {
             this.soundsPads[this.lastPadPlayed][sample.category].pause();
@@ -67,16 +64,17 @@ export default class extends Controller {
     this.pauseMusic();
   }
 
-  // // Building play and pause actions for show
-  // playShow() {
-  //   this.togglePlayBtnShowTarget.dataset.toggle = this.togglePlayBtnShowTarget.dataset.toggle === "false";
-  //   this.playMusic();
-  // }
+  // Building play and pause actions for show
+  playShow() {
+    this.togglePlayBtnShowTarget.dataset.toggle = this.togglePlayBtnShowTarget.dataset.toggle === "false";
+    this.playMusic();
+  }
 
-  // pauseShow() {
-  //   this.togglePlayBtnShowTarget.dataset.toggle = this.togglePlayBtnShowTarget.dataset.toggle === "false";
-  //   this.pauseMusic();
-  // }
+  pauseShow() {
+    console.log("pause show");
+    this.togglePlayBtnShowTarget.dataset.toggle = this.togglePlayBtnShowTarget.dataset.toggle === "false";
+    this.pauseMusic();
+  }
 
   pauseMusic() {
     clearInterval(this.interval);
