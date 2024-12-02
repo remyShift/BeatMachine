@@ -4,27 +4,22 @@
 @tailwind utilities;
 
 .title {
-  font-family: "Shrikhand", cursive;
+  font-family: "roboto", cursive;
   color: #ffa400;
-  -webkit-text-stroke: 1.5px #2a2a72;
 }
 
 h2 {
-  font-family: "Shrikhand", cursive;
+  font-family: "roboto", cursive;
   color: #2a2a72;
-  -webkit-text-stroke: 0.6px #ffa400;
 }
 
 h3 {
-  font-family: "Shrikhand", cursive;
-  color: #009ffd;
-  -webkit-text-stroke: 1px #2a2a72;
+  font-family: "roboto", cursive;
 }
 
 h4 {
-  font-family: "Shrikhand", cursive;
+  font-family: "roboto", cursive;
   color: #ffa400;
-  -webkit-text-stroke: 1.5px #2a2a72;
 }
 
 .stroke {
