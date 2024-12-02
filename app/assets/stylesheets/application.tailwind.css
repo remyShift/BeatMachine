@@ -73,8 +73,7 @@ h4 {
   opacity: 1;
 }
 
-
-/* From Uiverse.io by m1her */ 
+/* From Uiverse.io by m1her */
 .radio-input {
   display: flex;
   align-items: center;
@@ -152,15 +151,14 @@ h4 {
 }
 
 .label .text {
-  color: black;
+  color: rgb(95, 95, 95);
   font-size: 15px;
   line-height: 12px;
   padding: 0px;
   font-weight: 800;
   text-transform: uppercase;
   transition: all 0.1s linear;
-  text-shadow:
-    -1px -1px 1px rgb(224, 224, 224, 0.1),
+  text-shadow: -1px -1px 1px rgb(224, 224, 224, 0.1),
     0px 2px 3px rgb(0, 0, 0, 0.3);
 }
 
