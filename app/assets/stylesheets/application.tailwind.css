@@ -106,12 +106,6 @@ h4 {
   box-shadow: 0px 17px 5px 1px rgba(0, 0, 0, 0.2);
 }
 
-.label:has(input[type="radio"]:checked) {
-  box-shadow: 0px 17px 5px 1px rgba(0, 0, 0, 0);
-  background: linear-gradient(to bottom, #1d1d1d, #1d1d1d);
-  border-top: none;
-}
-
 .label:first-child {
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
@@ -141,18 +135,8 @@ h4 {
   z-index: -1;
 }
 
-.label:has(input[type="radio"]:checked)::before {
-  background: linear-gradient(
-    to bottom,
-    transparent 10%,
-    #cae2fd63,
-    transparent 90%
-  );
-}
-
 .label .text {
-  color: rgb(95, 95, 95);
-  font-size: 15px;
+  color: rgb(115, 115, 115);
   line-height: 12px;
   padding: 0px;
   font-weight: 800;
@@ -162,7 +146,54 @@ h4 {
     0px 2px 3px rgb(0, 0, 0, 0.3);
 }
 
+.label:has(input[type="radio"]:checked) {
+  box-shadow: 0px 17px 5px 1px rgba(0, 0, 0, 0);
+  background: linear-gradient(to bottom, #1d1d1d, #1d1d1d);
+  border-top: none;
+}
+
+.label:has(input[type="radio"]:checked)::before {
+  background: linear-gradient(
+    to bottom,
+    transparent 10%,
+    #cae2fd63,
+    transparent 90%
+  );
+}
+
 .label input[type="radio"]:checked + .text {
+  color: rgb(202, 226, 253);
+  text-shadow: 0px 0px 12px #cae2fd;
+}
+
+#bpm-label {
+  width: auto;
+  padding: 20px;
+}
+
+#bpm-text {
+  color: #fcfcfc;
+  border: 2px solid #000000;
+  padding: 10px;
+  background: radial-gradient(circle at center, #939393 65%, #333333 100%);
+}
+
+.control-button:active {
+  box-shadow: 0px 17px 5px 1px rgba(0, 0, 0, 0);
+  background: linear-gradient(to bottom, #1d1d1d, #1d1d1d);
+  border-top: none;
+}
+
+.control-button:active::before {
+  background: linear-gradient(
+    to bottom,
+    transparent 10%,
+    #cae2fd63,
+    transparent 90%
+  );
+}
+
+.control-button:active > .text {
   color: rgb(202, 226, 253);
   text-shadow: 0px 0px 12px #cae2fd;
 }

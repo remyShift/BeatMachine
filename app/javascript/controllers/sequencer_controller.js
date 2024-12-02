@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static values = { bpm: Number, samples: Object, initialSamples: String, bpmValue: Number, drumrackId: Number };
-  static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn", "togglePlayBtnShow"];
+  static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn", "togglePlayBtnShow", "bpmLabelCurrent"];
   sampleSelected = null;
   soundBoxSamples = null;
   lastPadPlayed = 0;
@@ -57,14 +57,17 @@ export default class extends Controller {
   }
 
   play() {
-    this.playMusic();
+    if (this.interval === null) {
+      this.playMusic();
+    }
   }
 
   pause() {
-    this.pauseMusic();
+    if (this.interval !== null) {
+      this.pauseMusic();
+    }
   }
 
-  // Building play and pause actions for show
   playShow() {
     this.togglePlayBtnShowTarget.dataset.toggle = this.togglePlayBtnShowTarget.dataset.toggle === "false";
     this.playMusic();
@@ -157,16 +160,6 @@ export default class extends Controller {
     this.isDrumrackChanged = true;
   }
 
-  updateBpm(event) {
-    this.bpmValue = event.target.value;
-    this.bpmLabelTarget.textContent = `${this.bpmValue} BPM`;
-    this.isDrumrackChanged = true;
-    if (this.interval) {
-      this.pauseMusic();
-      this.playMusic();
-    }
-  }
-
   save() {
     const padsSamples = this.padTargets.map(pad => pad.dataset.samples)
     fetch(`/drumracks/${this.drumrackIdValue}`, {
@@ -178,5 +171,17 @@ export default class extends Controller {
         "Content-type": "application/json; charset=UTF-8"
       }
     });
+  }
+
+  decreaseBpm() {
+    this.bpmValue -= 5;
+    this.bpmLabelCurrentTarget.innerHTML = `${this.bpmValue} BPM`;
+  }
+
+  increaseBpm() {
+    console.log(this.bpmValue);
+    this.bpmValue += 5;
+    console.log(this.bpmValue);
+    this.bpmLabelCurrentTarget.innerHTML = `${this.bpmValue} BPM`;
   }
 }
