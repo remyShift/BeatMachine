@@ -38,6 +38,9 @@ export default class extends Controller {
       this.padTargets.forEach((pad) => {
           pad.dataset.active = "false";
           pad.dataset.played = "false";
+          this.categoryTargets.forEach(category => {
+            category.dataset.played = "false";
+          });
         });
         const pad = document.querySelector(`#pad-${this.lastPadPlayed}`);
 
@@ -48,7 +51,6 @@ export default class extends Controller {
             this.soundsPads[this.lastPadPlayed][sample.category].currentTime = 0;
             this.soundsPads[this.lastPadPlayed][sample.category].play();
             pad.dataset.played = "true";
-            console.log(sample.category)
             this.lightUpPlayedSample(sample.category)
           }
         });
@@ -117,9 +119,7 @@ export default class extends Controller {
 
 
   lightUpPlayedSample(playedCategory) {
-    this.categoryTargets.forEach(categorySample => {
-      categorySample.dataset.active = playedCategory === categorySample.dataset.category;
-    });
+    this.categoryTargets.find(category => category.dataset.category === playedCategory).dataset.played = "true";
   }
 
   resetPads() {
@@ -146,8 +146,6 @@ export default class extends Controller {
     this.pauseMusic();
     this.isDrumrackChanged = true;
   }
-
-
 
   toggleCategorySelected(event) {
     const currentPad = event.currentTarget;
@@ -199,12 +197,16 @@ export default class extends Controller {
   decreaseBpm() {
     this.bpmValue -= 5;
     this.bpmLabelCurrentTarget.innerHTML = `${this.bpmValue} BPM`;
+    this.isDrumrackChanged = true;
+    this.pauseMusic();
+    this.playMusic();
   }
 
   increaseBpm() {
-    console.log(this.bpmValue);
     this.bpmValue += 5;
-    console.log(this.bpmValue);
     this.bpmLabelCurrentTarget.innerHTML = `${this.bpmValue} BPM`;
+    this.isDrumrackChanged = true;
+    this.pauseMusic();
+    this.playMusic();
   }
 }
