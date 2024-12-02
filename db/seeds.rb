@@ -71,6 +71,13 @@ samples_templates = {
     { category: "snare", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802985/snare_jazz_fmpoci.mp3", filename: "snare_jazz_fmpoci.mp3" },
     { category: "hihat", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802986/hihat_jazz_tchqs4.mp3", filename: "hihat_jazz_tchqs4.mp3" },
     { category: "oneshot", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1732802986/oneshot_jazz_k9vlzv.mp3", filename: "oneshot_jazz_k9vlzv.mp3" }
+  ],
+  "jungle" => [
+    { category: "bass", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1733147008/POCKET_BASS_F%C3%94%C3%96_Grimey_yeqawz.mp3", filename: "POCKET_BASS_F%C3%94%C3%96_Grimey_yeqawz.mp3" },
+    { category: "kick", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1733147008/VDUB2_Kick_005_rdbshr.mp3", filename: "VDUB2_Kick_005_rdbshr.mp3" },
+    { category: "snare", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1733147008/VDUB2_Clap_017_zt2ydr.mp3", filename: "VDUB2_Clap_017_zt2ydr.mp3" },
+    { category: "hihat", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1733147008/VEH3_Closed_Hihats_130_cy98l6.mp3", filename: "VEH3_Closed_Hihats_130_cy98l6.mp3" },
+    { category: "oneshot", url: "https://res.cloudinary.com/dcuhxlv15/video/upload/v1733147008/Far_Out_Stab_ltpscf.mp3", filename: "Far_Out_Stab_ltpscf.mp3" }
   ]
 }
 # hash des bpm genre / templates
@@ -79,7 +86,8 @@ bpm_templates = {
   "jerseyclub" => 150,
   "bailefunk" => 135,
   "trap" => 70,
-  "jazz" => 80
+  "jazz" => 80,
+  "jungle" => 175
 }
 
 
@@ -98,7 +106,7 @@ templates_active_pads = {
     { category: "kick", index: [0, 4, 8, 11, 14] },
     { category: "snare", index: [4, 12] },
     { category: "hihat", index: [0, 4, 8, 12] },
-    { category: "oneshot", index: [2, 8, 14] }
+    { category: "oneshot", index: [14] }
   ],
   "bailefunk" => [
     { category: "bass", index: [4] },
@@ -110,8 +118,8 @@ templates_active_pads = {
   "trap" => [
     { category: "bass", index: [0, 8, 14] },
     { category: "kick", index: [0, 3, 6, 10, 14] },
-    { category: "snare", index: [4, 8] },
-    { category: "hihat", index: [1, 2, 8, 10, 11, 15] },
+    { category: "snare", index: [4, 12] },
+    { category: "hihat", index: [2, 8, 10, 11] },
     { category: "oneshot", index: [0, 12] }
   ],
   "jazz" => [
@@ -120,11 +128,18 @@ templates_active_pads = {
     { category: "snare", index: [4, 12] },
     { category: "hihat", index: [0, 8] },
     { category: "oneshot", index: [0] }
+  ],
+  "jungle" => [
+    { category: "bass", index: [0, 6] },
+    { category: "kick", index: [0, 10] },
+    { category: "snare", index: [4, 12] },
+    { category: "hihat", index: [0, 2, 4, 6, 8, 10, 12, 14, 15] },
+    { category: "oneshot", index: [14] }
   ]
 };
 
 # Define each genre
-genres = ["reggaeton", "jerseyclub", "bailefunk", "trap", "jazz"];
+genres = ["reggaeton", "jerseyclub", "bailefunk", "trap", "jazz", "jungle"];
 genres.each do |genre|
 
   # Create drumrack
