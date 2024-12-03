@@ -7,7 +7,7 @@
             data-category=""
             data-index="<%= i %>"
             <% if current_page?(soundbox_drumrack_path(@drumrack) )%>
-              data-action="click->sequencer#addSampleToPad"
+              data-action="click->sequencer#addSampleToPad click->sequencer#selectIaPad"
             <% end %>
             data-first-temp="<%= i % 4 == 0 %>"
             data-samples=""
@@ -19,7 +19,10 @@
             data-[category=snare]:bg-green-500
             data-[category=hihat]:bg-blue-700
             data-[category=bass]:bg-purple-500
-            data-[first-temp=true]:bg-blue-300"
+            data-[first-temp=true]:bg-blue-300
+            data-[aihighlighted=true]:border-[3px]
+            data-[aihighlighted=true]:shadow-[0_0_1rem_#ffc600]
+            data-[aihighlighted=true]:border-[#fc0330]"
         >
             <i class="fa-solid fa-record-vinyl text-zinc-100 group-data-[active=true]:shake"></i>
         </button>
