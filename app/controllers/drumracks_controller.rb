@@ -6,15 +6,7 @@ class DrumracksController < ApplicationController
   before_action :set_drumrack, only: [:show, :soundbox, :update, :duplicate]
 
   def index
-    @drumracks = Drumrack.all
-    @music_cards = [
-      { title: "Groove with me", tags: ["105 bpm", "Rap", "Drill"] },
-      { title: "Chill Vibes", tags: ["90 bpm", "Jazz", "Relax"] },
-      { title: "Party Beats", tags: ["120 bpm", "Dance", "EDM"] },
-      { title: "Party Beats", tags: ["120 bpm", "Dance", "EDM"] },
-      { title: "Party Beats", tags: ["120 bpm", "Dance", "EDM"] },
-      { title: "reagae  Vibes", tags: ["120 bpm", "Jazz", "xRelax"] }
-    ]
+    @drumracks = Drumrack.where(is_template: false)
   end
 
   def soundbox

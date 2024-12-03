@@ -24,8 +24,6 @@
         ></div>
     <% end %>
 
-
-
     <%= link_to current_user.present? ? user_path(current_user) : new_user_session_path, class: "flex flex-col items-center", data: {
         menubar_target: "toToggle",
         action: "click->menubar#toggle",

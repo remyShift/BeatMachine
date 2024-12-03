@@ -3,17 +3,7 @@
 
   <div class="flex flex-col items-center h-screen px-4 py-8 gap-4">
     <h3>What's your inspiration ?</h3>
-
-    <form class="sm:mb-16 action="">
-      <div class="flex">
-        <input type="text sm:text-center" placeholder="Type a music genre ..." class="p-2 rounded-l-md border-2 border-darkblue font-gillSans shadow-md">
-        <button type="submit" class="bg-darkblue text-lg text-orange px-4 py-2 rounded-r-md font-shrikhand stroke shadow-md h-full hover:bg-darkblue/70 transition-colors duration-300">
-        Search
-        </button>
-      </div>
-    </form>
-
-
+    <%= render "searchbar" %>
     <h3>Latest drumracks from the community :</h3>
 
     <%= render "shared/community", drumracks: @drumracks %>
