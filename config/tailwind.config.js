@@ -31,6 +31,10 @@ module.exports = {
         blackk: '#231f20',
         pink: '#ff0f7b',
         orangee: '#f89b29',
+        blue: '#0061ff',
+        lightblue: '#60efff',
+        purple: '#392d69',
+        lightpurple: '#b57bee',
       },
       boxShadow: {
         'top': '0 -4px 6px -1px rgba(0, 0, 0, 0.1)',
