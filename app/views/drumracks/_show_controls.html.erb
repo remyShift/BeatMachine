@@ -1,13 +1,13 @@
 
 <div class="bpm-controls flex items-center justify-center gap-4">
     <div class="radio-input">
-        <label class="label">
-            <input value="value-1" name="value-radio" id="value-1" type="radio" data-action="click->sequencer#playShow"/>
+        <label class="label radioPS">
+            <input value="value-1" name="value-radio" id="value-1" type="radio" data-action="click->sequencer#play"/>
             <span class="text">Play</span>
         </label>
 
-        <label class="label" data-action="click->sequencer#pauseShow">
-            <input value="value-1" name="value-radio" id="value-1" type="radio" />
+        <label class="label radioPS" data-action="click->sequencer#pause">
+            <input value="value-1" name="value-radio" id="value-1" type="radio" checked />
             <span class="text">Stop</span>
         </label>
 
@@ -15,9 +15,15 @@
             <span class="text" id="bpm-text" data-sequencer-target="bpmLabelCurrent"><%= @drumrack.bpm %> BPM</span>
         </label>
 
-        <button class="control-button label">
-            <%= link_to "Modify", duplicate_drumrack_path(@drumrack), method: :get, class:"text" %>
-        </button>
+        <% if current_user %>
+            <button class="control-button label">
+                <%= link_to "Modify", duplicate_drumrack_path(@drumrack), method: :get, class:"text" %>
+            </button>
+        <% end %>
+
+        <%= link_to root_path, class: 'label control-button' do %>
+            <span class="text">Home</span>
+        <% end %>
 
     </div>
 </div>
