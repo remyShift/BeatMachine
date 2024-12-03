@@ -1,5 +1,5 @@
-<div class="bpm-controls flex items-center justify-center gap-4">
-    <div class="radio-input">
+<div class="bpm-controls flex items-center justify-center gap-4 w-full">
+    <div class="radio-input rounded-t-md">
         <label class="label radioPS">
             <input value="value-1" name="value-radio" id="value-1" type="radio" data-action="click->sequencer#play"/>
             <span class="text">Play</span>
@@ -14,7 +14,7 @@
             <span class="text text-3xl">-</span>
         </button>
 
-        <label for="bpm" id="bpm-label" class="label">
+        <label for="bpm" id="bpm-label" class="label min-w-[150px]">
             <span class="text" id="bpm-text" data-sequencer-target="bpmLabelCurrent"><%= @drumrack.bpm %> BPM</span>
         </label>
 
