@@ -12,7 +12,7 @@
               class: "text-primary border border-slate-600 rounded-md p-2 flex flex-col gap-2 w-full focus:border-primary focus:outline-none"
             },
             label_html: {
-              class: "text-white"
+              class: "text-white font-outfit"
             } %>
 
         <%= f.input :password,
@@ -21,20 +21,20 @@
                                   class: "border border-slate-600 rounded-md p-2 flex flex-col gap-2 w-full focus:border-primary focus:outline-none",
                                 },
                     label_html: {
-                      class: "text-white"
+                      class: "text-white font-outfit"
                     } %>
         <% if devise_mapping.rememberable? %>
   <%= f.input :remember_me,
               as: :boolean,
-              label_html: { class: "text-white p-2" } %>
+              label_html: { class: "font-outfit text-white p-2" } %>
 <% end %>
       </div>
 
       <div class="my-4 flex flex-col items-center gap-2">
-        <%= f.button :submit, "Log in", class: "bg-orangee font-outfit font-semibold text-white rounded-md w-1/2 p-2 hover:bg-yelloww hover:text-blackk transform transition-transform duration-200 cursor-pointer" %>
+        <%= f.button :submit, "Log in", class: "font-outfit border-2 border-yelloww bg-yelloww font-outfit font-semibold text-blackk rounded-md w-1/2 p-2 hover:bg-blackk hover:text-yelloww transform transition-transform duration-200 cursor-pointer" %>
       </div>
     <% end %>
-    <div class="my-4 flex flex-col items-center gap-2 hover:scale-110 hover:text-lg transform transition-transform duration-200 cursor-pointer">
+    <div class="text-white my-4 flex flex-col items-center gap-2 hover:text-yelloww transform transition-transform duration-200 cursor-pointer">
       <%= render "devise/shared/links" %>
     </div>
   </div>
