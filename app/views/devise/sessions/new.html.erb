@@ -1,25 +1,37 @@
-<div class="flex items-center justify-center mt-6">
-  <div class="bg-gray-200 p-8 rounded-lg shadow-lg w-3/4 max-w-md border border-black-800 ">
-    <h2 class="text-2xl font-bold text-center font-kaushan text-primary">Log in</h2>
+<div class="flex items-center justify-center h-screen">
+  <div class="bg-greyy p-8 rounded-lg shadow-lg w-3/4 max-w-md border border-yelloww ">
+    <h2 class="text-2xl font-bold text-center font-outfit text-yelloww">Log in</h2>
 
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="class="my-4 flex flex-col items-center gap-6">
+      <div class="my-4 flex flex-col items-center gap-6">
         <%= f.input :email,
-                    required: false,
-                    autofocus: true,
-                    input_html: { autocomplete: "email",
-                                  class: "border border-slate-600 rounded-md p-2 flex flex-col gap-2 w-full focus:border-primary focus:outline-none",
-                                } %>
+            required: false,
+            autofocus: true,
+            input_html: {
+              autocomplete: "email",
+              class: "text-primary border border-slate-600 rounded-md p-2 flex flex-col gap-2 w-full focus:border-primary focus:outline-none"
+            },
+            label_html: {
+              class: "text-white"
+            } %>
+
         <%= f.input :password,
                     required: false,
                     input_html: { autocomplete: "current-password",
                                   class: "border border-slate-600 rounded-md p-2 flex flex-col gap-2 w-full focus:border-primary focus:outline-none",
-                                } %>
-        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+                                },
+                    label_html: {
+                      class: "text-white"
+                    } %>
+        <% if devise_mapping.rememberable? %>
+  <%= f.input :remember_me,
+              as: :boolean,
+              label_html: { class: "text-white p-2" } %>
+<% end %>
       </div>
 
       <div class="my-4 flex flex-col items-center gap-2">
-        <%= f.button :submit, "Log in", class: "bg-primary  rounded-md w-1/2 p-2 hover:bg-primary/80 hover:scale-110 hover:text-lg transform transition-transform duration-200 cursor-pointer" %>
+        <%= f.button :submit, "Log in", class: "bg-orangee font-outfit font-semibold text-white rounded-md w-1/2 p-2 hover:bg-yelloww hover:text-blackk transform transition-transform duration-200 cursor-pointer" %>
       </div>
     <% end %>
     <div class="my-4 flex flex-col items-center gap-2 hover:scale-110 hover:text-lg transform transition-transform duration-200 cursor-pointer">
