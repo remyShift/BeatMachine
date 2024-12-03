@@ -5,7 +5,7 @@
     data-sequencer-initial-samples-value="<%= @drumrack.pads.map { |pad| pad.pad_drumrack_samples.map { |pad_drumrack_sample| {active: pad_drumrack_sample.active, category: pad_drumrack_sample.sample.category}.to_json } } %>"
     data-sequencer-drumrack-id-value="<%= @drumrack.id %>"
     <% if current_page?(soundbox_drumrack_path(@drumrack) )%>
-      class="group-data-[is-landscape=true]:block hidden"
+      class="drumrack-sequencer group-data-[is-landscape=true]:flex hidden rounded-lg h-full flex-col justify-between border-x-2 border-black"
     <% end %>
 >
 
