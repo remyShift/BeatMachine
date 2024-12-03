@@ -15,6 +15,10 @@ p "Destroying all DrumrackSamples and PadDrumrackSamples"
 DrumrackSample.destroy_all
 PadDrumrackSample.destroy_all
 
+# Destroys all users
+p "Destroying all users"
+User.destroy_all
+
 # Creating sounds !
 p "And now creating Remi's amazing sounds :)"
 
@@ -191,7 +195,7 @@ music_cards = [
   user = User.new(email: Faker::Internet.email, password: Faker::Internet.password)
   user.profile_picture.attach(io: URI.open(Faker::Avatar.image), filename: "avatar.png", content_type: "image/png")
 
-  drumrack = Drumrack.all.sample
+  drumrack = Drumrack.all.sample.dup
   music_card = music_cards.sample
 
   drumrack.update(is_template: false, name: music_card[:title])

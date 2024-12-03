@@ -72,7 +72,7 @@ class DrumracksController < ApplicationController
   end
 
   def templates
-    @templates = Drumrack.all
+    @templates = Drumrack.where(is_template: true)
   end
 
   private
