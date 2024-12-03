@@ -9,7 +9,6 @@ export default class extends Controller {
   }
 
   toggle(event) {
-    event.preventDefault()
     if (event.currentTarget.lastElementChild.classList.contains("hidden")) {
       this.toToggleTargets.forEach(target => {
         if (target == event.currentTarget) {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_28_163251) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_02_161907) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +58,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_28_163251) do
     t.datetime "updated_at", null: false
     t.string "genre"
     t.boolean "is_template", default: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_drumracks_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -110,6 +112,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_28_163251) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "drumrack_samples", "drumracks"
   add_foreign_key "drumrack_samples", "samples"
+  add_foreign_key "drumracks", "users"
   add_foreign_key "likes", "drumracks"
   add_foreign_key "likes", "users"
   add_foreign_key "pad_drumrack_samples", "drumrack_samples"

@@ -6,19 +6,20 @@
             data-played="false"
             data-category=""
             data-index="<%= i %>"
-            <%= "data-action='click->sequencer#addSampleToPad'" if current_page?(soundbox_drumrack_path(@drumrack) )%>
+            <% if current_page?(soundbox_drumrack_path(@drumrack) )%>
+                data-action="click->sequencer#addSampleToPad"
+            <% end %>
             data-first-temp="<%= i % 4 == 0 %>"
             data-samples=""
-            class="pad drumrack transition-all duration-500 ease-in-out group data-[played=true]:border-[3px] data-[played=true]:border-[#ffc600] data-[played=true]:shadow-[0_0_1rem_#ffc600]
-            data-[active=true]:scale-110 data-[active=true]:opacity-100
-            data-[category=oneshot]:bg-yellow-gradient
+            class="pad drumrack group data-[active=true]:scale-110 data-[active=true]:opacity-100
+            data-[category=oneshot]:bg-yellow-500 data-[played=true]:border-[3px] data-[played=true]:border-[#ffc600] data-[played=true]:shadow-[0_0_1rem_#ffc600]
             data-[category=kick]:bg-red-gradient
             data-[category=snare]:bg-green-gradient
             data-[category=hihat]:bg-blue-gradient
             data-[category=bass]:bg-purple-gradient
-            data-[first-temp=true]:bg-zinc-600"
+            data-[first-temp=true]:bg-blue-300"
         >
-            <i class="fa-solid fa-record-vinyl text-zinc-100 group-data-[active=true]:shake"></i>
+            <i class="fa-solid fa-record-vinyl text-zinc-100 group-data-[active=true]:text-white"></i>
         </button>
     <% end %>
 </div>
