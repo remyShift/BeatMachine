@@ -7,7 +7,7 @@
             data-category=""
             data-index="<%= i %>"
             <% if current_page?(soundbox_drumrack_path(@drumrack) )%>
-                data-action="click->sequencer#addSampleToPad"
+              data-action="click->sequencer#addSampleToPad click->sequencer#selectIaPad"
             <% end %>
             data-first-temp="<%= i % 4 == 0 %>"
             data-samples=""
@@ -19,7 +19,10 @@
             data-[category=snare]:bg-green-gradient
             data-[category=hihat]:bg-blue-gradient
             data-[category=bass]:bg-purple-gradient
-            data-[first-temp=true]:bg-first-temp"
+            data-[first-temp=true]:bg-first-temp
+            data-[aihighlighted=true]:border-[3px]
+            data-[aihighlighted=true]:shadow-[0_0_1rem_#ffc600]
+            data-[aihighlighted=true]:border-[#fc0330]"
         >
             <div id="speaker" class="data-[played=true]:animate-speakeasy">
                 <div id="cone"></div>
