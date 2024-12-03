@@ -1,0 +1,7 @@
+<div>
+    <%= simple_form_for @drumrack do |f| %>
+        <%= f.input :name %>
+        <%= f.hidden_field :pads, value: @drumrack.pads.to_json %>
+        <%= f.button :submit %>
+    <% end %>
+</div>

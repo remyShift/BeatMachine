@@ -1,4 +1,5 @@
 require "open-uri"
+require "faker"
 
 # Destroys drumracks and pads
 p "Destroying all drumracks and pads"
@@ -13,6 +14,10 @@ Sample.destroy_all
 p "Destroying all DrumrackSamples and PadDrumrackSamples"
 DrumrackSample.destroy_all
 PadDrumrackSample.destroy_all
+
+# Destroys all users
+p "Destroying all users"
+User.destroy_all
 
 # Creating sounds !
 p "And now creating Remi's amazing sounds :)"
@@ -90,8 +95,6 @@ bpm_templates = {
   "jungle" => 175
 }
 
-
-
 # # index actif / inactif
 templates_active_pads = {
   "reggaeton" => [
@@ -140,6 +143,7 @@ templates_active_pads = {
 
 # Define each genre
 genres = ["reggaeton", "jerseyclub", "bailefunk", "trap", "jazz", "jungle"];
+
 genres.each do |genre|
 
   # Create drumrack
@@ -175,7 +179,32 @@ genres.each do |genre|
   end
 end
 
- p "#{Drumrack.count} drumracks created"
- p "#{Sample.count} samples created"
- p "#{DrumrackSample.count} drumrack_samples created"
- p "#{PadDrumrackSample.count} pad_drumrack_samples created"
+
+music_cards = [
+  { title: "Groove with me" },
+  { title: "Chill Vibes" },
+  { title: "Party Beats" },
+  { title: "Trap Vibes" },
+  { title: "Jazz Vibes" },
+  { title: "Jungle Vibes" },
+  { title: "Reggaeton Vibes" }
+]
+
+# Create a user
+10.times do
+  user = User.new(email: Faker::Internet.email, password: Faker::Internet.password)
+  user.profile_picture.attach(io: URI.open(Faker::Avatar.image), filename: "avatar.png", content_type: "image/png")
+
+  drumrack = Drumrack.all.sample.dup
+  music_card = music_cards.sample
+
+  drumrack.update(is_template: false, name: music_card[:title])
+  user.drumracks << drumrack
+
+  user.save!
+end
+
+p "#{Drumrack.count} drumracks created"
+p "#{Sample.count} samples created"
+p "#{DrumrackSample.count} drumrack_samples created"
+p "#{PadDrumrackSample.count} pad_drumrack_samples created"

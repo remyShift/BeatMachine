@@ -182,16 +182,19 @@ export default class extends Controller {
   }
 
   save() {
-    const padsSamples = this.padTargets.map(pad => pad.dataset.samples)
-    fetch(`/drumracks/${this.drumrackIdValue}`, {
+    if (this.isDrumrackChanged) {
+      const padsSamples = this.padTargets.map(pad => pad.dataset.samples)
+      fetch(`/drumracks/${this.drumrackIdValue}`, {
       method: "PATCH",
       body: JSON.stringify({
         pads: padsSamples
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8"
-      }
-    });
+        }
+      });
+      this.isDrumrackChanged = false;
+    }
   }
 
   decreaseBpm() {
