@@ -1,7 +1,7 @@
 require 'json'
 
 class DrumracksController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show, :soundbox]
+  skip_before_action :authenticate_user!, only: [:index, :show, :soundbox, :templates]
   skip_before_action :verify_authenticity_token
   before_action :set_drumrack, only: [:show, :soundbox, :update, :duplicate]
 
