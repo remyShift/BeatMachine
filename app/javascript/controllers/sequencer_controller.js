@@ -22,6 +22,7 @@ export default class extends Controller {
         oneshot: new Audio(this.samplesValue["oneshot"])
       });
     })
+    console.log(this.initialSamplesValue)
     this.soundBoxSamples = JSON.parse(this.initialSamplesValue).map(padSamples => {
       return padSamples.map(sample => {
         return JSON.parse(sample);
@@ -180,16 +181,19 @@ export default class extends Controller {
   }
 
   save() {
-    const padsSamples = this.padTargets.map(pad => pad.dataset.samples)
-    fetch(`/drumracks/${this.drumrackIdValue}`, {
+    if (this.isDrumrackChanged) {
+      const padsSamples = this.padTargets.map(pad => pad.dataset.samples)
+      fetch(`/drumracks/${this.drumrackIdValue}`, {
       method: "PATCH",
       body: JSON.stringify({
         pads: padsSamples
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8"
-      }
-    });
+        }
+      });
+      this.isDrumrackChanged = false;
+    }
   }
 
   decreaseBpm() {
@@ -197,8 +201,10 @@ export default class extends Controller {
       this.bpmValue -= 5;
       this.bpmLabelCurrentTarget.innerHTML = `${this.bpmValue} BPM`;
       this.isDrumrackChanged = true;
-      this.pauseMusic();
-      this.playMusic();
+      if (this.interval !== null) {
+        this.pauseMusic();
+        this.playMusic();
+      }
     }
   }
 
@@ -207,8 +213,10 @@ export default class extends Controller {
       this.bpmValue += 5;
       this.bpmLabelCurrentTarget.innerHTML = `${this.bpmValue} BPM`;
       this.isDrumrackChanged = true;
-      this.pauseMusic();
-      this.playMusic();
+      if (this.interval !== null) {
+        this.pauseMusic();
+        this.playMusic();
+      }
     }
   }
 

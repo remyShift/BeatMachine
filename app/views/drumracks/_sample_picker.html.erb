@@ -1,25 +1,22 @@
-<div class="flex justify-center gap-4 mt-2">
-    <% @drumrack.samples.each do |sample| %>
-        <button class="pad <%= category_color(sample.category) %> opacity-50
-                       data-[active=true]:opacity-100
-                       data-[played=true]:border-[3px]
-                       data-[played=true]:border-[#ffc600]
-                       data-[played=true]:shadow-[0_0_1rem_#ffc600]
-                       data-[played=true]:scale-110
-                       data-[aihighlighted=true]:border-[3px]
-                       data-[aihighlighted=true]:shadow-[0_0_1rem_#ffc600]
-                       data-[aihighlighted=true]:border-[#fc0330]"
-            data-active="false"
-            data-aihighlighted="false"
-            data-sequencer-target="category"
-            data-played="false"
-            <% if current_page?(soundbox_drumrack_path(@drumrack) )%>
-              data-action="click->sequencer#selectSample click->sequencer#selectIaSample"
-            <% end %>
-            data-category="<%= sample.category %>"
-            data-sequencer-target="category"
-        >
-            <p class="text-sm italic font-bold text-center text-white"><%= sample.category %></p>
-        </button>
-    <% end %>
-</div>
+<div class="flex justify-center gap-8 w-full">
+    <div class="sample-picker flex justify-center w-full rounded-b-md">
+      <% @drumrack.samples.each do |sample| %>
+          <button class="pad-sample <%= category_color(sample.category) %> group opacity-70 data-[active=true]:opacity-100 data-[played=true]:border-[3px] data-[played=true]:border-[#ffc600] data-[played=true]:opacity-100Ω≈Ω
+                         data-[aihighlighted=true]:border-[3px]
+                         data-[aihighlighted=true]:shadow-[0_0_1rem_#ffc600]
+                         data-[aihighlighted=true]:border-[#fc0330]"
+              data-active="false"
+              data-aihighlighted="false"
+              data-sequencer-target="category"
+              data-played="false"
+              <% if current_page?(soundbox_drumrack_path(@drumrack) )%>
+                data-action="click->sequencer#selectSample click->sequencer#selectIaSample"
+              <% end %>
+              data-category="<%= sample.category %>"
+              data-sequencer-target="category"
+          >
+                  <p class="text-sm italic text font-bold text-white opacity-90 group-data-[active=true]:opacity-100 group-data[active=true]:text-slate-900 group-data-[played=true]:opacity-100"><%= sample.category %></p>
+          </button>
+        <% end %>
+      </div>
+  </div>

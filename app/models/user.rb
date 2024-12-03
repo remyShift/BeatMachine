@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :likes, dependent: :destroy
-
+  has_many :drumracks
+  has_one_attached :profile_picture
 
   def like?(drumrack)
     likes.where(drumrack: drumrack).any?

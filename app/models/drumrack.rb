@@ -8,6 +8,7 @@ class Drumrack < ApplicationRecord
   validates :name, presence: true
   validates :genre, presence: true
   validates :bpm, presence: true
+  belongs_to :user, optional: true
   after_create :create_pads
 
   private

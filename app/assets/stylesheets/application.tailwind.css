@@ -4,27 +4,22 @@
 @tailwind utilities;
 
 .title {
-  font-family: "Shrikhand", cursive;
+  font-family: "roboto", cursive;
   color: #ffa400;
-  -webkit-text-stroke: 1.5px #2a2a72;
 }
 
 h2 {
-  font-family: "Shrikhand", cursive;
+  font-family: "roboto", cursive;
   color: #2a2a72;
-  -webkit-text-stroke: 0.6px #ffa400;
 }
 
 h3 {
-  font-family: "Shrikhand", cursive;
-  color: #009ffd;
-  -webkit-text-stroke: 1px #2a2a72;
+  font-family: "roboto", cursive;
 }
 
 h4 {
-  font-family: "Shrikhand", cursive;
+  font-family: "roboto", cursive;
   color: #ffa400;
-  -webkit-text-stroke: 1.5px #2a2a72;
 }
 
 .stroke {
@@ -42,7 +37,11 @@ h4 {
 .sequencer {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-gap: 2px;
+  grid-template-rows: repeat(2, 1fr);
+  gap: 30px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
@@ -52,17 +51,15 @@ h4 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px;
   width: 70px;
   height: 70px;
-  border-radius: 7px;
-  color: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
   font-size: 40px;
   font-weight: 300;
-  box-shadow: inset 0 0 5px 3px rgba(255, 255, 255, 0.2);
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   transition: all 0.07s ease;
+  box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.7);
 }
 
 .fa-record-vinyl {
@@ -78,10 +75,9 @@ h4 {
   display: flex;
   align-items: center;
   gap: 2px;
-  width: fit-content;
+  width: 100%;
   background-color: black;
-  padding: 4px;
-  border-radius: 10px;
+  padding: 2px 0;
   z-index: 1;
 }
 
@@ -90,7 +86,7 @@ h4 {
 }
 
 .radio-input .label {
-  width: 80px;
+  width: 100%;
   height: 50px;
   background: linear-gradient(to bottom, #333333, rgb(36, 35, 35));
   display: flex;
@@ -99,21 +95,18 @@ h4 {
   justify-content: center;
   padding: 8px;
   transition: all 0.1s linear;
-  border-top: 1px solid #4e4d4d;
   background-color: #333333;
   position: relative;
   cursor: pointer;
-  box-shadow: 0px 17px 5px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 10px 5px 1px rgba(0, 0, 0, 0.2);
 }
 
 .label:first-child {
   border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
 }
 
 .label:last-child {
   border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
 }
 
 .label::before {
@@ -146,13 +139,13 @@ h4 {
     0px 2px 3px rgb(0, 0, 0, 0.3);
 }
 
-.label:has(input[type="radio"]:checked) {
-  box-shadow: 0px 17px 5px 1px rgba(0, 0, 0, 0);
+.radioPS:has(input[type="radio"]:checked) {
+  box-shadow: 0px 10px 5px 1px rgba(0, 0, 0, 0);
   background: linear-gradient(to bottom, #1d1d1d, #1d1d1d);
   border-top: none;
 }
 
-.label:has(input[type="radio"]:checked)::before {
+.radioPS:has(input[type="radio"]:checked)::before {
   background: linear-gradient(
     to bottom,
     transparent 10%,
@@ -161,7 +154,7 @@ h4 {
   );
 }
 
-.label input[type="radio"]:checked + .text {
+.radioPS input[type="radio"]:checked + .text {
   color: rgb(202, 226, 253);
   text-shadow: 0px 0px 12px #cae2fd;
 }
@@ -196,4 +189,181 @@ h4 {
 .control-button:active > .text {
   color: rgb(202, 226, 253);
   text-shadow: 0px 0px 12px #cae2fd;
+}
+
+
+
+#speaker {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+	background: radial-gradient(circle at center,
+	#494949 0%,
+    
+	#727272 40%,
+	#494949 41%,
+	#727272 43%,
+    
+	#727272 45%,
+	#494949 46%,
+	#727272 48%,
+
+	#727272 50%,
+	#494949 51%,
+	#727272 53%,
+
+	#727272 55%,
+	#494949 56%,
+	#727272 58%,
+
+	#727272 60%,
+	#494949 61%,
+	#727272 63%,
+
+	#494949 100%);
+  
+  box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 2px,    /* border */  
+                        inset hsla(0,0%,15%, .8) 0 -1px 5px 2px,    /* soft SD */  
+                        inset hsla(0,0%,0%, .25) 0 -1px 0px 3px,    /* bottom SD */  
+                        inset hsla(0,0%,100%,.7) 0  2px 1px 3px,    /* top HL */  
+  
+  hsla(0,0%, 0%,.15) 0 -1px 3px 2px,    /* outer SD */  
+  hsla(0, 0%, 0%, 0.5) 0  1px 3px 2px;    /* outer HL */ 
+
+	animation: speakeasy 0.4s;
+  animation-iteration-count: infinite;
+}
+
+#cone {
+	background: -webkit-radial-gradient(center, ellipse cover, #494949 0%,#2b2b2b 100%);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(0, 0, 0, 0.7);
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes speakeasy {
+	0%   {transform: scale(1.0);}
+	20%  {transform: scale(1.075);}
+	100%  {transform: scale(1.0);}
+}
+
+.sample-picker {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  background-color: black;
+  padding: 2px 0;
+  z-index: 1;
+}
+
+.pad-sample {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  transition: all 0.1s linear;
+  position: relative;
+  cursor: pointer;
+}
+
+.pad-sample::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 103%;
+  height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(
+    to bottom,
+    transparent 10%,
+    transparent,
+    transparent 90%
+  );
+  transition: all 0.1s linear;
+  z-index: -1;
+}
+
+.pad-sample:first-child {
+  border-bottom-left-radius: 6px;
+  border-left: none !important;
+}
+
+.pad-sample:last-child {
+  border-bottom-right-radius: 6px;
+}
+
+.pad-sample:active {
+  border-top: none;
+}
+
+.pad-sample:active::before {
+  background: linear-gradient(
+    to bottom,
+    transparent 10%,
+    #cae2fd63,
+    transparent 90%
+  );
+}
+
+.pad-sample:active > .text {
+  color: rgb(202, 226, 253);
+  text-shadow: 0px 0px 12px #cae2fd;
+}
+
+.pad-sample .text {
+  text-transform: uppercase;
+}
+
+.drumrack-sequencer {
+  box-shadow: 5px 5px 0 0 rgba(0, 0, 0, 1);
+  background: url('https://media.istockphoto.com/photos/shiny-gray-metal-textured-background-surface-picture-id118336791?k=6&m=118336791&s=612x612&w=0&h=TmS0CED7eS97l8OyLHP_0xWfZ4hGlsAvvLRoMUfTJNg=');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.soundbox {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.soundbox::before {
+  z-index: -1;
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 300%;
+  height: 300%;
+  overflow: visible;
+  background-image: url(https://i.scdn.co/image/ab67616d0000b273af52c228c9619ff6298b08cd);
+  background-size: cover;
+  background-position: center;
+  filter: blur(80px);
+  animation: rotating 70s linear infinite;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

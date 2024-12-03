@@ -1,20 +1,18 @@
 module GenreCardsHelper
   def color_card(drumrack)
     case drumrack.genre
-    when "reggeaton"
-      "bg-gradient-to-tr from-blue-700 to-blue-400"
-    when "jazz"
-      "bg-gradient-to-tr from-pink-700 to-pink-400"
-    when "jersey"
-      "bg-gradient-to-tr from-yellow-700 to-yellow-400"
-    when "pop"
-      "bg-gradient-to-tr from-blue-400 to-emerald-400"
-    when "funk"
-      "bg-gradient-to-tr from-red-700 to-red-400"
+    when "reggaeton"
+      "bg-gradient-to-r from-primary to-yelloww"
+    when "jerseyclub"
+      "bg-gradient-to-r from-blue to-lightblue"
+    when "bailefunk"
+      "bg-gradient-to-r from-pink to-orangee"
     when "trap"
-      "bg-gradient-to-tr from-purple-700 to-purple-400"
-    when "techno"
-      "bg-gradient-to-tr from-green-700 to-green-400"
+      "bg-gradient-to-r from-emerald-900 to-emerald-700"
+    when "jazz"
+      "bg-gradient-to-r from-emerald-700 to-green-500"
+    when "jungle"
+      "bg-gradient-to-r from-purple to-lightpurple"
     else
       "bg-gray-500"
     end
