@@ -7,6 +7,7 @@ class DrumracksController < ApplicationController
 
   def index
     @drumracks = Drumrack.all
+    @templates = Drumrack.all
     @music_cards = [
       { title: "Groove with me", tags: ["105 bpm", "Rap", "Drill"] },
       { title: "Chill Vibes", tags: ["90 bpm", "Jazz", "Relax"] },
