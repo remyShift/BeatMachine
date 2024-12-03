@@ -27,7 +27,9 @@
       <p class="text-lg">You have no drumracks liked yet.</p>
       <%= link_to "Browse drumracks", drumracks_path, class: "text-blue-500 underline" %>
     <% end %>
+    <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete } %>
   </div>
+
 </div>
 
 <%= render "shared/menubar" %>

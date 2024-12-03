@@ -46,25 +46,33 @@ class DrumracksController < ApplicationController
     redirect_to soundbox_drumrack_path(duplicated_drumrack)
   end
 
+  def edit
+    @drumrack = Drumrack.find(params[:id])
+  end
+
   def update
-    data = params['pads'].map do |pad|
-      JSON.parse(pad)
-    end
-
-    @drumrack.update(user: current_user)
-
+    data = JSON.parse(params[:drumrack][:pads])
+  
+    @drumrack.update(name: params[:drumrack][:name], user: current_user)
+  
     data.each_with_index do |pad_json, index|
       pad = @drumrack.pads[index]
+      next unless pad
+  
       pad.pad_drumrack_samples.each do |pad_drumrack_sample|
-        pad_sample_json = pad_json.select{ |l| l["category"] == pad_drumrack_sample.sample.category}.first
-        pad_drumrack_sample.update(active: pad_sample_json["active"])
+        pad_sample_json = pad_json.is_a?(Array) ? pad_json.find { |l| l["category"] == pad_drumrack_sample.sample.category } : nil
+        
+        if pad_sample_json
+          pad_drumrack_sample.update(active: pad_sample_json["active"])
+        else
+          Rails.logger.warn "Aucune correspondance trouvée pour la catégorie #{pad_drumrack_sample.sample.category}"
+        end
       end
     end
 
     respond_to do |format|
-      format.json do
-        { status: 'ok' }
-      end
+      format.json { render json: { status: 'ok' } }
+      format.html { redirect_to soundbox_drumrack_path(@drumrack) }
     end
   end
 
@@ -79,6 +87,6 @@ class DrumracksController < ApplicationController
   end
 
   def drumrack_params
-    params.require(:drumrack).permit(:pads)
+    params.require(:drumrack).permit(:name, :pads)
   end
 end

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
-  resources :drumracks, only: [:index, :show, :update] do
+  resources :drumracks, only: [:index, :show, :update, :edit] do
     get :duplicate, on: :member
 
     resources :likes, only: [:create]

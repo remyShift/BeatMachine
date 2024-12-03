@@ -22,9 +22,9 @@
             <span class="text text-2xl">+</span>
         </button>
 
-        <button class="label control-button" data-action="click->sequencer#save">
-            <span class="text">Save</span>
-        </button>
+        <%= link_to edit_drumrack_path(@drumrack), class: 'label control-button' do %>
+            <span class="text">Edit</span>
+        <% end %>
 
         <button class="label control-button" data-action="click->sequencer#resetAll">
             <span class="text">Clear</span>
