@@ -29,6 +29,8 @@ module.exports = {
         greyy: '#404041',
         yelloww: '#fec057',
         blackk: '#231f20',
+        pink: '#ff0f7b',
+        orangee: '#f89b29',
       },
       boxShadow: {
         'top': '0 -4px 6px -1px rgba(0, 0, 0, 0.1)',

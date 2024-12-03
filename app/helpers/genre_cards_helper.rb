@@ -6,7 +6,7 @@ module GenreCardsHelper
     when "jerseyclub"
       "bg-greyy"
     when "pop"
-      "bg-gradient-to-r from-blue-500 to-blue-300"
+      "bg-gradient-to-r from-pink to-orangee"
       when "bailefunk"
       "bg-gradient-to-r from-blue-300 to-emerald-900"
     when "trap"
