@@ -7,7 +7,7 @@ module GenreCardsHelper
       "bg-gradient-to-r from-blue to-lightblue"
     when "pop"
       "bg-gradient-to-r from-pink to-orangee"
-      when "bailefunk"
+    when "bailefunk"
       "bg-gradient-to-r from-pink to-orangee"
     when "trap"
       "bg-gradient-to-r from-emerald-900 to-emerald-700"
