@@ -7,8 +7,10 @@
 
     <div class="flex items-center gap-4">
         <% if user_signed_in? %>
-            <h2 class="text-white font-gillSans font-semibold hover:text-yeloww hover:underline transition-colors duration-300">Welcome <%= current_user.username %></h2>
-            <%= cl_image_tag current_user.profile_picture.key, class: "w-10 h-10 rounded-full object-cover border-2 border-primary" %>
+            <%= link_to user_path(current_user), class: "text-white font-gillSans font-semibold hover:text-primary hover:underline transition-colors duration-300" do %>
+                Welcome <%= current_user.username %>
+            <% end %>
+            <%= cl_image_tag current_user.profile_picture.key, class: "w-10 h-10 rounded-full object-cover border-2 border-yelloww" %>
         <% else %>
             <%= link_to "Sign up / Login", new_user_registration_path, class: "text-white font-gillSans font-semibold hover:text-yelloww hover:underline transition-colors duration-300" %>
         <% end %>
