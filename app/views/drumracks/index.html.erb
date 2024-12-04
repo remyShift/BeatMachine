@@ -15,12 +15,14 @@
         <p class="text-xl font-outfit text-white">Browse on drumracks made by our community !</p>
         <p class="text-lg font-outfit text-white">Sorted by most liked.</p>
       </div>
-      <form class="flex gap-1">
-        <input type="text sm:text-center" placeholder="Type a music genre ..." class="p-2 rounded-l-md border-1 font-gillSans shadow-md w-96">
-        <button type="submit" class="bg-yelloww font-semibold hover:bg-blackk hover:text-yelloww text-lg text-blackk px-4 py-2 rounded-r-md font-outfit shadow-md h-full transition-colors duration-300 border-2 border-yelloww">
-          Search
-        </button>
-      </form>
+      <%= form_with url: drumracks_path, method: :get, class: "sm:mb-8" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "h-12 px-4 py-2 rounded-l-md border-1 border-primary font-gillSans shadow-md",
+              placeholder: "Type a music genre ..."
+          %>
+        <%= submit_tag "Search", name: "", class: "h-12 bg-yelloww font-semibold hover:bg-blackk hover:text-yelloww text-lg text-blackk px-4 py-2 rounded-r-md font-outfit shadow-md h-full transition-colors duration-300 border-2 border-yelloww" %>
+      <% end %>
     </div>
     <%= render "shared/community", drumracks: @drumracks %>
   </div>
