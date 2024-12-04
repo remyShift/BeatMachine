@@ -1,6 +1,9 @@
 require "open-uri"
 require "faker"
 
+# Destroying all likes
+Like.destroy_all
+
 # Destroys drumracks and pads
 p "Destroying all drumracks and pads"
 Drumrack.destroy_all
@@ -212,7 +215,16 @@ end
   end
 end
 
+User.all.each do |user|
+  num = rand(6..10)
+  drumracks = Drumrack.all
+  drumracks.sample(num).each do |drumrack|
+    user.likes.create(drumrack: drumrack)
+  end
+end
+
 p "#{Drumrack.count} drumracks created"
 p "#{Sample.count} samples created"
 p "#{DrumrackSample.count} drumrack_samples created"
 p "#{PadDrumrackSample.count} pad_drumrack_samples created"
+p "#{Like.count} likes created"
