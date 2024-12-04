@@ -1,33 +1,36 @@
-<div class="flex flex-col items-center justify-center gap-2">
-  <%= link_to drumrack_path(drumrack), class: "community-card hover:scale-105 transition-all duration-300 w-full h-60 rounded-lg shadow-lg p-6 relative flex flex-col justify-center items-center" do %>
-    <div class="absolute bg-image inset-0 w-full h-full bg-cover bg-center -z-10 rounded-lg brightness-50" style="background-image: url(<%= image_path("#{drumrack.genre}wp.jpeg") %>)">
-    </div>
+<%= turbo_frame_tag drumrack do %>
 
-    <h1 class="text-white text-2xl font-bold relative z-10 text-center"><%= drumrack.name %></h1>
-  <% end %>
+  <div class="flex flex-col items-center justify-center gap-2">
+    <%= link_to drumrack_path(drumrack), data: { turbo: false }, class: "community-card hover:scale-105 transition-all duration-300 w-full h-60 rounded-lg shadow-lg p-6 relative flex flex-col justify-center items-center" do %>
+      <div class="absolute bg-image inset-0 w-full h-full bg-cover bg-center -z-10 rounded-lg brightness-50" style="background-image: url(<%= image_path("#{drumrack.genre}wp.jpeg") %>)">
+      </div>
 
-  <div class="flex justify-between w-full px-2">
-    <% like = drumrack.likes.find_by(user: current_user) %>
-    <% if like.nil?  %>
-      <%= button_to drumrack_likes_path(drumrack), class: 'label control-button' do %>
-        <p class="text-white text-md relative z-10 text-center cursor-pointer" data-controller="heart" data-action="click->heart#toggleColor">
-            <i class="fa-solid fa-heart-pulse text-xl" data-heart-target="icon"></i>
-        <%= drumrack.likes.count %>
-        </p>
-      <% end %>
-    <% else %>
-      <%= button_to like_path(like),
-          method: :delete,
-          data: {turbo_method: :delete},
-          class: "label control-button" do %>
-        <p class="text-white text-md relative z-10 text-center cursor-pointer" data-controller="heart" data-action="click->heart#toggleColor">
-            <i class="fa-solid fa-heart-pulse text-xl text-red-500" data-heart-target="icon"></i>
-        <%= drumrack.likes.count %>
-        </p>
-      <% end %>
+      <h1 class="text-white text-2xl font-bold relative z-10 text-center"><%= drumrack.name %></h1>
     <% end %>
 
+    <div class="flex justify-between w-full px-2">
+      <% like = drumrack.likes.find_by(user: current_user) %>
+      <% if like.nil?  %>
+        <%= button_to drumrack_likes_path(drumrack), class: 'label control-button' do %>
+          <p class="text-white text-md relative z-10 text-center cursor-pointer" data-controller="heart">
+              <i class="fa-solid fa-heart-pulse text-xl text-white" data-heart-target="icon"></i>
+          <%= drumrack.likes.count %>
+          </p>
+        <% end %>
+      <% else %>
+        <%= button_to like_path(like),
+            method: :delete,
+            data: {turbo_method: :delete},
+            class: "label control-button" do %>
+          <p class="text-white text-md relative z-10 text-center cursor-pointer" data-controller="heart">
+              <i class="fa-solid fa-heart-pulse text-xl text-red-500" data-heart-target="icon"></i>
+          <%= drumrack.likes.count %>
+          </p>
+        <% end %>
+      <% end %>
 
-    <p class="text-white text-md relative z-10 text-center">by <%= drumrack.user.username %></p>
+      <p class="text-white text-md relative z-10 text-center">by <%= drumrack.user.username %></p>
+    </div>
   </div>
-</div>
+
+<% end %>
