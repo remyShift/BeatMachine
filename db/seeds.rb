@@ -209,7 +209,6 @@ end
     user.drumracks << duplicated_drumrack
 
     user.save!
-
   end
 end
 
