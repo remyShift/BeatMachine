@@ -188,6 +188,7 @@ end
 
   drumracks.each do |drumrack|
     duplicated_drumrack = drumrack.dup
+    duplicated_drumrack.is_template = false
 
     duplicated_drumrack_samples = []
     drumrack.samples.each do |sample|
