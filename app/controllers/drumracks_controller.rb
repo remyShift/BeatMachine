@@ -8,7 +8,11 @@ class DrumracksController < ApplicationController
   def index
     @drumracks = Drumrack.where(is_template: false)
     if params[:query].present?
-      @drumracks = @drumracks.where("genre ILIKE ?", "%#{params[:query]}%")
+      sql_subquery = <<~SQL
+        drumracks.genre @@ :query
+        OR users.username @@ :query
+      SQL
+    @drumracks = @drumracks.joins(:user).where(sql_subquery, query: "%#{params[:query]}%")
     end
   end
 
