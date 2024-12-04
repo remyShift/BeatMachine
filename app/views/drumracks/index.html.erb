@@ -1,13 +1,20 @@
-<div class="flex flex-col items-center h-screen px-4 py-2 gap-4 relative z-10" data-controller="sequencer">
-  <div class="flex flex-col items-center pt-8">
-  <h1 class="text-4xl font-outfit font-bold text-yelloww">DRUM'N LEARN</h1>
-    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
-      <dotlottie-player src="https://lottie.host/95f56188-c27f-4ed9-8cd9-8a46b13c4410/nTFx8mlXQK.lottie" background="transparent" speed="1" style="width: 148px; height: 148px" loop autoplay></dotlottie-player>
-  </div>
+<%= render "shared/header" %>
 
-  <div class="flex flex-col items-center h-screen px-4 py-8 gap-4">
-    <h3 class="text-4x1 font-outfit text-white">What's your inspiration ?</h3>
-    <div class="flex">
+<div class="flex flex-col items-center h-screen px-4 py-2 gap-4 relative z-10" data-controller="sequencer">
+  <div class="flex flex-col items-center h-screen px-4 py-8 gap-12">
+    <div class="flex flex-col items-center gap-4">
+      <h2 class="text-3xl font-outfit font-bold text-white">What's your today's inspiration ?</h2>
+      <p class="text-xl font-outfit text-white">Find your favorite music genre and let the magic begin with one of our templates !</p>
+    </div>
+
+    <%= render "shared/cards" %>
+
+    <h2 class="text-4xl font-outfit font-bold text-yellow-300">Or</h2>
+    <div class="flex flex-col items-center gap-8">
+      <div class="flex flex-col items-center">
+        <p class="text-xl font-outfit text-white">Browse on drumracks made by our community !</p>
+        <p class="text-lg font-outfit text-white">Sorted by most liked.</p>
+      </div>
       <%= form_with url: drumracks_path, method: :get, class: "sm:mb-8" do %>
         <%= text_field_tag :query,
               params[:query],
@@ -16,18 +23,10 @@
           %>
         <%= submit_tag "Search", name: "", class: "h-12 bg-yelloww font-semibold hover:bg-blackk hover:text-yelloww text-lg text-blackk px-4 py-2 rounded-r-md font-outfit shadow-md h-full transition-colors duration-300 border-2 border-yelloww" %>
       <% end %>
-     </div>
-
-    <h3 class="text-yelloww font-outfit font-semibold">Latest drumracks from the community :</h3>
-<div class="mb-16">
-<%= render "shared/community", drumracks: @drumracks %>
-</div>
-
-
+    </div>
+    <%= render "shared/community", drumracks: @drumracks %>
   </div>
 </div>
 
 
 <%= render "drumracks/blur_neons" %>
-
-<%= render "shared/menubar" %>

@@ -7,6 +7,7 @@ class DrumracksController < ApplicationController
 
   def index
     @drumracks = Drumrack.where(is_template: false)
+    @templates = Drumrack.where(is_template: true)
     if params[:query].present?
       sql_subquery = <<~SQL
         drumracks.genre @@ :query

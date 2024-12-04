@@ -8,7 +8,6 @@ export default class extends Controller {
   }
 
   toggleColor() {
-
     if (this.iconTarget.classList.contains("text-red-500")) {
       this.iconTarget.classList.remove("text-red-500");
       this.iconTarget.classList.add("text-black");
