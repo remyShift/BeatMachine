@@ -1,39 +1,6 @@
-<%= link_to drumrack_path(drumrack), class: "w-full max-w-md h-60 bg-customGrey/40 rounded-xl shadow-lg p-6" do %>
-  <!-- Title -->
-  <div class="text-center text-white font-outfit font-semibold mb-4 ">
-    <%= drumrack.name %>
-  </div>
+<%= link_to drumrack_path(drumrack), class: "w-full h-60 rounded-lg shadow-lg p-6 bg-cover bg-center", style: "background-image: url(#{image_path('bailefunkwp.jpeg')});" do %>
 
-  <!-- Tags -->
-  <div class="flex justify-center gap-4 mb-6">
-    <% if false %>
-      <% drumrack.tags.each do |tag| %>
-        <%= render "shared/tag",  tag_name: tag  %>
-      <% end %>
-    <% end %>
-  </div>
-
-  <!-- Play Button -->
-  <div class="flex justify-center items-center ">
-    <div class="w-24 h-24 bg-gradient-to-br from-emerald-900 to-emerald-600 rounded-full mg-4 flex justify-center items-center shadow-inner cursor-pointer">
-      <i class="fa-solid fa-play fa-2xl text-white"></i>
-    </div>
-  </div>
-
-  <div class="p-2 text-center text-white font-outfit textfont-bold mb-4 ">
-    <%= drumrack.user %>
-  </div>
-
-  <% if current_user && display_like_button %>
-    <% like = current_user.likes.where(drumrack: drumrack)&.first %>
-    <%= button_to current_user.like?(drumrack) ? like_path(like) : drumrack_likes_path(drumrack),
-      method: current_user.like?(drumrack) ? :delete : :post do  %>
-      <div data-controller="heart">
-        <i data-heart-target="icon"
-          data-action="click->heart#toggleColor"
-          class="fa fa-heart <%= current_user.like?(drumrack) ? 'text-red-500' : 'text-black' %> cursor-pointer text-2xl">
-        </i>
-      </div>
-    <% end %>
-  <% end %>
 <% end %>
+
+
+

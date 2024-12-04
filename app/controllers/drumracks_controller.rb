@@ -7,6 +7,7 @@ class DrumracksController < ApplicationController
 
   def index
     @drumracks = Drumrack.where(is_template: false)
+    @templates = Drumrack.where(is_template: true)
   end
 
   def soundbox

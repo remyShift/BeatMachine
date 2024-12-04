@@ -17,3 +17,10 @@
 //= link illustration.png
 //= link_tree ../../javascript .js
 //= link_tree ../../../vendor/javascript .js
+//= link bailefunkwp.jpeg
+//= link jazzwp.jpeg
+//= link jerseywp.jpeg
+//= link jazzwp.jpeg
+//= link trapwp.jpeg
+//= link junglewp.jpeg
+//= link reggaetonwp.jpeg
