@@ -1,4 +1,10 @@
 class LikesController < ApplicationController
+
+  def new
+    @drumrack = Drumrack.find(params[:drumrack_id])
+    @like = Like.new
+  end
+
   def create
     @drumrack = Drumrack.find(params[:drumrack_id])
     @like = Like.new(drumrack:@drumrack , user:current_user).save

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :drumracks, only: [:index, :show, :update, :edit] do
     get :duplicate, on: :member
 
-    resources :likes, only: [:create]
+    resources :likes, only: [:new, :create]
 
     member do
       get :soundbox
