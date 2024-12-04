@@ -37,12 +37,13 @@ h4 {
 .sequencer {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 30px;
+  grid-template-rows: repeat(2, 200px);
+  gap: 25px;
   padding: 20px;
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-left: 30px;
 }
 
 .pad {
@@ -51,8 +52,8 @@ h4 {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70px;
-  height: 70px;
+  width: 120px;
+  height: 120px;
   border-radius: 12px;
   font-size: 40px;
   font-weight: 300;
@@ -191,51 +192,55 @@ h4 {
   text-shadow: 0px 0px 12px #cae2fd;
 }
 
-
-
 #speaker {
   width: 50px;
   height: 50px;
   border-radius: 100%;
-	background: radial-gradient(circle at center,
-	#494949 0%,
-    
-	#727272 40%,
-	#494949 41%,
-	#727272 43%,
-    
-	#727272 45%,
-	#494949 46%,
-	#727272 48%,
+  background: radial-gradient(
+    circle at center,
+    #494949 0%,
 
-	#727272 50%,
-	#494949 51%,
-	#727272 53%,
+    #727272 40%,
+    #494949 41%,
+    #727272 43%,
 
-	#727272 55%,
-	#494949 56%,
-	#727272 58%,
+    #727272 45%,
+    #494949 46%,
+    #727272 48%,
 
-	#727272 60%,
-	#494949 61%,
-	#727272 63%,
+    #727272 50%,
+    #494949 51%,
+    #727272 53%,
 
-	#494949 100%);
-  
-  box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 2px,    /* border */  
-                        inset hsla(0,0%,15%, .8) 0 -1px 5px 2px,    /* soft SD */  
-                        inset hsla(0,0%,0%, .25) 0 -1px 0px 3px,    /* bottom SD */  
-                        inset hsla(0,0%,100%,.7) 0  2px 1px 3px,    /* top HL */  
-  
-  hsla(0,0%, 0%,.15) 0 -1px 3px 2px,    /* outer SD */  
-  hsla(0, 0%, 0%, 0.5) 0  1px 3px 2px;    /* outer HL */ 
+    #727272 55%,
+    #494949 56%,
+    #727272 58%,
 
-	animation: speakeasy 0.4s;
+    #727272 60%,
+    #494949 61%,
+    #727272 63%,
+
+    #494949 100%
+  );
+
+  box-shadow: inset hsla(0, 0%, 15%, 1) 0 0px 0px 2px,
+    /* border */ inset hsla(0, 0%, 15%, 0.8) 0 -1px 5px 2px,
+    /* soft SD */ inset hsla(0, 0%, 0%, 0.25) 0 -1px 0px 3px,
+    /* bottom SD */ inset hsla(0, 0%, 100%, 0.7) 0 2px 1px 3px,
+    /* top HL */ hsla(0, 0%, 0%, 0.15) 0 -1px 3px 2px,
+    /* outer SD */ hsla(0, 0%, 0%, 0.5) 0 1px 3px 2px; /* outer HL */
+
+  animation: speakeasy 0.4s;
   animation-iteration-count: infinite;
 }
 
 #cone {
-	background: -webkit-radial-gradient(center, ellipse cover, #494949 0%,#2b2b2b 100%);
+  background: -webkit-radial-gradient(
+    center,
+    ellipse cover,
+    #494949 0%,
+    #2b2b2b 100%
+  );
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(0, 0, 0, 0.7);
   width: 10px;
   height: 10px;
@@ -247,9 +252,15 @@ h4 {
 }
 
 @keyframes speakeasy {
-	0%   {transform: scale(1.0);}
-	20%  {transform: scale(1.075);}
-	100%  {transform: scale(1.0);}
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1.075);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .sample-picker {
@@ -327,7 +338,7 @@ h4 {
 
 .drumrack-sequencer {
   box-shadow: 5px 5px 0 0 rgba(0, 0, 0, 1);
-  background: url('https://media.istockphoto.com/photos/shiny-gray-metal-textured-background-surface-picture-id118336791?k=6&m=118336791&s=612x612&w=0&h=TmS0CED7eS97l8OyLHP_0xWfZ4hGlsAvvLRoMUfTJNg=');
+  background: url("https://media.istockphoto.com/photos/shiny-gray-metal-textured-background-surface-picture-id118336791?k=6&m=118336791&s=612x612&w=0&h=TmS0CED7eS97l8OyLHP_0xWfZ4hGlsAvvLRoMUfTJNg=");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -338,9 +349,10 @@ h4 {
 .soundbox {
   position: fixed;
   width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .soundbox::before {
