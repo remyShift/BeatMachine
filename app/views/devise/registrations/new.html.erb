@@ -28,7 +28,7 @@
                                }%>
         <%= f.input :password,
                     required: true,
-                    wrapper_html: {class: "w-full"},
+                    wrapper_html: {class: "w-full text-yelloww"},
                     hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                     input_html: { autocomplete: "new-password",
                                   class: "border border-slate-600 rounded-md p-2 flex flex-col gap-2 w-full focus:border-primary focus:outline-none",
@@ -47,7 +47,7 @@
                                 } %>
           <%= f.input :profile_picture,
                     required: true,
-                    wrapper_html: {class: "w-full"},
+                    wrapper_html: {class: "w-full p-4 text-yelloww"},
                     input_html: { autocomplete: "new-password",
                                   class: " p-2 flex flex-col gap-2  appearance-none",
                                 },
