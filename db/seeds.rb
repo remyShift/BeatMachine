@@ -147,7 +147,7 @@ genres = ["reggaeton", "jerseyclub", "bailefunk", "trap", "jazz", "jungle"];
 genres.each do |genre|
 
   # Create drumrack
-  drumrack = Drumrack.new(name: "#{genre.capitalize} #{["Vibes", "Beats", "Mixtape", "Demo", "Sketch"].sample}", genre: genre, bpm: bpm_templates[genre], is_template: true)
+  drumrack = Drumrack.new(name: "#{genre.capitalize} Template}", genre: genre, bpm: bpm_templates[genre], is_template: true)
   drumrack.save!
 
 
@@ -188,6 +188,7 @@ end
 
   drumracks.each do |drumrack|
     duplicated_drumrack = drumrack.dup
+    duplicated_drumrack.name = "#{["Fun", "Sweet", "Sexy", "Great"].sample} #{duplicated_drumrack.genre.capitalize} #{["Vibes", "Beats", "Mixtape", "Demo", "Sketch"].sample}"
     duplicated_drumrack.is_template = false
 
     duplicated_drumrack_samples = []
@@ -208,7 +209,6 @@ end
     user.drumracks << duplicated_drumrack
 
     user.save!
-
   end
 end
 
