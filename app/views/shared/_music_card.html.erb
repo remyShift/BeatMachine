@@ -12,8 +12,8 @@
       <% like = drumrack.likes.find_by(user: current_user) %>
       <% if like.nil?  %>
         <%= button_to drumrack_likes_path(drumrack), class: 'label control-button' do %>
-          <p class="text-white text-md relative z-10 text-center cursor-pointer" data-controller="heart">
-              <i class="fa-solid fa-heart-pulse text-xl text-white" data-heart-target="icon"></i>
+          <p class="text-white text-md relative z-10 text-center cursor-pointer">
+              <i class="fa-solid fa-heart-pulse text-xl text-white"></i>
           <%= drumrack.likes.count %>
           </p>
         <% end %>
@@ -22,8 +22,8 @@
             method: :delete,
             data: {turbo_method: :delete},
             class: "label control-button" do %>
-          <p class="text-white text-md relative z-10 text-center cursor-pointer" data-controller="heart">
-              <i class="fa-solid fa-heart-pulse text-xl text-red-500" data-heart-target="icon"></i>
+          <p class="text-white text-md relative z-10 text-center cursor-pointer">
+              <i class="fa-solid fa-heart-pulse text-xl text-red-500"></i>
           <%= drumrack.likes.count %>
           </p>
         <% end %>
