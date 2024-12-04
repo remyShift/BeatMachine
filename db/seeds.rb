@@ -192,7 +192,7 @@ music_cards = [
 
 # Create a user
 10.times do
-  user = User.new(email: Faker::Internet.email, password: Faker::Internet.password)
+  user = User.new(username: Faker::Name.unique.name, email: Faker::Internet.email, password: Faker::Internet.password)
   user.profile_picture.attach(io: URI.open(Faker::Avatar.image), filename: "avatar.png", content_type: "image/png")
 
   drumrack = Drumrack.all.sample
@@ -212,7 +212,7 @@ music_cards = [
   end
 
   duplicated_drumrack.save
-  
+
   music_card = music_cards.sample
   duplicated_drumrack.update(is_template: false, name: music_card[:title])
 
