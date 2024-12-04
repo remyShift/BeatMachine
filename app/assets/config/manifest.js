@@ -19,7 +19,7 @@
 //= link_tree ../../../vendor/javascript .js
 //= link bailefunkwp.jpeg
 //= link jazzwp.jpeg
-//= link jerseywp.jpeg
+//= link jerseyclubwp.jpeg
 //= link jazzwp.jpeg
 //= link trapwp.jpeg
 //= link junglewp.jpeg

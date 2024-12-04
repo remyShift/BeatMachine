@@ -367,3 +367,15 @@ h4 {
     transform: rotate(360deg);
   }
 }
+
+.community-card {
+  overflow: hidden;
+}
+
+.community-card .bg-image {
+  transition: filter 3s ease;
+}
+
+.community-card:hover .bg-image {
+  filter: blur(3px);
+}
