@@ -1,66 +1,117 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+
   <title>We're sorry, but something went wrong (500)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+    :root {
+        --orange: #ffa400;
+        --darkblue: #2a2a72;
+        --darkgrey: #232528;
+        --customGrey: #4C4249;
+        --customBlue: #1F6BC1;
+        --customGreen: #7CEA9C;
+        --customforestGreen: #149039;
+        --dadarkgrey: #372F34;
+        --primary: #f05643;
+        --greyy: #404041;
+        --yelloww: #fec057;
+        --blackk: #231f20;
+        --pink: #ff0f7b;
+        --orangee: #f89b29;
+        --blue: #0061ff;
+        --lightblue: #60efff;
+        --purple: #392d69;
+        --lightpurple: #b57bee;
+      }
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+      body {
+        background-color: var(--blackk);
+        color: white;
+        font-family: 'Outfit', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+      h2 {
+        font-size: small;
+        font-weight: 400;
+      }
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+    .rails-default-error-page {
+      background-color: var(--blackk);
+      color: white;
+      text-align: center;
+      font-family: 'Outfit', sans-serif;
+      margin: 0;
+    }
 
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-  </style>
+    .rails-default-error-page div.dialog {
+      width: 95%;
+      max-width: 33em;
+      margin: 4rem auto 0;
+      margin-bottom: 4rem;
+    }
+
+    .rails-default-error-page div.dialog > div {
+      border: 1px solid var(--yelloww);
+      border-right-color: var(--yelloww);
+      border-left-color: var(--yelloww);
+      border-bottom-color: var(--yelloww);
+      border-top: var(--yelloww) solid 4px;
+      border-top-left-radius: 9px;
+      border-top-right-radius: 9px;
+      background-color: var(--greyy);
+      padding: 16px 12% 0;
+      box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+    }
+
+    .rails-default-error-page h1 {
+      font-size: 100%;
+      color: white;
+      line-height: 1.5em;
+    }
+
+    p {
+        font-size: 4rem;  /* 5x plus gros que la taille par défaut */
+        color: var(--yelloww);
+      }
+
+    em {
+          margin-bottom: 2rem;
+    }
+
+    .rails-default-error-page div.dialog > p {
+      margin: 0 0 1rem;
+      padding: 1rem;
+      background-color: #F7F7F7;
+      border: 1px solid var(--yelloww);
+      border-right-color: var(--yelloww);
+      border-left-color: var(--yelloww);
+      border-bottom-color: var(--yelloww);
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      border-top-color: var(--yelloww);
+      color: #666;
+      box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+    }
+    </style>
 </head>
 
 <body class="rails-default-error-page">
   <!-- This file lives in public/500.html -->
   <div class="dialog">
     <div>
-      <h1>We're sorry, but something went wrong.</h1>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
+      <h1>Internal Servor Error</h1>
+      <p><strong>500</strong></p>
+      <h2>when life gives you 500 error pages, go make yourself a coffee</h2>
   </div>
 </body>
 </html>
