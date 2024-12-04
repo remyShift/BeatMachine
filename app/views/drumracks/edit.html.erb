@@ -1,7 +1,21 @@
-<div>
-    <%= simple_form_for @drumrack do |f| %>
-        <%= f.input :name %>
-        <%= f.hidden_field :pads, value: @drumrack.pads.to_json %>
-        <%= f.button :submit %>
-    <% end %>
+<div class="flex items-center justify-center mt-6">
+   <div class="bg-greyy p-8 rounded-lg shadow-lg w-3/4 max-w-md border border-yelloww ">
+
+      <%= simple_form_for @drumrack do |f| %>
+          <%= f.input :name,
+                      required: true,
+                      autofocus: true,
+                      wrapper_html: {class: "w-full"},
+                      input_html: { autocomplete: "username",
+                                  class: "border border-slate-600 rounded-md p-2 flex flex-col gap-2 w-full focus:border-primary focus:outline-none",
+                                },
+                      label_html: {
+                                  class: "text-white font-outfit"
+                                  } %>
+          <%= f.hidden_field :pads, value: @drumrack.pads.to_json %>
+          <div class="my-4 flex flex-col items-center gap-2">
+            <%= f.button :submit, class: "font-outfit border-2 border-yelloww bg-yelloww font-outfit font-semibold text-blackk rounded-md w-1/2 p-2 hover:bg-blackk hover:text-yelloww transform transition-transform duration-200 cursor-pointer"%>
+          </div>
+      <% end %>
+  </div>
 </div>

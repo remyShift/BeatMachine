@@ -199,11 +199,11 @@ h4 {
   border-radius: 100%;
 	background: radial-gradient(circle at center,
 	#494949 0%,
-    
+
 	#727272 40%,
 	#494949 41%,
 	#727272 43%,
-    
+
 	#727272 45%,
 	#494949 46%,
 	#727272 48%,
@@ -221,14 +221,14 @@ h4 {
 	#727272 63%,
 
 	#494949 100%);
-  
-  box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 2px,    /* border */  
-                        inset hsla(0,0%,15%, .8) 0 -1px 5px 2px,    /* soft SD */  
-                        inset hsla(0,0%,0%, .25) 0 -1px 0px 3px,    /* bottom SD */  
-                        inset hsla(0,0%,100%,.7) 0  2px 1px 3px,    /* top HL */  
-  
-  hsla(0,0%, 0%,.15) 0 -1px 3px 2px,    /* outer SD */  
-  hsla(0, 0%, 0%, 0.5) 0  1px 3px 2px;    /* outer HL */ 
+
+  box-shadow: inset hsla(0,0%,15%,  1) 0  0px 0px 2px,    /* border */
+                        inset hsla(0,0%,15%, .8) 0 -1px 5px 2px,    /* soft SD */
+                        inset hsla(0,0%,0%, .25) 0 -1px 0px 3px,    /* bottom SD */
+                        inset hsla(0,0%,100%,.7) 0  2px 1px 3px,    /* top HL */
+
+  hsla(0,0%, 0%,.15) 0 -1px 3px 2px,    /* outer SD */
+  hsla(0, 0%, 0%, 0.5) 0  1px 3px 2px;    /* outer HL */
 
 	animation: speakeasy 0.4s;
   animation-iteration-count: infinite;
