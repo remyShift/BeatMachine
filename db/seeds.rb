@@ -147,7 +147,7 @@ genres = ["reggaeton", "jerseyclub", "bailefunk", "trap", "jazz", "jungle"];
 genres.each do |genre|
 
   # Create drumrack
-  drumrack = Drumrack.new(name: "My #{genre} drumrack", genre: genre, bpm: bpm_templates[genre], is_template: true)
+  drumrack = Drumrack.new(name: "#{genre.capitalize} #{["Vibes", "Beats", "Mixtape", "Demo", "Sketch"].sample}", genre: genre, bpm: bpm_templates[genre], is_template: true)
   drumrack.save!
 
 
@@ -179,29 +179,37 @@ genres.each do |genre|
   end
 end
 
-
-music_cards = [
-  { title: "Groove with me" },
-  { title: "Chill Vibes" },
-  { title: "Party Beats" },
-  { title: "Trap Vibes" },
-  { title: "Jazz Vibes" },
-  { title: "Jungle Vibes" },
-  { title: "Reggaeton Vibes" }
-]
-
 # Create a user
-10.times do
-  user = User.new(email: Faker::Internet.email, password: Faker::Internet.password)
+3.times do
+  user = User.new(username: Faker::Name.unique.name, email: Faker::Internet.email, password: Faker::Internet.password)
   user.profile_picture.attach(io: URI.open(Faker::Avatar.image), filename: "avatar.png", content_type: "image/png")
 
-  drumrack = Drumrack.all.sample.dup
-  music_card = music_cards.sample
+  drumracks = Drumrack.all
 
-  drumrack.update(is_template: false, name: music_card[:title])
-  user.drumracks << drumrack
+  drumracks.each do |drumrack|
+    duplicated_drumrack = drumrack.dup
+    duplicated_drumrack.is_template = false
 
-  user.save!
+    duplicated_drumrack_samples = []
+    drumrack.samples.each do |sample|
+      duplicated_drumrack_sample = DrumrackSample.create(sample: sample, drumrack: duplicated_drumrack)
+      duplicated_drumrack_samples << duplicated_drumrack_sample
+    end
+
+    duplicated_drumrack.pads.each_with_index do |pad, pad_index|
+      duplicated_drumrack_samples.each_with_index do |drumrack_sample, i|
+        active = drumrack.pads[pad_index].pad_drumrack_samples[i].active
+        PadDrumrackSample.create(pad: pad, drumrack_sample: drumrack_sample, active: active)
+      end
+    end
+
+    duplicated_drumrack.save
+
+    user.drumracks << duplicated_drumrack
+
+    user.save!
+
+  end
 end
 
 p "#{Drumrack.count} drumracks created"

@@ -1,7 +1,7 @@
 <div class= "w-full max-w-md h-60 bg-customGrey rounded-xl shadow-lg p-6">
 
   <!-- Title -->
-  <div class="text-center text-white font-outfit textfont-bold mb-4 ">
+  <div class="text-center text-white font-outfit font-semibold mb-4 ">
     <%= drumrack.name %>
   </div>
 
@@ -15,6 +15,7 @@
   </div>
 
   <!-- Play Button -->
+
   <%= link_to drumrack_path(drumrack) do %>
     <div class="flex justify-center items-center ">
       <div class="w-24 h-24 bg-gradient-to-br from-yelloww to-primary rounded-full mg-4 flex justify-center items-center shadow-inner cursor-pointer">
@@ -22,6 +23,18 @@
       </div>
     </div>
   <% end %>
+
+  <div class="flex justify-center items-center ">
+    <div class="w-24 h-24 bg-gradient-to-br from-emerald-900 to-emerald-600 rounded-full mg-4 flex justify-center items-center shadow-inner cursor-pointer">
+      <i class="fa-solid fa-play fa-2xl text-white"></i>
+    </div>
+  </div>
+
+  <div class="p-2 text-center text-white font-outfit textfont-bold mb-4 ">
+    <%= drumrack.user %>
+  </div>
+
+
   <% if current_user && display_like_button %>
     <% like = current_user.likes.where(drumrack: drumrack)&.first %>
     <%= button_to current_user.like?(drumrack) ? like_path(like) : drumrack_likes_path(drumrack),
