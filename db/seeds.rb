@@ -195,11 +195,28 @@ music_cards = [
   user = User.new(email: Faker::Internet.email, password: Faker::Internet.password)
   user.profile_picture.attach(io: URI.open(Faker::Avatar.image), filename: "avatar.png", content_type: "image/png")
 
-  drumrack = Drumrack.all.sample.dup
-  music_card = music_cards.sample
+  drumrack = Drumrack.all.sample
+  duplicated_drumrack = drumrack.dup
+  duplicated_drumrack_samples = []
 
-  drumrack.update(is_template: false, name: music_card[:title])
-  user.drumracks << drumrack
+  drumrack.samples.each do |sample|
+    duplicated_drumrack_sample = DrumrackSample.create(sample: sample, drumrack: duplicated_drumrack)
+    duplicated_drumrack_samples << duplicated_drumrack_sample
+  end
+
+  duplicated_drumrack.pads.each_with_index do |pad, pad_index|
+    duplicated_drumrack_samples.each_with_index do |drumrack_sample, i|
+      active = drumrack.pads[pad_index].pad_drumrack_samples[i].active
+      PadDrumrackSample.create(pad: pad, drumrack_sample: drumrack_sample, active: active)
+    end
+  end
+
+  duplicated_drumrack.save
+  
+  music_card = music_cards.sample
+  duplicated_drumrack.update(is_template: false, name: music_card[:title])
+
+  user.drumracks << duplicated_drumrack
 
   user.save!
 end

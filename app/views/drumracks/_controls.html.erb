@@ -10,29 +10,37 @@
             <span class="text">Stop</span>
         </label>
 
-        <button class="label control-button" data-action="click->sequencer#decreaseBpm">
-            <span class="text text-3xl">-</span>
-        </button>
+        <% if action_name != 'show' %>
+            <button class="label control-button" data-action="click->sequencer#decreaseBpm">
+                <span class="text text-3xl">-</span>
+            </button>
+        <% end %>
 
         <label for="bpm" id="bpm-label" class="label min-w-[150px]">
             <span class="text" id="bpm-text" data-sequencer-target="bpmLabelCurrent"><%= @drumrack.bpm %> BPM</span>
         </label>
 
-        <button class="label control-button" data-action="click->sequencer#increaseBpm">
-            <span class="text text-2xl">+</span>
-        </button>
-
-        <%= link_to edit_drumrack_path(@drumrack), class: 'label control-button' do %>
-            <span class="text">Edit</span>
+        <% if action_name != 'show' %>
+            <button class="label control-button" data-action="click->sequencer#increaseBpm">
+                <span class="text text-2xl">+</span>
+            </button>
         <% end %>
 
-        <button class="label control-button" data-action="click->sequencer#resetAll">
-            <span class="text">Clear</span>
-        </button>
-
-        <button class="control-button label" data-action="click->sequencer#lauchAi">
-            <span class="text">Help</span>
-        </button>
+        <% if action_name != 'show' %>
+            <button class="label control-button" data-action="click->sequencer#resetAll">
+                <span class="text">Clear</span>
+            </button>
+            <%= link_to edit_drumrack_path(@drumrack), class: 'label control-button' do %>
+                <span class="text">Edit</span>
+            <% end %>
+            <button class="label control-button" data-action="click->sequencer#lauchAi">
+                <span class="text">Help</span>
+            </button>
+        <% else %>
+            <%= link_to duplicate_drumrack_path(@drumrack), class: 'label control-button' do %>
+                <span class="text">Modify</span>
+            <% end %>
+        <% end %>
 
         <%= link_to root_path, class: 'label control-button' do %>
             <span class="text">Home</span>
