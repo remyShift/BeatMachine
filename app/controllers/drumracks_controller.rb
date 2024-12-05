@@ -6,15 +6,17 @@ class DrumracksController < ApplicationController
   before_action :set_drumrack, only: [:show, :soundbox, :update, :duplicate]
 
   def index
-    @drumracks = Drumrack.where(is_template: false).sort_by { |drumrack| drumrack.likes.count }
+    @drumracks = Drumrack.where(is_template: false)
     @templates = Drumrack.where(is_template: true)
     if params[:query].present?
       sql_subquery = <<~SQL
-        drumracks.genre @@ :query
-        OR users.username @@ :query
+        drumracks.genre ILIKE :query
+        OR users.username ILIKE :query
       SQL
-    @drumracks = @drumracks.joins(:user).where(sql_subquery, query: "%#{params[:query]}%")
+      @drumracks = @drumracks.joins(:user)
+                             .where(sql_subquery, query: "%#{params[:query]}%")
     end
+    @drumracks = @drumracks.sort_by { |drumrack| drumrack.likes.count }
   end
 
   def after_sign_up_path_for(resource)
