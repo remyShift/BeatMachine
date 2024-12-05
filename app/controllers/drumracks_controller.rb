@@ -10,14 +10,15 @@ class DrumracksController < ApplicationController
     @templates = Drumrack.where(is_template: true)
     if params[:query].present?
       sql_subquery = <<~SQL
-        drumracks.genre ILIKE :query
-        OR users.username ILIKE :query
+        drumracks.genre @@ :query
+        OR users.username @@ :query
         AND drumracks.is_template = false
       SQL
       @drumracks = @drumracks.joins(:user)
                              .where(sql_subquery, query: "%#{params[:query]}%")
+                             .sort_by { |drumrack| drumrack.likes.count }.reverse
     end
-    @drumracks = @drumracks.sort_by { |drumrack| drumrack.likes.count }
+    @drumracks = @drumracks.sort_by { |drumrack| drumrack.likes.count }.reverse
   end
 
   def after_sign_up_path_for(resource)
