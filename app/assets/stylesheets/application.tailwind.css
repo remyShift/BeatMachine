@@ -77,8 +77,8 @@ h4 {
   align-items: center;
   gap: 2px;
   width: 100%;
-  background-color: black;
-  padding: 2px 0;
+  background-color: #000000;
+  border: 2px solid #000000;
   z-index: 1;
 }
 
@@ -102,14 +102,6 @@ h4 {
   box-shadow: 0px 10px 5px 1px rgba(0, 0, 0, 0.2);
 }
 
-.label:first-child {
-  border-top-left-radius: 6px;
-}
-
-.label:last-child {
-  border-top-right-radius: 6px;
-}
-
 .label::before {
   content: "";
   position: absolute;
@@ -118,7 +110,6 @@ h4 {
   transform: translate(-50%, -50%);
   width: 103%;
   height: 100%;
-  border-radius: 10px;
   background: linear-gradient(
     to bottom,
     transparent 10%,
@@ -143,7 +134,6 @@ h4 {
 .radioPS:has(input[type="radio"]:checked) {
   box-shadow: 0px 10px 5px 1px rgba(0, 0, 0, 0);
   background: linear-gradient(to bottom, #1d1d1d, #1d1d1d);
-  border-top: none;
 }
 
 .radioPS:has(input[type="radio"]:checked)::before {
@@ -175,7 +165,6 @@ h4 {
 .control-button:active {
   box-shadow: 0px 17px 5px 1px rgba(0, 0, 0, 0);
   background: linear-gradient(to bottom, #1d1d1d, #1d1d1d);
-  border-top: none;
 }
 
 .control-button:active::before {
@@ -334,7 +323,6 @@ h4 {
 
 .pad-sample:first-child {
   border-bottom-left-radius: 6px;
-  border-left: none !important;
 }
 
 .pad-sample:last-child {
@@ -364,8 +352,8 @@ h4 {
 }
 
 .drumrack-sequencer {
-  box-shadow: 5px 5px 0 0 rgba(0, 0, 0, 1);
-  background: url("https://media.istockphoto.com/photos/shiny-gray-metal-textured-background-surface-picture-id118336791?k=6&m=118336791&s=612x612&w=0&h=TmS0CED7eS97l8OyLHP_0xWfZ4hGlsAvvLRoMUfTJNg=");
+  box-shadow: 7px 7px 0 0 rgba(0, 0, 0, 1);
+  background: linear-gradient(to bottom, #4c4b51, #1F1F21);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -417,4 +405,49 @@ h4 {
 
 .community-card:hover .bg-image {
   filter: blur(3px);
+}
+
+.name-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  outline: none;
+  gap: 2px;
+  width: 100%;
+  background: linear-gradient(to bottom, #333333, rgb(36, 35, 35));
+  border: 2px solid #000000;
+  border-bottom: none;
+  z-index: 1;
+}
+
+.name-input input {
+  display: none;
+}
+
+.name-input .label {
+  width: 30%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  transition: all 0.1s linear;
+  background: radial-gradient(circle at center, #939393 65%, #333333 100%);
+  position: relative;
+  cursor: pointer;
+  border: 2px solid #000000;
+  box-shadow: 0px 10px 5px 1px rgba(0, 0, 0, 0.2);
+  color: #fcfcfc;
+  text-transform: uppercase;
+  line-height: 12px;
+  font-weight: 800;
+  transition: all 0.1s linear;
+}
+
+.name-input > .text {
+  text-shadow: -1px -1px 1px rgb(224, 224, 224, 0.1),
+    0px 2px 3px rgb(0, 0, 0, 0.3);
 }
