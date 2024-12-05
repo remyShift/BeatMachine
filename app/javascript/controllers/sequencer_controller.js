@@ -224,7 +224,6 @@ export default class extends Controller {
   }
 
   getActiveSamples(padsSamples) {
-    // Defines the list of unique samples that are active in a hash of pad samples
     let uniqueSamples = [];
     padsSamples.forEach(pad => {
       pad.forEach(sample => {
@@ -249,56 +248,42 @@ export default class extends Controller {
           }
         })
       })
-     activeAiPadsIndexes.push(activeIndexes);
+      activeAiPadsIndexes.push(activeIndexes);
     })
     return activeAiPadsIndexes;
   }
 
   lauchAi() {
-    // gets the template response as a hash depending on the genre of the drumrack
     this.aiPads = this.defIaDrumracks(this.genreValue);
 
-    // reset the drumrack
     this.resetAll();
     this.categoryTargets.forEach(category => {
       category.dataset.active = "false";
       category.dataset.played = "false";
     });
 
-
     this.getIaPadsIndexes();
     this.popUpToggle();
     this.launchIaTuto(this.iaSamples);
-
   }
 
-
-
-
   getIaPadsIndexes() {
-    // Defines the list of unique samples that are active in the IA response
     this.iaSamples = this.getActiveSamples(this.aiPads);
     const orderedSamples = ["bass", "kick", "snare", "hihat", "oneshot"];
     this.iaSamples = this.iaSamples.sort((a, b) => orderedSamples.indexOf(a) - orderedSamples.indexOf(b));
 
-    // Defines an array of arrays of indexes of the active pads samples in the IA response
     this.activeAiPadIndexes = this.getActivePadsIndexes(this.aiPads, this.iaSamples);
-
   }
 
   getSelectedPadsIndexes() {
-    // Defines an array of indexes of the selected pads
     this.selectedPads = [];
     this.padTargets.forEach((pad, index) => {
     this.selectedPads.push(JSON.parse(pad.dataset.samples));
     });
 
-    // Defines the list of unique samples that are selected in the drumrack
     this.selectedSamples = this.getActiveSamples(this.selectedPads);
 
-    // Defines an array of arrays of indexes of the active pads samples that are selected in the drumrack
     this.selectedPadsIndexes = this.getActivePadsIndexes(this.selectedPads, this.selectedSamples);
-
   }
 
   highlightSample(sample) {
@@ -330,7 +315,7 @@ export default class extends Controller {
 
   }
 
- selectIaSample (event) {
+  selectIaSample (event) {
     if (!this.iaSamples) {
       return;
     }
@@ -338,7 +323,7 @@ export default class extends Controller {
       this.highlightPads(this.activeAiPadIndexes[0]);
       this.popupTarget.innerText = `please click on the highlighted pads to add ${this.iaSamples[0]} sample to pads`
     }
- }
+  }
 
   selectIaPad() {
     if (!this.iaSamples) {
