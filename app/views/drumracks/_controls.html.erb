@@ -1,5 +1,9 @@
+
+<div class="radio-input rounded-t-md control-button">
+  <input type="text" id="name" name="name" required minlength="4" class="label text text-2xl text-center" data-sequencer-target="name" value="<%= @drumrack.name %>" />
+</div>
 <div class="bpm-controls flex items-center justify-center gap-4 w-full">
-    <div class="radio-input rounded-t-md">
+   <div class="radio-input rounded-t-md">
         <label class="label radioPS">
             <input value="value-1" name="value-radio" id="value-1" type="radio" data-action="click->sequencer#play"/>
             <span class="text">Play</span>
@@ -30,9 +34,9 @@
             <button class="label control-button" data-action="click->sequencer#resetAll">
                 <span class="text">Clear</span>
             </button>
-            <%= link_to edit_drumrack_path(@drumrack), class: 'label control-button' do %>
-                <span class="text">Edit</span>
-            <% end %>
+            <button class="label control-button" data-action="click->sequencer#save">
+                <span class="text">Save</span>
+            </button>
             <button class="label control-button" data-action="click->sequencer#lauchAi">
                 <span class="text">Help</span>
             </button>
