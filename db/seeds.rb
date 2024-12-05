@@ -2,7 +2,7 @@ require "open-uri"
 require "faker"
 
 # Rake::Task['db:reset'].invoke
-Rake::Task['db:migrate'].invoke
+# Rake::Task['db:migrate'].invoke
 
 # Destroying all likes
 puts "Destroying all likes"
