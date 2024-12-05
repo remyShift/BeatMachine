@@ -277,7 +277,7 @@ h4 {
   width: 100%;
   height: 50px;
   display: flex;
-  flex-direction: column;
+  gap: 0.5rem;
   align-items: center;
   justify-content: center;
   padding: 8px;
@@ -285,6 +285,33 @@ h4 {
   position: relative;
   cursor: pointer;
 }
+
+.sound {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.pad-sample[data-muted="true"] {
+  opacity: 0.5 !important;
+}
+
+.sound.muted {
+  display: none;
+}
+
+.pad-sample[data-muted="true"] .sound  {
+  display: none;
+}
+
+.pad-sample[data-muted="true"] .sound.muted {
+  display: block;
+}
+
+
+
+
+
+
 
 .pad-sample::before {
   content: "";

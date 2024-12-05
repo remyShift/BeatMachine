@@ -1,23 +1,30 @@
 <div class="flex justify-center gap-8 w-full">
-    <div class="sample-picker flex justify-center w-full rounded-b-md">
-      <% @drumrack.samples.each do |sample| %>
-        <button class="pad-sample <%= category_color(sample.category) %> group opacity-70 data-[active=true]:opacity-100 data-[played=true]:border-[3px] data-[played=true]:border-[#ffc600] data-[played=true]:opacity-100
+  <div class="sample-picker flex justify-center w-full rounded-b-md">
+    <% @drumrack.samples.each do |sample| %>
+      <button class="pad-sample <%= category_color(sample.category) %> group opacity-70 data-[active=true]:opacity-100 data-[played=true]:border-[3px] data-[played=true]:border-[#ffc600] data-[played=true]:opacity-100
                         data-[aihighlighted=true]:border-[3px]
                         data-[aihighlighted=true]:shadow-[0_0_1rem_#ffc600]
                         data-[aihighlighted=true]:border-[#fc0330]"
             data-active="false"
             data-aihighlighted="false"
             data-sequencer-target="category"
+            data-muted="false"
             data-played="false"
             <% if current_page?(soundbox_drumrack_path(@drumrack) )%>
               data-action="click->sequencer#selectSample click->sequencer#selectIaSample"
-            <% end %>
-            data-category="<%= sample.category %>"
-            data-sequencer-target="category"
-        >
-          <p class="text-sm italic text font-bold text-white opacity-90 group-data-[active=true]:opacity-100 group-data[active=true]:text-slate-900 group-data-[played=true]:opacity-100"><%= sample.category %></p>
-      </button>
-    <% end %>
-  </div>
+      <% end %>
+      data-category="<%= sample.category %>"
+      data-sequencer-target="category"
+      >
+      <p class="text-sm italic text font-bold text-white opacity-90 group-data-[active=true]:opacity-100 group-data[active=true]:text-slate-900 group-data-[played=true]:opacity-100"><%= sample.category %></p>
+      <svg data-action="click->sequencer#muteSample" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="sound">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+      </svg>
+      <svg data-action="click->sequencer#muteSample" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" class="sound muted">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 9.75 19.5 12m0 0 2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6 4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+      </svg>
+      <span class="text-white" data-action="click->sequencer#isoSample">S</span>
+    </button>
+  <% end %>
 </div>
-
+</div>
