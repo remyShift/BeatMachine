@@ -1,7 +1,11 @@
 require "open-uri"
 require "faker"
 
+Rake::Task['db:reset'].invoke
+Rake::Task['db:migrate'].invoke
+
 # Destroying all likes
+puts "Destroying all likes"
 Like.destroy_all
 
 # Destroys drumracks and pads
@@ -182,44 +186,46 @@ genres.each do |genre|
   end
 end
 
+puts "Creating users"
 # Create a user
-3.times do
+10.times do
   user = User.new(username: Faker::Name.unique.name, email: Faker::Internet.email, password: Faker::Internet.password)
   user.profile_picture.attach(io: URI.open(Faker::Avatar.image), filename: "avatar.png", content_type: "image/png")
 
-  drumracks = Drumrack.all
+  drumrack = Drumrack.all.sample
 
-  drumracks.each do |drumrack|
-    duplicated_drumrack = drumrack.dup
-    duplicated_drumrack.name = "#{["Fun", "Sweet", "Sexy", "Great"].sample} #{duplicated_drumrack.genre.capitalize} #{["Vibes", "Beats", "Mixtape", "Demo", "Sketch"].sample}"
-    duplicated_drumrack.is_template = false
+  duplicated_drumrack = drumrack.dup
+  duplicated_drumrack.name = "#{["Fun", "Sweet", "Sexy", "Great"].sample} #{duplicated_drumrack.genre.capitalize} #{["Vibes", "Beats", "Mixtape", "Demo", "Sketch"].sample}"
+  duplicated_drumrack.is_template = false
 
-    duplicated_drumrack_samples = []
-    drumrack.samples.each do |sample|
-      duplicated_drumrack_sample = DrumrackSample.create(sample: sample, drumrack: duplicated_drumrack)
-      duplicated_drumrack_samples << duplicated_drumrack_sample
-    end
-
-    duplicated_drumrack.pads.each_with_index do |pad, pad_index|
-      duplicated_drumrack_samples.each_with_index do |drumrack_sample, i|
-        active = drumrack.pads[pad_index].pad_drumrack_samples[i].active
-        PadDrumrackSample.create(pad: pad, drumrack_sample: drumrack_sample, active: active)
-      end
-    end
-
-    duplicated_drumrack.save
-
-    user.drumracks << duplicated_drumrack
-
-    user.save!
+  duplicated_drumrack_samples = []
+  drumrack.samples.each do |sample|
+    duplicated_drumrack_sample = DrumrackSample.create(sample: sample, drumrack: duplicated_drumrack)
+    duplicated_drumrack_samples << duplicated_drumrack_sample
   end
+
+  duplicated_drumrack.pads.each_with_index do |pad, pad_index|
+    duplicated_drumrack_samples.each_with_index do |drumrack_sample, i|
+      active = drumrack.pads[pad_index].pad_drumrack_samples[i].active
+      PadDrumrackSample.create(pad: pad, drumrack_sample: drumrack_sample, active: active)
+    end
+  end
+
+  duplicated_drumrack.save
+
+  user.drumracks << duplicated_drumrack
+
+  user.save!
 end
 
+puts "Creating likes"
+
 User.all.each do |user|
-  num = rand(60..250)
   drumracks = Drumrack.all
-  drumracks.sample(num).each do |drumrack|
-    user.likes.create(drumrack: drumrack)
+  drumracks.each do |drumrack|
+    rand(10..150).times do
+      user.likes.create(drumrack: drumrack)
+    end
   end
 end
 
