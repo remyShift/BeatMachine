@@ -216,7 +216,7 @@ end
 end
 
 User.all.each do |user|
-  num = rand(6..10)
+  num = rand(60..250)
   drumracks = Drumrack.all
   drumracks.sample(num).each do |drumrack|
     user.likes.create(drumrack: drumrack)
