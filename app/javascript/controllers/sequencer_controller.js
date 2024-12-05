@@ -1121,4 +1121,10 @@ export default class extends Controller {
     };
     return iaDrumracks[genre];
   }
+
+  stopAndRedirect(event) {
+    event.preventDefault();
+    this.pauseMusic();
+    window.location.href = event.currentTarget.href;
+  }
 }

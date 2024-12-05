@@ -48,7 +48,7 @@
             <% end %>
         <% end %>
 
-        <%= link_to root_path, class: 'label control-button' do %>
+        <%= link_to root_path, class: 'label control-button', data: { action: "click->sequencer#stopAndRedirect" } do %>
             <span class="text">Home</span>
         <% end %>
     </div>
