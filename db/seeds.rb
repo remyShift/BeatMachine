@@ -154,7 +154,7 @@ genres = ["reggaeton", "jerseyclub", "bailefunk", "trap", "jazz", "jungle"];
 genres.each do |genre|
 
   # Create drumrack
-  drumrack = Drumrack.new(name: "#{genre.capitalize} Template}", genre: genre, bpm: bpm_templates[genre], is_template: true)
+  drumrack = Drumrack.new(name: "#{genre.capitalize} Template", genre: genre, bpm: bpm_templates[genre], is_template: true)
   drumrack.save!
 
 
