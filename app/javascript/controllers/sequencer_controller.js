@@ -4,7 +4,7 @@ export default class extends Controller {
 
   static values = { bpm: Number, samples: Object, initialSamples: String, bpmValue: Number, drumrackId: Number, genre: String };
   static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn", "togglePlayBtnShow", "bpmLabelCurrent", "popup", "name"];
-  
+
   sampleSelected = null;
   soundBoxSamples = null;
   lastPadPlayed = 0;
@@ -387,7 +387,7 @@ export default class extends Controller {
   }
 
   launchIaTuto(iaSamples) {
-    this.popupTarget.innerText = `please select the ${this.iaSamples[0]} sample`;
+    this.popupTarget.innerText = `Please select the ${this.iaSamples[0]} sample`;
     this.currentSample = this.categoryTargets.find(
       (category) => category.dataset.category === this.iaSamples[0]
     );
