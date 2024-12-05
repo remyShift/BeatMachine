@@ -41,6 +41,7 @@ class DrumracksController < ApplicationController
 
   def duplicate
     duplicated_drumrack = @drumrack.dup
+    duplicated_drumrack.is_template = false
     duplicated_drumrack_samples = []
 
     @drumrack.samples.each do |sample|
