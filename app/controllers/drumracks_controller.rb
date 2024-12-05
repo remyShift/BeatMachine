@@ -54,11 +54,12 @@ class DrumracksController < ApplicationController
   end
 
   def update
-    data = JSON.parse(params[:drumrack][:pads])
+    data = params[:pads]
 
-    @drumrack.update(name: params[:drumrack][:name], user: current_user, is_template: false)
+    @drumrack.update(name: params[:name], bpm: params[:bpm], user: current_user, is_template: false)
 
     data.each_with_index do |pad_json, index|
+      pad_json = JSON.parse(pad_json)
       pad = @drumrack.pads[index]
       next unless pad
 

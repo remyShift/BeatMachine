@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static values = { bpm: Number, samples: Object, initialSamples: String, bpmValue: Number, drumrackId: Number, genre: String };
-  static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn", "togglePlayBtnShow", "bpmLabelCurrent", "popup"];
+  static targets = ["pad", "category", "bpmLabel", "bpmInput", "togglePlayBtn", "togglePlayBtnShow", "bpmLabelCurrent", "popup", "name"];
   sampleSelected = null;
   soundBoxSamples = null;
   lastPadPlayed = 0;
@@ -180,12 +180,16 @@ export default class extends Controller {
   }
 
   save() {
+    const name = this.nameTarget.value;
     if (this.isDrumrackChanged) {
       const padsSamples = this.padTargets.map(pad => pad.dataset.samples)
+      const bpm = this.bpmValue;
       fetch(`/drumracks/${this.drumrackIdValue}`, {
       method: "PATCH",
       body: JSON.stringify({
-        pads: padsSamples
+        pads: padsSamples,
+        bpm: bpm,
+        name: name
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8"
@@ -289,7 +293,7 @@ export default class extends Controller {
   getSelectedPadsIndexes() {
     // Defines an array of indexes of the selected pads
     this.selectedPads = [];
-    this.padTargets.forEach((pad, index) => {
+    this.padTargets.forEach((pad) => {
     this.selectedPads.push(JSON.parse(pad.dataset.samples));
     });
 
