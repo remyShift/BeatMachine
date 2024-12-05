@@ -17,17 +17,6 @@
           <%= render "shared/music_card", drumrack: drumrack, display_like_button: false %>
         <% end %>
       </div>
-      <% if @likes.present? %>
-        <ul class="flex items-center justify-center flex-wrap gap-4">
-          <% @likes.each do |like| %>
-            <%= render "shared/music_card", drumrack: like.drumrack, display_like_button: false, class: "bg-gradient-to-br from-customforestGreen/70 to-customforestGreen/30" %>
-          <% end %>
-        </ul>
-      <% else %>
-        <p class="text-lg text-black font-outfit text-white">You have not created any drumracks yet.</p>
-        <%= link_to "Pick a drumrack", drumracks_path, class: "text-white underline" %>
-      <% end %>
-
     </div>
 
     <div class="w-full flex flex-col mt-8 gap-4 pbt-6 pb-6 shadow-lg shadow-black-500/50 p-8 md:w-1/2 bg-yelloww rounded-lg mb-4 md:mb-0 " style="box-shadow: inset 0 0 5px 6px rgba(0, 0, 0, 0.35);">
