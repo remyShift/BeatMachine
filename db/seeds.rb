@@ -195,7 +195,7 @@ puts "Creating users"
   drumrack = Drumrack.all.sample
 
   duplicated_drumrack = drumrack.dup
-  duplicated_drumrack.name = "#{["Fun", "Sweet", "Sexy", "Great"].sample} #{duplicated_drumrack.genre.capitalize} #{["Vibes", "Beats", "Mixtape", "Demo", "Sketch"].sample}"
+  duplicated_drumrack.name = "#{["Nice", "New", "Modern", "Slow", "Fun", "Sweet", "Sexy", "Great"].sample} #{duplicated_drumrack.genre.capitalize} #{["Vibes", "Beats", "Mixtape", "Demo", "Sketch", "Sound", "Music"].sample}"
   duplicated_drumrack.is_template = false
 
   duplicated_drumrack_samples = []
