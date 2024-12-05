@@ -17,6 +17,14 @@ class DrumracksController < ApplicationController
     end
   end
 
+  def after_sign_up_path_for(resource)
+    user_path(resource)
+  end
+
+  def after_sign_in_path_for(resource)
+    root_path
+  end
+
   def soundbox
     @samples_from_drumrack = @drumrack.samples.each_with_object({}) do |sample, hash|
       hash[sample.category] = sample.sound.url
