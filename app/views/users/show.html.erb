@@ -1,9 +1,9 @@
 <% content_for :title, "User profile" %>
-<div class="ml-4 mt-6 mr-4 flex flex-col justify-between justify-center ">
+<div class="ml-4 mt-6 mr-4 flex flex-col justify-between justify-center">
   <div class="flex flex-col mr-8 mb-8">
-    <h2 class="text-5xl font-bold flex flex-col items-center font-outfit text-white">Your profile</h2>
-    <div class="flex flex-col mt-4 items-center gap-4">
-      <%= cl_image_tag @user.profile_picture.key, class: "w-40 h-40 rounded-full object-cover border-2 border-primary" %>
+    <h2 class="text-5xl font-bold flex flex-col items-center font-outfit text-white"><%= @current_user.username %>'s profile</h2>
+    <div class="flex flex-col mt-4 items-center justify-center gap-4">
+      <%= cl_image_tag @user.profile_picture.key, class: "w-40 h-40 rounded-full object-cover border-2 border-yelloww" %>
       <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "bg-yelloww w-1/6 font-outfit font-semibold text-center rounded-md w-1/2 p-2 hover:bg-blackk hover:text-yelloww transform border-2 border-yelloww transition-transform duration-200 cursor-pointer" %>
     </div>
   </div>
@@ -20,7 +20,22 @@
     </div>
 
     <div class="w-full flex flex-col mt-8 gap-4 pbt-6 pb-6 shadow-lg shadow-black-500/50 p-8 md:w-1/2 bg-yelloww rounded-lg mb-4 md:mb-0 " style="box-shadow: inset 0 0 5px 6px rgba(0, 0, 0, 0.35);">
-        <h3 class="text-3xl text-center font-bold font-outfit text-black">Your favorite drumracks</h3>
+      <div class="flex flex-col items-center space-y-4">
+        <h3 class="text-3xl text-center font-bold font-outfit text-black">
+          Your favorite drumracks
+        </h3>
+        <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+        <dotlottie-player
+          src="https://lottie.host/c19c9c7d-4f0a-41a2-946f-ca267b063ee6/66KxjAgULY.lottie"
+          background="transparent"
+          speed="1"
+          style="width: 80px; height: 80px"
+          loop
+          autoplay
+        ></dotlottie-player>
+      </div>
+
+
       <% if @likes.present? %>
         <ul class="flex items-center justify-center flex-wrap gap-4">
           <% @likes.each do |like| %>
