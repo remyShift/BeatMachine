@@ -16,7 +16,7 @@ class DrumracksController < ApplicationController
       @drumracks = @drumracks.joins(:user)
                              .where(sql_subquery, query: "%#{params[:query]}%")
     end
-    @drumracks = @drumracks.sort_by { |drumrack| drumrack.likes.count }
+    @drumracks = @drumracks.sort_by { |drumrack| drumrack.likes.count }.reverse
   end
 
   def after_sign_up_path_for(resource)
