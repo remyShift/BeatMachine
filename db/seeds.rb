@@ -188,32 +188,34 @@ end
 
 puts "Creating users"
 # Create a user
-35.times do
+10.times do
   user = User.new(username: Faker::Name.unique.name, email: Faker::Internet.email, password: Faker::Internet.password)
   user.profile_picture.attach(io: URI.open(Faker::Avatar.image), filename: "avatar.png", content_type: "image/png")
 
-  drumrack = Drumrack.all.sample
+  drumracks = Drumrack.all
 
-  duplicated_drumrack = drumrack.dup
-  duplicated_drumrack.name = "#{["Nice", "New", "Modern", "Slow", "Fun", "Sweet", "Sexy", "Great"].sample} #{duplicated_drumrack.genre.capitalize} #{["Vibes", "Beats", "Mixtape", "Demo", "Sketch", "Sound", "Music"].sample}"
-  duplicated_drumrack.is_template = false
+  drumracks.each do |drumrack|
+    duplicated_drumrack = drumrack.dup
+    duplicated_drumrack.name = "#{["Nice", "New", "Modern", "Slow", "Fun", "Sweet", "Sexy", "Great"].sample} #{duplicated_drumrack.genre.capitalize} #{["Vibes", "Beats", "Mixtape", "Demo", "Sketch", "Sound", "Music"].sample}"
+    duplicated_drumrack.is_template = false
 
-  duplicated_drumrack_samples = []
-  drumrack.samples.each do |sample|
-    duplicated_drumrack_sample = DrumrackSample.create(sample: sample, drumrack: duplicated_drumrack)
-    duplicated_drumrack_samples << duplicated_drumrack_sample
-  end
-
-  duplicated_drumrack.pads.each_with_index do |pad, pad_index|
-    duplicated_drumrack_samples.each_with_index do |drumrack_sample, i|
-      active = drumrack.pads[pad_index].pad_drumrack_samples[i].active
-      PadDrumrackSample.create(pad: pad, drumrack_sample: drumrack_sample, active: active)
+    duplicated_drumrack_samples = []
+    drumrack.samples.each do |sample|
+      duplicated_drumrack_sample = DrumrackSample.create(sample: sample, drumrack: duplicated_drumrack)
+      duplicated_drumrack_samples << duplicated_drumrack_sample
     end
+
+    duplicated_drumrack.pads.each_with_index do |pad, pad_index|
+      duplicated_drumrack_samples.each_with_index do |drumrack_sample, i|
+        active = drumrack.pads[pad_index].pad_drumrack_samples[i].active
+        PadDrumrackSample.create(pad: pad, drumrack_sample: drumrack_sample, active: active)
+      end
+    end
+
+    duplicated_drumrack.save
+
+    user.drumracks << duplicated_drumrack
   end
-
-  duplicated_drumrack.save
-
-  user.drumracks << duplicated_drumrack
 
   user.save!
 end
