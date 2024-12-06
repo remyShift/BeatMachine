@@ -15,7 +15,7 @@ class DrumracksController < ApplicationController
         OR users.username @@ :query
         AND drumracks.is_template = false
       SQL
-      @drumracks = @drumracks.joins(:user)
+      @drumracks = @drumracks.join(:user)
                              .where(sql_subquery, query: "%#{params[:query]}%")
                              .sort_by { |drumrack| drumrack.likes.count }.reverse
     end
