@@ -188,7 +188,7 @@ end
 
 puts "Creating users"
 # Create a user
-10.times do
+5.times do
   user = User.new(username: Faker::Name.unique.name, email: Faker::Internet.email, password: Faker::Internet.password)
   user.profile_picture.attach(io: URI.open(Faker::Avatar.image), filename: "avatar.png", content_type: "image/png")
 
