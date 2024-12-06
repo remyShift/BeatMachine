@@ -7,7 +7,8 @@ class DrumracksController < ApplicationController
 
   def index
     @templates = Drumrack.where(is_template: true)
-    @drumracks = Drumrack.all.where(is_template: false).sort_by { |drumrack| drumrack.likes.count }.reverse
+    @drumracks = Drumrack.joins(:user)
+                         .where(is_template: false)
 
     if params[:query].present?
       sql_subquery = <<~SQL
@@ -15,10 +16,10 @@ class DrumracksController < ApplicationController
         OR users.username @@ :query
         AND drumracks.is_template = false
       SQL
-      @drumracks = @drumracks.join(:user)
-                             .where(sql_subquery, query: "%#{params[:query]}%")
-                             .sort_by { |drumrack| drumrack.likes.count }.reverse
+      @drumracks = @drumracks.where(sql_subquery, query: "%#{params[:query]}%")
     end
+
+    @drumracks = @drumracks.sort_by { |drumrack| drumrack.likes.count }.reverse
   end
 
   def after_sign_up_path_for(resource)
