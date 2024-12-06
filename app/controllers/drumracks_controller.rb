@@ -57,6 +57,7 @@ class DrumracksController < ApplicationController
       end
     end
 
+    duplicated_drumrack.user = current_user
     duplicated_drumrack.save
     redirect_to soundbox_drumrack_path(duplicated_drumrack)
   end
