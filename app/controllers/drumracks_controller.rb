@@ -6,7 +6,7 @@ class DrumracksController < ApplicationController
   before_action :set_drumrack, only: [:show, :soundbox, :update, :duplicate]
 
   def index
-    @drumracks = Drumrack.where(is_template: false)
+    @drumracks = Drumrack.where(is_template: false).reverse
     @templates = Drumrack.where(is_template: true)
     if params[:query].present?
       sql_subquery = <<~SQL
